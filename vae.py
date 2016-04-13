@@ -82,14 +82,15 @@ class VariationalAutoencoder(object):
 
         # Use generator to determine mean of
         # Bernoulli distribution of reconstructed input
-        self.x_reconstr_mean = \
+        self.x_reconstr_mean = lambda dropout:\
             self._generator_network(len(network_weights["weights_gener"]), \
                                     network_weights["weights_gener"], \
                                     network_weights["biases_gener"], \
                                     network_weights["w_gener_out_mean"], \
-                                      network_weights["w_gener_out_log_sigma"], \
-                                      network_weights["b_gener_out_mean"], \
-                                      network_weights["b_gener_out_log_sigma"])
+                                    network_weights["w_gener_out_log_sigma"], \
+                                    network_weights["b_gener_out_mean"], \
+                                    network_weights["b_gener_out_log_sigma"], \
+                                    layer_dropout=dropout)
             
     def _initialize_weights(self, n_hidden_recog_layers, n_hidden_recog_dim, 
                             n_hidden_gener_layers,  n_hidden_gener_dim, 
@@ -135,14 +136,17 @@ class VariationalAutoencoder(object):
                    b_recog_out_log_sigma)
         return (z_mean, z_log_sigma_sq)
 
-    def _generator_network(self, n_layers, weights, biases, w_gener_out_mean, w_gener_out_log_sigma, b_gener_out_mean, b_gener_out_log_sigma):
+    def _generator_network(self, n_layers, weights, biases, \
+                           w_gener_out_mean, w_gener_out_log_sigma, b_gener_out_mean, b_gener_out_log_sigma, \
+                           layer_dropout=[]):
         # Generate probabilistic decoder (decoder network), which
         # maps points in latent space onto a Bernoulli distribution in data space.
         # The transformation is parametrized and can be learned.
         curr_layer=self.z
         for i in range(n_layers):
-            curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), \
-                                           biases[i])) 
+            if not i in layer_dropout:
+                curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), \
+                                                      biases[i]))
         z_mean = tf.add(tf.matmul(curr_layer, w_gener_out_mean), \
                         b_gener_out_mean)
         z_log_sigma_sq = \
@@ -164,8 +168,8 @@ class VariationalAutoencoder(object):
         #     is given.
         # Adding 1e-10 to avoid evaluatio of log(0.0)
         reconstr_loss = \
-            -tf.reduce_sum(self.x * tf.log(1e-10 + self.x_reconstr_mean)
-                           + (1-self.x) * tf.log(1e-10 + 1 - self.x_reconstr_mean),
+            -tf.reduce_sum(self.x * tf.log(1e-10 + self.x_reconstr_mean([]))
+                           + (1-self.x) * tf.log(1e-10 + 1 - self.x_reconstr_mean([])),
                            1)
         # 2.) The latent loss, which is defined as the Kullback Leibler divergence 
         ##    between the distribution in latent space induced by the encoder on 
@@ -196,7 +200,7 @@ class VariationalAutoencoder(object):
         # sample from Gaussian distribution
         return self.sess.run(self.z_mean, feed_dict={self.x: X})
     
-    def generate(self, z_mu=None):
+    def generate(self, z_mu=None,layer_dropout=[]):
         """ Generate data by sampling from latent space.
         
         If z_mu is not None, data for this point in latent space is
@@ -207,12 +211,12 @@ class VariationalAutoencoder(object):
             z_mu = np.random.normal(size=self.network_architecture["n_z"])
         # Note: This maps to mean of distribution, we could alternatively
         # sample from Gaussian distribution
-        return self.sess.run(self.x_reconstr_mean, 
+        return self.sess.run(self.x_reconstr_mean(layer_dropout), 
                              feed_dict={self.z: z_mu})
     
-    def reconstruct(self, X):
+    def reconstruct(self, X,layer_dropout=[]):
         """ Use VAE to reconstruct given data. """
-        return self.sess.run(self.x_reconstr_mean, 
+        return self.sess.run(self.x_reconstr_mean(layer_dropout), 
                              feed_dict={self.x: X})
 def train(n_layers, layer_n, latent_dim, input_dim, learning_rate=0.001, \
           batch_size=100, training_epochs=10, display_step=1):
@@ -237,7 +241,7 @@ def train(n_layers, layer_n, latent_dim, input_dim, learning_rate=0.001, \
                "cost=", "{:.9f}".format(avg_cost)
     return vae
 
-def visualize_2d_latent(vae_2d,test_data=mnist.test):
+def visualize_2d_gener(vae_2d,test_data=mnist.test,layer_dropout=[]):
     if vae_2d.latent_dim!=2:
         print "Need a two-dimensional VAE to visualize"
         return
@@ -248,7 +252,7 @@ def visualize_2d_latent(vae_2d,test_data=mnist.test):
     for i, yi in enumerate(x_values):
         for j, xi in enumerate(y_values):
             z_mu = np.array([[xi, yi]])
-            x_mean = vae_2d.generate(z_mu)
+            x_mean = vae_2d.generate(z_mu,layer_dropout=layer_dropout)
             canvas[(nx-i-1)*28:(nx-i)*28, j*28:(j+1)*28] = x_mean[0].reshape(28, 28)
     plt.figure(figsize=(8, 10))        
     Xi, Yi = np.meshgrid(x_values, y_values)
@@ -256,7 +260,7 @@ def visualize_2d_latent(vae_2d,test_data=mnist.test):
     plt.tight_layout()
     pylab.show()
 
-def visualize_2d_samples(vae_2d,test_data=mnist.test):
+def visualize_2d_recon(vae_2d,test_data=mnist.test,layer_dropout=[]):
     if vae_2d.latent_dim!=2:
         print "Need a two-dimensional VAE to visualize"
         return
@@ -264,7 +268,7 @@ def visualize_2d_samples(vae_2d,test_data=mnist.test):
     x_values = np.linspace(-3, 3, nx)
     y_values = np.linspace(-3, 3, ny)
     x_sample = test_data.next_batch(100)[0]
-    x_reconstruct = vae_2d.reconstruct(x_sample)
+    x_reconstruct = vae_2d.reconstruct(x_sample,layer_dropout=layer_dropout)
     plt.figure(figsize=(8, 12))
     for i in range(5):
         x_sample, y_sample = test_data.next_batch(5000)
@@ -291,12 +295,12 @@ def load_model(n_layers,layer_nodes,latent_dim,input_dim,training_epochs,learnin
     return vae
     
 if __name__=='__main__':
-    n_layers=4
-    layer_n=1000
+    n_layers=8
+    layer_n=10
     latent_dim=2
     input_dim=784
     training_epochs=5
     vae = train(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
     save_model(vae)
     #vae = load_model(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
-    #visualize_2d_latent(vae)
+    visualize_2d_recon(vae,layer_dropout=[1,2,3,4,5,6,7])
