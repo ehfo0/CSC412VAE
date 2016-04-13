@@ -303,4 +303,4 @@ if __name__=='__main__':
     vae = train(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
     save_model(vae)
     #vae = load_model(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
-    visualize_2d_recon(vae,layer_dropout=[1,2,3,4,5,6,7])
+    visualize_2d_gener(vae)
