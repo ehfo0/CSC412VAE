@@ -38,9 +38,10 @@ class VariationalAutoencoder(object):
         self.learning_rate = learning_rate
         self.batch_size = batch_size
         self.training_epochs = 0
+        self.sess = tf.InteractiveSession()
         # tf Graph input
         self.x = tf.placeholder(tf.float32, [None, input_dim])
-
+        self.dropout=tf.placeholder(tf.int32, [n_layers])
         # Create autoencoder network
         self._create_network(n_layers, layer_n, latent_dim, input_dim)
         # Define loss function based variational upper-bound and 
@@ -52,7 +53,6 @@ class VariationalAutoencoder(object):
             init = tf.initialize_all_variables()
 
             # Launch the session
-            self.sess = tf.InteractiveSession()
             self.sess.run(init)
     
     
@@ -82,15 +82,14 @@ class VariationalAutoencoder(object):
 
         # Use generator to determine mean of
         # Bernoulli distribution of reconstructed input
-        self.x_reconstr_mean = lambda dropout:\
+        self.x_reconstr_mean = \
             self._generator_network(len(network_weights["weights_gener"]), \
                                     network_weights["weights_gener"], \
                                     network_weights["biases_gener"], \
                                     network_weights["w_gener_out_mean"], \
                                     network_weights["w_gener_out_log_sigma"], \
                                     network_weights["b_gener_out_mean"], \
-                                    network_weights["b_gener_out_log_sigma"], \
-                                    layer_dropout=dropout)
+                                    network_weights["b_gener_out_log_sigma"])
             
     def _initialize_weights(self, n_hidden_recog_layers, n_hidden_recog_dim, 
                             n_hidden_gener_layers,  n_hidden_gener_dim, 
@@ -121,14 +120,14 @@ class VariationalAutoencoder(object):
         
         return all_weights
             
-    def _recognition_network(self, n_layers, weights, biases, w_recog_out_mean, w_recog_out_log_sigma, b_recog_out_mean, b_recog_out_log_sigma):
+    def _recognition_network(self, n_layers, weights, biases, \
+                             w_recog_out_mean, w_recog_out_log_sigma, b_recog_out_mean, b_recog_out_log_sigma):
         # Generate probabilistic encoder (recognition network), which
         # maps inputs onto a normal distribution in latent space.
         # The transformation is parametrized and can be learned.
         curr_layer=self.x
-        for i in range(n_layers):
-            curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), \
-                                           biases[i])) 
+        for i in xrange(n_layers):
+            curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), biases[i]))
         z_mean = tf.add(tf.matmul(curr_layer, w_recog_out_mean), \
                         b_recog_out_mean)
         z_log_sigma_sq = \
@@ -137,15 +136,13 @@ class VariationalAutoencoder(object):
         return (z_mean, z_log_sigma_sq)
 
     def _generator_network(self, n_layers, weights, biases, \
-                           w_gener_out_mean, w_gener_out_log_sigma, b_gener_out_mean, b_gener_out_log_sigma, \
-                           layer_dropout=[]):
+                           w_gener_out_mean, w_gener_out_log_sigma, b_gener_out_mean, b_gener_out_log_sigma):
         # Generate probabilistic decoder (decoder network), which
         # maps points in latent space onto a Bernoulli distribution in data space.
         # The transformation is parametrized and can be learned.
         curr_layer=self.z
         for i in range(n_layers):
-            if not i in layer_dropout:
-                curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), \
+            curr_layer = self.transfer_fct(tf.add(tf.matmul(curr_layer, weights[i]), \
                                                       biases[i]))
         z_mean = tf.add(tf.matmul(curr_layer, w_gener_out_mean), \
                         b_gener_out_mean)
@@ -168,8 +165,8 @@ class VariationalAutoencoder(object):
         #     is given.
         # Adding 1e-10 to avoid evaluatio of log(0.0)
         reconstr_loss = \
-            -tf.reduce_sum(self.x * tf.log(1e-10 + self.x_reconstr_mean([]))
-                           + (1-self.x) * tf.log(1e-10 + 1 - self.x_reconstr_mean([])),
+            -tf.reduce_sum(self.x * tf.log(1e-10 + self.x_reconstr_mean)
+                           + (1-self.x) * tf.log(1e-10 + 1 - self.x_reconstr_mean),
                            1)
         # 2.) The latent loss, which is defined as the Kullback Leibler divergence 
         ##    between the distribution in latent space induced by the encoder on 
@@ -181,6 +178,7 @@ class VariationalAutoencoder(object):
                                            - tf.square(self.z_mean) 
                                            - tf.exp(self.z_log_sigma_sq), 1)
         self.cost = tf.reduce_mean(reconstr_loss + latent_loss)   # average over batch
+        #self.cost = self._evidence_lower_bound();
         # Use ADAM optimizer
         self.optimizer = \
             tf.train.AdamOptimizer(learning_rate=self.learning_rate).minimize(self.cost)
@@ -191,10 +189,10 @@ class VariationalAutoencoder(object):
         Return cost of mini-batch.
         """
         opt, cost = self.sess.run((self.optimizer, self.cost), 
-                                  feed_dict={self.x: X})
+                                  feed_dict={self.x: X,self.dropout: [0]*n_layers})#tf.zeros([1,self.n_layers])})
         return cost
     
-    def transform(self, X):
+    def transform(self, X,layer_dropout=[]):
         """Transforpm data by mapping it into the latent space."""
         # Note: This maps to mean of distribution, we could alternatively
         # sample from Gaussian distribution
@@ -208,16 +206,150 @@ class VariationalAutoencoder(object):
         space.        
         """
         if z_mu is None:
-            z_mu = np.random.normal(size=self.network_architecture["n_z"])
+            z_mu = [np.random.normal(size=self.latent_dim)]
         # Note: This maps to mean of distribution, we could alternatively
         # sample from Gaussian distribution
-        return self.sess.run(self.x_reconstr_mean(layer_dropout), 
-                             feed_dict={self.z: z_mu})
+        feed_dict={self.z: z_mu}
+        for l in layer_dropout:
+            print self.network_weights["weights_recog"][l].shape()
+            self.weights[l]=tf.Variable(tf.zeros(self.layer_nodes,self.layer_nodes))
+        return self.sess.run(self.x_reconstr_mean, 
+                             feed_dict=feed_dict)
     
     def reconstruct(self, X,layer_dropout=[]):
         """ Use VAE to reconstruct given data. """
-        return self.sess.run(self.x_reconstr_mean(layer_dropout), 
+        self.dropout=layer_dropout
+        return self.sess.run(self.x_reconstr_mean, 
                              feed_dict={self.x: X})
+    
+    def _evidence_lower_bound(self,
+                              monte_carlo_samples=1,
+                              importance_weighting=False,
+                              tol=1e-5):
+        """
+            Variational objective function
+
+            ELBO = E(log joint log-likelihood) - E(log q)
+                 = MC estimate of log joint - Entropy(q)
+
+        """
+        x_resampled = tf.tile(self.x, tf.constant([monte_carlo_samples, 1]))
+
+        # Forward pass of data into latent space
+        mean_encoder, log_variance_encoder = self.z_mean, self.z_log_sigma_sq#self._encode(x_resampled)
+
+        #random_noise = tf.random_normal(
+        #    (self.batch_size * monte_carlo_samples, self.latent_dim), 0, 1, dtype=tf.float32)
+
+        # Reparameterization trick of re-scaling/transforming random error
+        std_dev = tf.sqrt(tf.exp(log_variance_encoder))
+        z = mean_encoder + std_dev# * random_noise
+
+        # Reconstruction/decoding of latent space
+        mean_decoder = self.x_reconstr_mean#self._generate(z)
+
+        # Bernoulli log-likelihood reconstruction
+        # TODO: other distributon types
+        def bernoulli_log_joint(x):
+            return tf.reduce_sum(
+                (x * tf.log(tol + mean_decoder))
+                    + ((1 - x) * tf.log(tol + 1 - mean_decoder)), 
+                1)
+
+        log2pi = tf.log(2.0 * np.pi)
+
+        def gaussian_likelihood(data, mean, log_variance):
+            """Log-likelihood of data given ~ N(mean, exp(log_variance))
+
+            Parameters
+            ----------
+            data : 
+                Samples from Gaussian centered at mean
+            mean : 
+                Mean of the Gaussian distribution
+            log_variance : 
+                Log variance of the Gaussian distribution
+
+            Returns
+            -------
+            log_likelihood : float
+
+            """
+
+            num_components = data.get_shape().as_list()[1]
+            variance = tf.exp(log_variance)
+            log_likelihood = (
+                -(log2pi * (num_components / 2.0))
+                - tf.reduce_sum(
+                    (tf.square(data - mean) / (2 * variance)) + (log_variance / 2.0),
+                    1)
+            )
+
+            return log_likelihood
+
+        def standard_gaussian_likelihood(data):
+            """Log-likelihood of data given ~ N(0, 1)
+
+            Parameters
+            ----------
+            data : 
+                Samples from Guassian centered at 0
+
+            Returns
+            -------
+            log_likelihood : float
+
+            """
+
+            num_components = data.get_shape().as_list()[1]
+            log_likelihood = (
+                -(log2pi * (num_components / 2.0))
+                - tf.reduce_sum(tf.square(data) / 2.0, 1)
+            )
+
+            return log_likelihood
+
+        log_p_given_z = bernoulli_log_joint(x_resampled)
+
+        if importance_weighting:
+            log_q_z = gaussian_likelihood(z, mean_encoder, log_variance_encoder)
+            log_p_z = standard_gaussian_likelihood(z)
+
+            regularization_term = log_p_z - log_q_z
+        else:
+            # Analytic solution to KL(q_z | p_z)
+            p_z_q_z_kl_divergence = \
+                -0.5 * tf.reduce_sum(1 
+                                + log_variance_encoder
+                                - tf.square(mean_encoder) 
+                                - tf.exp(log_variance_encoder), 1) 
+
+            regularization_term = -p_z_q_z_kl_divergence
+
+        log_p_given_z_mc = tf.reshape(log_p_given_z, 
+                                    [self.batch_size, monte_carlo_samples])
+        regularization_term_mc = tf.reshape(regularization_term,
+                            [self.batch_size, monte_carlo_samples])
+
+        log_weights = log_p_given_z_mc + regularization_term_mc
+
+        if importance_weighting:
+            # Need to compute normalization constant for weights, which is
+            # log (sum (exp(log_weights)))
+            # weights_iw = tf.log(tf.sum(tf.exp(log_weights)))
+
+            # Instead using log-sum-exp trick
+            wmax = tf.reduce_max(log_weights, 1, keep_dims=True)
+
+            # w_i = p_x/ q_z, log_wi = log_p_joint - log_qz
+            # log ( 1/k * sum(exp(log w_i)))
+            weights_iw = tf.log(tf.reduce_mean(tf.exp(log_weights - wmax), 1))
+            objective = tf.reduce_mean(wmax) + tf.reduce_mean(weights_iw)
+        else:
+            objective = tf.reduce_mean(log_weights)
+
+        return objective
+    
 def train(n_layers, layer_n, latent_dim, input_dim, learning_rate=0.001, \
           batch_size=100, training_epochs=10, display_step=1):
     vae = VariationalAutoencoder(n_layers, layer_n, latent_dim, input_dim, \
@@ -272,7 +404,7 @@ def visualize_2d_recon(vae_2d,test_data=mnist.test,layer_dropout=[]):
     plt.figure(figsize=(8, 12))
     for i in range(5):
         x_sample, y_sample = test_data.next_batch(5000)
-        z_mu = vae_2d.transform(x_sample)
+        z_mu = vae_2d.transform(x_sample,layer_dropout=layer_dropout)
         plt.scatter(z_mu[:, 0], z_mu[:, 1], c=np.argmax(y_sample, 1))
     plt.colorbar()
     pylab.show()
@@ -285,7 +417,7 @@ def save_model(vae):
     vae.saver.save(vae.sess,filename(vae.n_layers,vae.layer_nodes,vae.latent_dim,vae.input_dim,vae.training_epochs))
     
 def load_model(n_layers,layer_nodes,latent_dim,input_dim,training_epochs,learning_rate=0.001,batch_size=100):
-    vae = VariationalAutoencoder(n_layers, layer_n, latent_dim, input_dim,
+    vae = VariationalAutoencoder(n_layers, layer_nodes, latent_dim, input_dim,
                                  learning_rate=learning_rate,
                                  batch_size=batch_size,
                                  restore=True)
@@ -293,14 +425,30 @@ def load_model(n_layers,layer_nodes,latent_dim,input_dim,training_epochs,learnin
     vae.sess=tf.Session()
     vae.saver.restore(vae.sess,filename(n_layers,layer_nodes,latent_dim,input_dim,training_epochs,learning_rate=0.001,batch_size=100))
     return vae
-    
+
+def latent_covar(vae,n_samples=mnist.test.num_examples):
+    test_data, _ =mnist.test.next_batch(n_samples)
+    z_mean = vae.transform(test_data)
+    return np.var(z_mean,0)
+
+def count_significant(vae,threshold=1e-2,n_samples=mnist.test.num_examples):
+    return np.greater(latent_covar(vae,n_samples),threshold).sum()
+
 if __name__=='__main__':
-    n_layers=8
+    #Number of layers
+    n_layers=2
+    #Nodes per layer
     layer_n=10
-    latent_dim=2
+    latent_dim=10
     input_dim=784
-    training_epochs=5
-    vae = train(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
-    save_model(vae)
-    #vae = load_model(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
-    visualize_2d_gener(vae)
+    training_epochs=20
+    #vae = train(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
+    #save_model(vae)
+    vae=load_model(n_layers,layer_n,latent_dim,input_dim,training_epochs)
+    print count_significant(vae)
+    
+    latent_dim=20
+    #vae = train(n_layers,layer_n,latent_dim,input_dim,training_epochs=training_epochs)
+    #save_model(vae)
+    vae=load_model(n_layers,layer_n,latent_dim,input_dim,training_epochs)
+    print count_significant(vae)
