@@ -1,13 +1,41 @@
 import pickle
 import numpy as np
+import matplotlib.pyplot as plt
 import sys
-def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for parameter settings',axis='axis',plot='cost'):
+
+#This file prints a latex file to STDOUT and puts shade plots in a folder specified by img_folder
+#Redirecting the output to a Tex file in a subfolder is best
+
+#General settings
+#dfolder="../trials_post_yujia/"
+dfolder="../trials_piecemeal/"
+img_folder="img/"
+latex_path_to_img="../"+img_folder
+img_ext='png'
+max_epochs=200
+#Generates a filename to be read from based on the parameters
+def namestring(z_dim,keep_prob,gen_dist,b_normal,warmup,trial_num=None,data_folder=dfolder,ext='.pkl'):
+    if trial_num!=None:
+        #return data_folder+'trial_num.{}.{}.{}.{}.{}.{}{}'.format(trial_num,z_dim,keep_prob,gen_dist,b_normal,warmup,ext)
+        return data_folder+'trial_num.{}.{}.{}.{}.{}{}'.format(trial_num,z_dim,keep_prob,b_normal,warmup,ext)
+    else:
+        return data_folder+'trial.{}.{}.{}.{}.{}{}'.format(z_dim,keep_prob,gen_dist,b_normal,warmup,ext)
+
+#Function for making line plots of data. Feeds the parameters to test_points,
+# which reads from the data file and parses everything into coordinate pairs
+def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for parameter settings',
+               axis='axis',plot='cost',trial_range=[1]):
+    #Values for framing the plot
     x_max=y_max=0
     y_min=sys.maxint
     x_min=0
+    #Dictionary of processed data
     trials={}
+    #Iterate over the dictionary, keyed by name
     for trial_name in trial_parameters:
-        data=test_points(*trial_parameters[trial_name])
+        #Feed the parameters into the parser to get a clean list of coordinate pairs
+        data=test_points(*trial_parameters[trial_name],trial_range=trial_range)
+        #Element 0 is data, elements 1, 2, and 3 are xmax, ymax, and ymin
         data_x=data[plot][1]
         if data_x>x_max:
             x_max=data_x
@@ -18,83 +46,209 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for pa
         if data_y<y_min:
             y_min=data_y
         trials[trial_name]=data
+        
+    #List of colors for lines, in the order they'll be drawn
     color_list=['red','green','blue','orange','purple']
+    color_index=0
+    #List of trial names that will eventually be put into the legend
+    legend_string=''
+    #Latex headers for the plot
     print '\\begin{tikzpicture}\\begin{%s}' % axis
     print '    [title={%s},' % title
     print '    xlabel={%s},ylabel={%s},' % (xlabel,ylabel)
     print '    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1)
     #print '    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},'
     #print '    legend pos=north west,ymajorgrids=true,grid style=dashed,]'
-    color_index=0
-    legend_string=''
+    #Sort by name so things print in a nice order
     for trial_name in sorted(trials.keys()):
-        print '    \\addplot[color={},mark=square,]'.format(color_list[color_index])
-        color_index+=1
-        print '    coordinates {'
-        print trials[trial_name][plot][0]
-        print '    };'
-        legend_string+=trial_name+','
+        #No data, no plot
+        if len(trials[trial_name][plot]):
+            #Header for the line to specify color (and other parameters, optionally)
+            print '    \\addplot[color={},]'.format(color_list[color_index])
+            #Move on to the next color in the list
+            color_index+=1
+            #Print out the list of coordinates for the line
+            print '    coordinates {'
+            print trials[trial_name][plot][0]
+            print '    };'
+            #Append this trial to the legen
+            legend_string+=trial_name+','
+    #Latex footers for the plot
     print '    \\legend{%s}' % legend_string
     print '\\end{%s}\\end{tikzpicture}\\\\' % axis
 
+#Function for making shade plots of data. Feeds the parameters to test_points,
+# which reads from the data file and parses everything into coordinate pairs
+# trial_range is a list of indices to read from when searching for the average
+# (in the case of cost) and longest trials (in the case of covariance)
+# Using a range instead of just n_trials means we can skip trials with funny business in them
+def shade_tests(trial_parameters,xlabel='Epochs',ylabel='Dimension',title='Activity for parameter settings',trial_range=[1]):
+    trials={}
+    #Pass the parameters to test_points to parse all the data cleanly for us
+    for trial_name in trial_parameters:
+        data=test_points(*trial_parameters[trial_name],trial_range=trial_range)
+        trials[trial_name]=data
+    #Go through everything in sorted order. Not really important for these, but convenient
+    for trial_name in sorted(trials.keys()):
+        #Transpose and flipud are necessary just for orientation
+        grid=trials[trial_name]['covar'].T
+        #Sort (in tandem with flipud) makes sure the more active dimensions are on the bottom
+        # Sorts based on the activity in epoch 0
+        im = plt.imshow(np.flipud(np.sort(grid,0)),cmap="Greys",origin="lower")
+        #Colorbar indexes the shades to activity values. The default vertical looks best
+        #cb=plt.colorbar(im, orientation='horizontal')
+        cb=plt.colorbar(im)
+        #Nice labels for the colorbar, axes, and plot
+        cb.ax.get_yaxis().labelpad = 25
+        cb.ax.set_ylabel('Cov',rotation=270)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.suptitle("%s %s" % (title,trial_name))
+        #Uncomment this to have a matplotlib window pop up with the plot in it
+        #plt.show()
+        #Regenerate a namestring without the pkl extension or the folder name so
+        # we have a consistent naming scheme across trials and plot images
+        img_ns=namestring(*trial_parameters[trial_name],data_folder='',ext='')
+        #Save the image to the img folder
+        plt.savefig(img_folder+'%s.%s' % (img_ns,img_ext), bbox_inches='tight')
+        #Clear the way for the next plot
+        plt.clf()
+        #Print out the necessary latex to include this image in the document
+        print "\includegraphics[scale=0.75]{{%s}.%s}\\\\" % ((latex_path_to_img+img_ns),img_ext)
+
+#Simple function to print coordinate pairs into a string and record their range
+# This is what plot_tests is reading for each trial
 def print_points(data,dtype=None):
     ret=''
     for i in xrange(len(data)):
+        y=data[i]
+        if np.isnan(y):
+            continue
         if dtype:
-            ret+="({},{})".format(i,dtype(data[i]))
-        else:
-            ret+="({},{})".format(i,data[i])
+            y=dtype(y)
+        ret+="({},{})".format(i,y)
     return (ret,len(data),float(max(data)),float(min(data)))
 
-def test_points(z_dim,keep_prob,gen_dist,b_normal,warmup,t_epochs=20):
-    namestring='../trials_all/trial.{}.{}.{}.{}.{}.pkl'.format(z_dim,keep_prob,gen_dist,b_normal,warmup,t_epochs)
-    #{'cost':cost_list,'covar':covar_list}
-    data=pickle.load(open(namestring,'r'))
+#Parser for the data files that handles NaNs, averaging, and searching for long trials
+# Arguments are the test parameters as well as trial_range, which is a list of the
+# trial_num's to be read from. This is better than using n_trials because some of them
+# have non-NaN related funny business (like the cost suddenly hitting 0) that
+# mess with the averaging. In this case, discrimination is a good thing
+def test_points(z_dim,keep_prob,gen_dist,b_normal,warmup,trial_range=[1]):
+    #We do need the number of trials for building the arrays
+    n_trials=len(trial_range)
+    #Initialize some empty ndarrays. Covar will be replaced
+    full_data={'cost':np.empty([n_trials,max_epochs]),'covar':np.empty([max_epochs,z_dim])}
+    #Initialize the maximum usable length of the cost data. This will get shorter
+    # due to NaN errors in the trials
+    max_len_cost=max_epochs
+    #Initialize the current longest known list of covariances. This will get longer
+    longest_covar=0
+    #Confusing notation ahead. i indexes the cost array above, not the trial_num in the file name
+    # which is trial_range[i]. This is how we can jump around and skip the funny business
+    for i in xrange(0,n_trials):
+        #Generate the file name based on the parameters
+        nstring=namestring(z_dim,keep_prob,gen_dist,b_normal,warmup,trial_num=trial_range[i])
+        #Read the data from the file. Set up as:
+        #{'cost':cost_list,'covar':covar_list}
+        data=pickle.load(open(nstring,'r'))
+
+        #PROCESS THE COST ARRAY
+
+        #Read the full cost array (NaN's and all) into an ndarray for processing
+        len_cost=len(data['cost'])
+        data_cost=np.ndarray(shape=(len_cost),buffer=data['cost'])
+        #Store it at its index in the full_data array. It will be averaged with other trials later
+        # (this is why we need i)
+        full_data['cost'][i][0:len_cost]=data_cost
+        #Find out the indices of any NaN's in the array
+        nans=np.argwhere(np.isnan(data_cost))
+        #If there are any, the first one is where we cut off the array
+        if len(nans):
+            len_cost=int(min(nans))
+        #If the cutoff for this array is smaller than any we've seen, reduce the
+        # useful length of the cost array. This is so we're never averaging with NaN's
+        if len_cost<max_len_cost:
+            max_len_cost=len_cost
+
+        #PROCESS THE COVARIANCE ARRAY
+
+        #Get the number of epochs for the covariance (handily the first dimension)
+        len_covar=len(data['covar'])
+        #data['covar'].sum(1) gets the sum of the covariances over dimensions for each epoch.
+        # This is only useful because then it becomes a one dimensional array of epochs, and any
+        # epoch that generated a NaN in any dimension, now has a NaN in our array
+        # isnan turns all these NaN's into True, and argwhere gets the indices of the culprits
+        nans=np.argwhere(np.isnan(data['covar'].sum(1)))
+        #If there were any naughty NaN's, they're in the nans array
+        if len(nans):
+            #Use the first instance of NaN as the cutoff
+            len_covar=int(min(nans))
+        #If, after cutting for NaN's, this is the longest trial we've yet seen, make it the one we keep
+        if len_covar>longest_covar:
+            data_covar=np.ndarray(shape=(len_covar,z_dim),buffer=data['covar'])
+            full_data['covar']=data_covar
+            longest_covar=len_covar
+    #Average over all of the cost arrays we parsed out, cutting them off and the maximum useful length
+    # that we also parsed out (i.e., kill the NaN's)
+    avg_cost=np.ndarray(shape=(max_len_cost),buffer=np.mean(full_data['cost'],axis=0))
+    #Cutoff point for what counts as activity
     threshold=1e-2
-    return {'cost':print_points(data['cost'],float),'covar':print_points(np.greater(data['covar'],threshold).sum(1))}
+    #Print points converts the array into a string of coordinate pairs for plotting, plus gets the extreme values
+    return {'cost':print_points(avg_cost,float),
+            
+            #Leave the covariance unadulterated for shade plots
+            'covar':full_data['covar'],
+            
+            #np.greater(full_data['covar'],threshold) picks out only the activity levels above the threshold
+            # The sum(1) counts how many actually met the threshold, which is the number we're interested in
+            'covar_cut':print_points(np.greater(full_data['covar'],threshold).sum(1))}
 
-#HEADER
-print '\\documentclass{article}'
-print '\\usepackage{pgfplots}'
-print '\\begin{document}'
-#TESTS
-plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
-            'Berno':(50,1.0,'bernoulli',0,0)})
-plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
-            'Berno+BN':(50,1.0,'bernoulli',1,0),
-            'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
-           axis='semilogyaxis')
-plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
-            'Berno':(50,1.0,'bernoulli',0,0)},
-           plot='covar',ylabel='Active Dimensions')
-plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
-            'Berno+BN':(50,1.0,'bernoulli',1,0),
-            'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
-           plot='covar',ylabel='Active Dimensions',title='Active Dimensions for Parameters')
-#Test dropout rate
-params={}
-for keep in [1.0,0.9,0.8,0.7,0.6]:
-    params['DO='+str(keep)]=(50,keep,'bernoulli',1,1)
-plot_tests(params,plot='cost')
-plot_tests(params,plot='covar',ylabel='Active Dimensions',title='Active Dimensions for Parameters')
-#FOOTER
-print '\\end{document}'
-# In[ ]:
-#Initial tests to demonstrate features
-#plot_test(10,1.0,'gaussian',0,0)
-#run_test(10,1.0,'bernoulli',0,0)
-#run_test(10,1.0,'bernoulli',1,0)
-#run_test(10,1.0,'bernoulli',1,1)
+if __name__=='__main__':
+    #Hack just to make sure the Latex file is set up consistent with the
+    # file paths specified at the top of the script
+    #Using a redirect is better. E.g., python plot_maker.py > latex/dum.tex
+    stdout_hold=sys.stdout
+    sys.stdout=open('latex/dum.tex','w')
+    
+    #LATEX HEADER
+    print '\\documentclass{article}'
+    print '\\usepackage{pgfplots}'
+    print '\\begin{document}'
 
-#Test N_z
-#for n_z in [2,5,10,20]:
-#    run_test(n_z,1.0,'bernoulli',1,1)
-#Test warmup over dimensions
-#for dim in [5,20]:
-#    run_test(dim,1.0,'bernoulli',1,0)
-#    run_test(dim,1.0,'bernoulli',1,1)
-#Test dropout over dimensions
-#for dim in [5,20]:
-#    run_test(dim,1.0,'bernoulli',0,1)
-#    run_test(dim,1.0,'bernoulli',1,1)
+    #TESTS GO HERE
 
+    # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
+    #             'Berno':(50,1.0,'bernoulli',0,0)})
+    plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
+                'Berno+BN':(50,1.0,'bernoulli',1,0),
+                'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
+               axis='semilogyaxis',trial_range=[1])
+    # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
+    #             'Berno':(50,1.0,'bernoulli',0,0)},
+    #            plot='covar_cut',ylabel='Active Dimensions')
+    # plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
+    #             'Berno+BN':(50,1.0,'bernoulli',1,0),
+    #             'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
+    #            plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters')
+    #shade_tests({'Gauss':(50,1.0,'gaussian',0,0),
+    #             'Berno':(50,1.0,'bernoulli',0,0)})
+    shade_tests({'BN':(50,1.0,'bernoulli',1,0),
+                'WU':(50,1.0,'bernoulli',1,1)},
+                trial_range=range(1,5))
+    #Test dropout rate
+    params={}
+    for keep in [1.0,0.9,0.8,0.7,0.6]:
+        params['KP='+str(keep)]=(50,keep,'bernoulli',1,1)
+    plot_tests(params,plot='cost',trial_range=range(4))
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(4))
+    shade_tests(params,trial_range=range(4))
+
+    #LATEX FOOTER
+    print '\\end{document}'
+
+    #Cleaning up the hack
+    sys.stdout.flush()
+    sys.stdout.close()
+    sys.stdout=stdout_hold
+    print "Done!"
