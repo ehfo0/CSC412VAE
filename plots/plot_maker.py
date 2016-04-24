@@ -206,7 +206,8 @@ def test_points(z_dim,keep_prob,gen_dist,b_normal,warmup,trial_range=[1]):
             # The sum(1) counts how many actually met the threshold, which is the number we're interested in
             'covar_cut':print_points(np.greater(full_data['covar'],threshold).sum(1))}
 
-#Convenience function for when STDOUT is redirected
+#Convenience function for when STDOUT is redirected (which should be always)
+#Not entirely kosher, but doesn't cause any problems
 def errprint(string):
     sys.stderr.write(string+"\n")
 
