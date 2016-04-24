@@ -63,6 +63,7 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for pa
     for trial_name in sorted(trials.keys()):
         #No data, no plot
         if len(trials[trial_name][plot]):
+            errprint("Publishing plot for "+trial_name)
             #Header for the line to specify color (and other parameters, optionally)
             print '    \\addplot[color={},]'.format(color_list[color_index])
             #Move on to the next color in the list
@@ -110,11 +111,12 @@ def shade_tests(trial_parameters,xlabel='Epochs',ylabel='Dimension',title='Activ
         # we have a consistent naming scheme across trials and plot images
         img_ns=namestring(*trial_parameters[trial_name],data_folder='',ext='')
         #Save the image to the img folder
-        plt.savefig(img_folder+'%s.%s' % (img_ns,img_ext), bbox_inches='tight')
+        plt.savefig(img_folder+'%s.%s.%s' % (img_ns,trial_name,img_ext), bbox_inches='tight')
         #Clear the way for the next plot
         plt.clf()
+        errprint("Publishing shade for "+trial_name)
         #Print out the necessary latex to include this image in the document
-        print "\includegraphics[scale=0.75]{{%s}.%s}\\\\" % ((latex_path_to_img+img_ns),img_ext)
+        print "\includegraphics[scale=0.75]{{%s.%s}.%s}\\\\" % ((latex_path_to_img+img_ns),trial_name,img_ext)
 
 #Simple function to print coordinate pairs into a string and record their range
 # This is what plot_tests is reading for each trial
@@ -204,6 +206,10 @@ def test_points(z_dim,keep_prob,gen_dist,b_normal,warmup,trial_range=[1]):
             # The sum(1) counts how many actually met the threshold, which is the number we're interested in
             'covar_cut':print_points(np.greater(full_data['covar'],threshold).sum(1))}
 
+#Convenience function for when STDOUT is redirected
+def errprint(string):
+    sys.stderr.write(string+"\n")
+
 if __name__=='__main__':
     #Hack just to make sure the Latex file is set up consistent with the
     # file paths specified at the top of the script
@@ -233,9 +239,10 @@ if __name__=='__main__':
     #            plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters')
     #shade_tests({'Gauss':(50,1.0,'gaussian',0,0),
     #             'Berno':(50,1.0,'bernoulli',0,0)})
-    shade_tests({'BN':(50,1.0,'bernoulli',1,0),
-                'WU':(50,1.0,'bernoulli',1,1)},
-                trial_range=range(1,5))
+    shade_tests({'Berno':(50,1.0,'bernoulli',0,0),
+                'Berno+BN':(50,1.0,'bernoulli',1,0),
+                'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
+                trial_range=[1])
     #Test dropout rate
     params={}
     for keep in [1.0,0.9,0.8,0.7,0.6]:
