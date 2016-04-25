@@ -35,6 +35,8 @@ Toronto, ON \\
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
 
+\renewcommand{\L}{\mathcal{L}}
+
 \nipsfinalcopy % Uncomment for camera-ready version
 
 \begin{document}
@@ -51,7 +53,7 @@ paragraph.
 \end{abstract}
 
 \section{Introduction to Variational Autoencoders}
-Variational auto-encoders (VAEs), as defined by Kingma \& Welling, 2013 [1], are probabilistic implementations of traditional auto-encoders in which neurons in the latent space are treated not as fixed values but as probability distributions. This is a major boon to semi-supervised learning (Kingma et al., 2014 [2]) as it allows for the nondeterministic generation of data with labels to be trained on. During training, the VAE builds a recognition network represented by the function $q(\textbf{z}|\textbf{x};\theta)$ to predict the nodes of a latent space vector $\textbf{z}$ composed of randomly distributed variables, given a data vector $\textbf{x}$ and parameters $\theta$, as well as a generative network $p(\textbf{x}|\textbf{z};\theta)$ to produce the latter given the former. This is done by maximizing the lower bound on the likelihood function given by:
+Variational auto-encoders (VAEs), as defined by Kingma \& Welling, 2013 [1], are probabilistic implementations of traditional auto-encoders in which neurons in a latent layer are treated not as fixed values but as probability distributions. This is a major boon to semi-supervised learning (Kingma et al., 2014 [2]) as it allows for non-deterministic generation of data with labels to be trained on. During training, the VAE builds a recognition network represented by the function $q(\textbf{z}|\textbf{x};\theta)$ to predict the nodes of a latent space vector $\textbf{z}$ composed of randomly distributed variables, given a data vector $\textbf{x}$ and parameters $\theta$, as well as a generative network $p(\textbf{x}|\textbf{z};\theta)$ to produce the latter given the former. This is done by maximizing the lower bound on the likelihood function given by:
 \begin{align}
   L(\textbf{x}^{(i)})=D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)-\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]
 \end{align}
@@ -66,416 +68,105 @@ A body of research is emerging, such as Johnson, et al. 2016 [5], Burda, Grosse,
   -L(\textbf{x}^{(i)})=\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]-\beta D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)
 \end{align}
 The value of $\beta$ is initialized to zero, and scaled up linearly over the training epochs so that the loss due to the generative network, which is strongly dependent on the state of the latent space, is not a strong factor in early training stages, and thus nodes in the latent space that have little relevance early in the training process are not prevented from having their weights increased later in the process by virtue of their irrelevance. Rather, what would otherwise be a large loss in the generative network is tolerated early on, giving time for more latent space dimensions to become active over different data vectors. The experiment discovered that these two features had a strong effect on the number of active latent space dimensions, thus increasing the spatial efficiency of the stochastic layer.
-With these examples as precedent, we will proceed first with several attempts to increase the spatial efficiency (equivalently, the number of active dimensions) of the latent space using an array of features and modifications added to the canonical implementation of VAEs by Kingma \& Welling, 2013 [1]. We will then conduct an experiment to measure the effect that a change in the value of our activity metric has on the overall performance of the VAE.
+With these examples as precedent, we will proceed first with several attempts to increase the spatial efficiency (equivalently, the number of active dimensions) of the latent space using an array of features and modifications added to the canonical implementation of VAEs by Kingma \& Welling, 2013 [1]. We will then conduct an experiment to measure the effect that a change in the value of our activity metric has on the overall performance of the VAE.\\
+
+ 
+
 \section{Implementing Variational Autoencoders}
+In this section we will detail methods for VAE implementation and effect on learning rate.\\
+\subsection{Network Architecture}
+Each of the following methods were included into what will we call the `Vanilla VAE'. The network architecture for the Vanilla VAE and all additional methods is similar to the architecture introduced in the Section $3$ example of Auto-Encoding Variational Bayes \cite{Kingma2013}.\\
+The encoder and decoder sub-networks are symmetric, simple, fully-connected neural networks, namely Multi Layer Perceptrons (MLP). Both feature two deterministic, or hidden, layers each with $200$ dimensions (or nodes) per layer. A stochastic, or latent, layer with dimensions $n_z$ on top the deterministic layers. In all layers the activation is the softplus function.\\
+Practically, the probabilistic encoder network takes data from the input space and encodes a representation into a latent space with dimension $n_z$. In particular, this latent representation, ${q_\phi(z \mid x)}$ is a Gaussian distribution over the possible latent values of $z$ from which data $x$ could have been generated. The probabilistic decoder network takes a latent representation and produces a distribution ${p_\theta(x\mid z)}$ over possible data values $x$ generated by $z$.\\
+We implement this network and the following additional methods in Tensorflow. We learn the MLP weights and bias parameters, representing the $\phi$ and $\theta$ distribution parameters, with Adam optimization minimizing $\L(x)$ with parameters $\beta_1 = 0.9, \beta_2 = 0.9, \epsilon = 10^{-4}$ with batch size $100$, learning rate $0.001$, trained for $300$ epochs.
+
+
 \subsection{Xavier Initialization}
-\subsection{Generation Distribution}
+All parameters in the MLP were initialized with the Xavier-Glorot method outlined in \cite{Glorot2010}. Xavier-Glorot initialization is shown to improve learning in deep networks by establishing a reasonable range for initial values. Especially for deep networks there is an initial value trade-off. If the initial weights are too small then the signal will shrink through the layers and and the influence will trend too small to be useless. If the weights are too large then the signal growth through the layers will trend to large to be representative.\\
+Xavier-Glorot initialization addresses this trade-off by sampling initialization weights from a Gaussian distribution with zero mean and variance as a function of the network connections for the node. The variance for weight $w$  of a neuron is given as a function of the number of neurons feeding into it $n_{in}$ and the number of neurons the result feeds to $n_{out}$
+\begin{equation*}
+    \text{Var}(w) = \frac{2}{n_{in}+n_{out}}
+\end{equation*}
+
+
+\subsection{Decoder Distribution}
+%FIGURES NEEDED: Gaussian vs Bernoulli Cost Plot
+
+
+As mentioned previously, the probabilistic decoder network takes a latent representation $z$ and produces a distribution over possible data values, ${p_\theta(x\mid z)}$. In our initial description of the network architecture we specified that output of the encoder MLP is Gaussian, but we made no specification to the decoder output distribution. \\
+Two choices for decoder distributions were outlined in \textit{Auto-Encoding Variational Bayes}, where the authors suggest that the choice of preferred decoder distribution depends on the type of data \cite{Kingma2013}. \\
+
+\subsubsection{Gaussian Decoder and Encoder Structure}
+For continuous, real-valued data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a multivariate Gaussian distribution. This gives the following structure for the decoder distribution with two hidden deterministic layers $h_1$ and $h_2$:
+
+\begin{align*}
+    \log p_\theta(x\mid z) & \log \mathcal{N}(x; \mu, \sigma^2 I)\\
+    \intertext{where}\\
+    \mu &= W_\mu h_2 + b_\mu\\
+    \log \sigma^2 &= W_\sigma h_2+ b_\sigma\\
+    h_2 &= \text{softplus}(W_{2} h_1 + b_{2})\\
+    h_1 &= \text{softplus}(W_{1} z + b_{1})
+\end{align*}
+
+Note that the parameters $\{W_1,W_2,W_\mu,W_\sigma,b_1,b_2,b_\mu,b_\sigma\}$ here are the learned parameters of the decoder MLP, and represent the decoder distribution parameter, $\theta$ in $p_\theta(x\mid z)$. Further, since the encoder distribution is always a multivariate Gaussian distribution, we use this structure for the encoder, where the $z$ and $x$ are swapped and the weights and biases represent the encoder distribution parameter, $\phi$ in ${q_\phi(z \mid x)}$.\\
+
+\subsubsection{Bernoulli Decoder Structure}
+For binary data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a multivariate Bernoulli distribution.
+
+\subsection{Importance Weighting}
+%FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
+
 \subsection{Random Dropout}
+%FIGURES NEEDED: Vanilla+IW+Dropout cost plot for all values of keep probability, average across trials for smoothness.
+
+
 \subsection{Batch Normalization}
+%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
+
 \subsection{Warm Up}
+%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU cost plot
+
+\subsection{Initial Latent Dimension}
+%FIGURES NEEDED: Vanilla+IW across initial latet dimension values cost plot
 
 \section{Latent Dimension Activity}
 \subsection{Activity Metric}
 \subsection{Effects of Implementation on Activity}
+\subsubsection{Importance Weighting}
+%FIGURES NEEDED: Vanilla vs Vanilla + IW latent line plot and smudge plot
+
+\subsubsection{Random Dropout}
+%FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
+
+
+\subsubsection{Batch Normalization}
+%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN latent line and smudge plot
+
+\subsubsection{Warm Up}
+%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU latent line and smudge plot
+
+\subsubsection{Initial Latent Dimension}
+%FIGURES NEEDED: Vanilla+IW across initial latet dimension values latent line plot
+
 
 \section{Latent Space Visualization}
 \subsection{Data Reconstruction}
+%FIGURES NEEDED: reconstruction samples
 \subsection{Data Latent Transformation}
+%FIGURES NEEDED: Data transformation figure
 \subsection{Latent Hyperplane Lattice Generation}
-\subsection{PCA Hyperplane?}
+%FIGURES NEEDED: Hyperplane lattice for nz=2, two dimensions with high variance, and bad variance example.
 
 
+\subsection{References}
+\bibliographystyle{plain}
+\bibliography{bib}
 
 
 
 
 
 
-\section{Submission of papers to NIPS 2015}
 
-NIPS requires electronic submissions.  The electronic submission site is  
-\begin{center}
-   \url{http://papers.nips.cc}
-\end{center}
-
-Please read carefully the
-instructions below, and follow them faithfully.
-\subsection{Style}
-
-Papers to be submitted to NIPS 2015 must be prepared according to the
-instructions presented here. Papers may be only up to eight pages long,
-including figures. Since 2009 an additional ninth page \textit{containing only
-cited references} is allowed. Papers that exceed nine pages will not be
-reviewed, or in any other way considered for presentation at the conference.
-%This is a strict upper bound. 
-
-Please note that this year we have introduced automatic line number generation
-into the style file (for \LaTeXe and Word versions). This is to help reviewers
-refer to specific lines of the paper when they make their comments. Please do
-NOT refer to these line numbers in your paper as they will be removed from the
-style file for the final version of accepted papers.
-
-The margins in 2015 are the same as since 2007, which allow for $\approx 15\%$
-more words in the paper compared to earlier years. We are also again using 
-double-blind reviewing. Both of these require the use of new style files.
-
-Authors are required to use the NIPS \LaTeX{} style files obtainable at the
-NIPS website as indicated below. Please make sure you use the current files and
-not previous versions. Tweaking the style files may be grounds for rejection.
-
-%% \subsection{Double-blind reviewing}
-
-%% This year we are doing double-blind reviewing: the reviewers will not know 
-%% who the authors of the paper are. For submission, the NIPS style file will 
-%% automatically anonymize the author list at the beginning of the paper.
-
-%% Please write your paper in such a way to preserve anonymity. Refer to
-%% previous work by the author(s) in the third person, rather than first
-%% person. Do not provide Web links to supporting material at an identifiable
-%% web site.
-
-%%\subsection{Electronic submission}
-%%
-%% \textbf{THE SUBMISSION DEADLINE IS June 5, 2015. SUBMISSIONS MUST BE LOGGED BY
-%% 23:00, June 5, 2015, UNIVERSAL TIME}
-
-%% You must enter your submission in the electronic submission form available at
-%% the NIPS website listed above. You will be asked to enter paper title, name of
-%% all authors, keyword(s), and data about the contact
-%% author (name, full address, telephone, fax, and email). You will need to
-%% upload an electronic (postscript or pdf) version of your paper.
-
-%% You can upload more than one version of your paper, until the
-%% submission deadline. We strongly recommended uploading your paper in
-%% advance of the deadline, so you can avoid last-minute server congestion.
-%%
-%% Note that your submission is only valid if you get an e-mail
-%% confirmation from the server. If you do not get such an e-mail, please
-%% try uploading again. 
-
-
-\subsection{Retrieval of style files}
-
-The style files for NIPS and other conference information are available on the World Wide Web at
-\begin{center}
-   \url{http://www.nips.cc/}
-\end{center}
-The file \verb+nips2015.pdf+ contains these 
-instructions and illustrates the
-various formatting requirements your NIPS paper must satisfy. \LaTeX{}
-users can choose between two style files:
-\verb+nips15submit_09.sty+ (to be used with \LaTeX{} version 2.09) and
-\verb+nips15submit_e.sty+ (to be used with \LaTeX{}2e). The file
-\verb+nips2015.tex+ may be used as a ``shell'' for writing your paper. All you
-have to do is replace the author, title, abstract, and text of the paper with
-your own. The file
-\verb+nips2015.rtf+ is provided as a shell for MS Word users.
-
-The formatting instructions contained in these style files are summarized in
-sections \ref{gen_inst}, \ref{headings}, and \ref{others} below.
-
-%% \subsection{Keywords for paper submission}
-%% Your NIPS paper can be submitted with any of the following keywords (more than one keyword is possible for each paper):
-
-%% \begin{verbatim}
-%% Bioinformatics
-%% Biological Vision
-%% Brain Imaging and Brain Computer Interfacing
-%% Clustering
-%% Cognitive Science
-%% Control and Reinforcement Learning
-%% Dimensionality Reduction and Manifolds
-%% Feature Selection
-%% Gaussian Processes
-%% Graphical Models
-%% Hardware Technologies
-%% Kernels
-%% Learning Theory
-%% Machine Vision
-%% Margins and Boosting
-%% Neural Networks
-%% Neuroscience
-%% Other Algorithms and Architectures
-%% Other Applications
-%% Semi-supervised Learning
-%% Speech and Signal Processing
-%% Text and Language Applications
-
-%% \end{verbatim}
-
-\section{General formatting instructions}
-\label{gen_inst}
-
-The text must be confined within a rectangle 5.5~inches (33~picas) wide and
-9~inches (54~picas) long. The left margin is 1.5~inch (9~picas).
-Use 10~point type with a vertical spacing of 11~points. Times New Roman is the
-preferred typeface throughout. Paragraphs are separated by 1/2~line space,
-with no indentation.
-
-Paper title is 17~point, initial caps/lower case, bold, centered between
-2~horizontal rules. Top rule is 4~points thick and bottom rule is 1~point
-thick. Allow 1/4~inch space above and below title to rules. All pages should
-start at 1~inch (6~picas) from the top of the page.
-
-%The version of the paper submitted for review should have ``Anonymous Author(s)'' as the author of the paper.
-
-For the final version, authors' names are
-set in boldface, and each name is centered above the corresponding
-address. The lead author's name is to be listed first (left-most), and
-the co-authors' names (if different address) are set to follow. If
-there is only one co-author, list both author and co-author side by side.
-
-Please pay special attention to the instructions in section \ref{others}
-regarding figures, tables, acknowledgments, and references.
-
-\section{Headings: first level}
-\label{headings}
-
-First level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 12. One line space before the first level
-heading and 1/2~line space after the first level heading.
-
-\subsection{Headings: second level}
-
-Second level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the second level
-heading and 1/2~line space after the second level heading.
-
-\subsubsection{Headings: third level}
-
-Third level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the third level
-heading and 1/2~line space after the third level heading.
-
-\section{Citations, figures, tables, references}
-\label{others}
-
-These instructions apply to everyone, regardless of the formatter being used.
-
-\subsection{Citations within the text}
-
-Citations within the text should be numbered consecutively. The corresponding
-number is to appear enclosed in square brackets, such as [1] or [2]-[5]. The
-corresponding references are to be listed in the same order at the end of the
-paper, in the \textbf{References} section. (Note: the standard
-\textsc{Bib\TeX} style \texttt{unsrt} produces this.) As to the format of the
-references themselves, any style is acceptable as long as it is used
-consistently.
-
-As submission is double blind, refer to your own published work in the 
-third person. That is, use ``In the previous work of Jones et al.\ [4]'',
-not ``In our previous work [4]''. If you cite your other papers that
-are not widely available (e.g.\ a journal paper under review), use
-anonymous author names in the citation, e.g.\ an author of the
-form ``A.\ Anonymous''. 
-
-
-\subsection{Footnotes}
-
-Indicate footnotes with a number\footnote{Sample of the first footnote} in the
-text. Place the footnotes at the bottom of the page on which they appear.
-Precede the footnote with a horizontal rule of 2~inches
-(12~picas).\footnote{Sample of the second footnote}
-
-\subsection{Figures}
-
-All artwork must be neat, clean, and legible. Lines should be dark
-enough for purposes of reproduction; art work should not be
-hand-drawn. The figure number and caption always appear after the
-figure. Place one line space before the figure caption, and one line
-space after the figure. The figure caption is lower case (except for
-first word and proper nouns); figures are numbered consecutively.
-
-Make sure the figure caption does not get separated from the figure.
-Leave sufficient space to avoid splitting the figure and figure caption.
-
-You may use color figures. 
-However, it is best for the
-figure captions and the paper body to make sense if the paper is printed
-either in black/white or in color.
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\end{center}
-\caption{Sample figure caption.}
-\end{figure}
-
-\subsection{Tables}
-
-All tables must be centered, neat, clean and legible. Do not use hand-drawn
-tables. The table number and title always appear before the table. See
-Table~\ref{sample-table}.
-
-Place one line space before the table title, one line space after the table
-title, and one line space after the table. The table title must be lower case
-(except for first word and proper nouns); tables are numbered consecutively.
-
-\begin{table}[t]
-\caption{Sample table title}
-\label{sample-table}
-\begin{center}
-\begin{tabular}{ll}
-\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
-\\ \hline \\
-Dendrite         &Input terminal \\
-Axon             &Output terminal \\
-Soma             &Cell body (contains cell nucleus) \\
-\end{tabular}
-\end{center}
-\end{table}
-
-\section{Final instructions}
-Do not change any aspects of the formatting parameters in the style files.
-In particular, do not modify the width or length of the rectangle the text
-should fit into, and do not change font sizes (except perhaps in the
-\textbf{References} section; see below). Please note that pages should be
-numbered.
-
-\section{Preparing PostScript or PDF files}
-
-Please prepare PostScript or PDF files with paper size ``US Letter'', and
-not, for example, ``A4''. The -t
-letter option on dvips will produce US Letter files.
-
-Fonts were the main cause of problems in the past years. Your PDF file must
-only contain Type 1 or Embedded TrueType fonts. Here are a few instructions
-to achieve this.
-
-\begin{itemize}
-
-\item You can check which fonts a PDF files uses.  In Acrobat Reader,
-select the menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
-also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
-available out-of-the-box on most Linux machines.
-
-\item The IEEE has recommendations for generating PDF files whose fonts
-are also acceptable for NIPS. Please see
-\url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
-
-\item LaTeX users:
-
-\begin{itemize}
-
-\item Consider directly generating PDF files using \verb+pdflatex+
-(especially if you are a MiKTeX user). 
-PDF figures must be substituted for EPS figures, however.
-
-\item Otherwise, please generate your PostScript and PDF files with the following commands:
-\begin{verbatim} 
-dvips mypaper.dvi -t letter -Ppdf -G0 -o mypaper.ps
-ps2pdf mypaper.ps mypaper.pdf
-\end{verbatim}
-
-Check that the PDF files only contains Type 1 fonts. 
-%For the final version, please send us both the Postscript file and
-%the PDF file. 
-
-\item xfig "patterned" shapes are implemented with 
-bitmap fonts.  Use "solid" shapes instead. 
-\item The \verb+\bbold+ package almost always uses bitmap
-fonts.  You can try the equivalent AMS Fonts with command
-\begin{verbatim}
-\usepackage[psamsfonts]{amssymb}
-\end{verbatim}
- or use the following workaround for reals, natural and complex: 
-\begin{verbatim}
-\newcommand{\RR}{I\!\!R} %real numbers
-\newcommand{\Nat}{I\!\!N} %natural numbers 
-\newcommand{\CC}{I\!\!\!\!C} %complex numbers
-\end{verbatim}
-
-\item Sometimes the problematic fonts are used in figures
-included in LaTeX files. The ghostscript program \verb+eps2eps+ is the simplest
-way to clean such figures. For black and white figures, slightly better
-results can be achieved with program \verb+potrace+.
-\end{itemize}
-\item MSWord and Windows users (via PDF file):
-\begin{itemize}
-\item Install the Microsoft Save as PDF Office 2007 Add-in from
-\url{http://www.microsoft.com/downloads/details.aspx?displaylang=en\&familyid=4d951911-3e7e-4ae6-b059-a2e79ed87041}
-\item Select ``Save or Publish to PDF'' from the Office or File menu
-\end{itemize}
-\item MSWord and Mac OS X users (via PDF file):
-\begin{itemize}
-\item From the print menu, click the PDF drop-down box, and select ``Save
-as PDF...''
-\end{itemize}
-\item MSWord and Windows users (via PS file):
-\begin{itemize}
-\item To create a new printer
-on your computer, install the AdobePS printer driver and the Adobe Distiller PPD file from
-\url{http://www.adobe.com/support/downloads/detail.jsp?ftpID=204} {\it Note:} You must reboot your PC after installing the
-AdobePS driver for it to take effect.
-\item To produce the ps file, select ``Print'' from the MS app, choose
-the installed AdobePS printer, click on ``Properties'', click on ``Advanced.''
-\item Set ``TrueType Font'' to be ``Download as Softfont''
-\item Open the ``PostScript Options'' folder
-\item Select ``PostScript Output Option'' to be ``Optimize for Portability''
-\item Select ``TrueType Font Download Option'' to be ``Outline''
-\item Select ``Send PostScript Error Handler'' to be ``No''
-\item Click ``OK'' three times, print your file.
-\item Now, use Adobe Acrobat Distiller or ps2pdf to create a PDF file from
-the PS file. In Acrobat, check the option ``Embed all fonts'' if
-applicable.
-\end{itemize}
-
-\end{itemize}
-If your file contains Type 3 fonts or non embedded TrueType fonts, we will
-ask you to fix it. 
-
-\subsection{Margins in LaTeX}
- 
-Most of the margin problems come from figures positioned by hand using
-\verb+\special+ or other commands. We suggest using the command
-\verb+\includegraphics+
-from the graphicx package. Always specify the figure width as a multiple of
-the line width as in the example below using .eps graphics
-\begin{verbatim}
-   \usepackage[dvips]{graphicx} ... 
-   \includegraphics[width=0.8\linewidth]{myfile.eps} 
-\end{verbatim}
-or % Apr 2009 addition
-\begin{verbatim}
-   \usepackage[pdftex]{graphicx} ... 
-   \includegraphics[width=0.8\linewidth]{myfile.pdf} 
-\end{verbatim}
-for .pdf graphics. 
-See section 4.4 in the graphics bundle documentation (\url{http://www.ctan.org/tex-archive/macros/latex/required/graphics/grfguide.ps}) 
- 
-A number of width problems arise when LaTeX cannot properly hyphenate a
-line. Please give LaTeX hyphenation hints using the \verb+\-+ command.
-
-
-\subsubsection*{Acknowledgments}
-
-Use unnumbered third level headings for the acknowledgments. All
-acknowledgments go at the end of the paper. Do not include 
-acknowledgments in the anonymized submission, only in the 
-final paper. 
-
-\subsubsection*{References}
-
-References follow the acknowledgments. Use unnumbered third level heading for
-the references. Any choice of citation style is acceptable as long as you are
-consistent. It is permissible to reduce the font size to `small' (9-point) 
-when listing the references. {\bf Remember that this year you can use
-a ninth page as long as it contains \emph{only} cited references.}
-
-\small{
-[1] Diederik P. Kingma \& Max Welling (2014) Auto-Encoding Variational Bayes {\it arXiv:1312.6114}
-
-[2] Diederik P. Kingma, Danilo J. Rezende, Shakir Mohamed, \& Max Welling (2014) Semi-supervised Learning with Deep Generative Models {\it arXiv:1406.5298}
-
-[3] Diederik P. Kingma \& Jimmy Lei Ba (2015) Adam: A Method for Stochastic Optimization {\it arXiv:1412.6980}
-
-[4] Yuri Burda, Roger Grosse \& Ruslan Salakhutdinov (2016) Importance Weighted Autoencoders {\it arXiv:1509.00519}
-
-[5] Matthew J. Johnson, David Duvenaud, Alexander B. Wiltschko, Sandeep R. Datta, \& Ryan P. Adams (2016) Structured VAEs: Composing Probabilistic Graphical Models and Variational Autoencoders {\it arXiv:1603.06277}
-
-[6] Casper Kaae Sønderby, Tapani Raiko, Lars Maaløe, Søren Kaae Sønderby, \& Ole Winther (2016) How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks {\it arXiv:1602.02282}
-
-[7] Ioffe, Sergey and Szegedy, Christian (2015) Batch normalization: Accelerating deep network training by reducing internal covariate shift. {\it arXiv:1502.03167}
-}
 
 \end{document}
