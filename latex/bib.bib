@@ -1,0 +1,98 @@
+@misc{Ahuja,
+author = {Ahuja, Arun},
+title = {{Generative Models in Tensorflow}},
+url = {https://github.com/arahuja/generative-tf}
+}
+@article{Burda2016,
+abstract = {The variational autoencoder (VAE; Kingma, Welling (2014)) is a recently proposed generative model pairing a top-down generative network with a bottom-up recognition network which approximates posterior inference. It typically makes strong assumptions about posterior inference, for instance that the posterior distribution is approximately factorial, and that its parameters can be approximated with nonlinear regression from the observations. As we show empirically, the VAE objective can lead to overly simplified representations which fail to use the network's entire modeling capacity. We present the importance weighted autoencoder (IWAE), a generative model with the same architecture as the VAE, but which uses a strictly tighter log-likelihood lower bound derived from importance weighting. In the IWAE, the recognition network uses multiple samples to approximate the posterior, giving it increased flexibility to model complex posteriors which do not fit the VAE modeling assumptions. We show empirically that IWAEs learn richer latent space representations than VAEs, leading to improved test log-likelihood on density estimation benchmarks.},
+archivePrefix = {arXiv},
+arxivId = {1509.00519},
+author = {Burda, Yuri and Grosse, Roger and Salakhutdinov, Ruslan},
+eprint = {1509.00519},
+file = {:Users/jesse/Google Drive/PGMs/Project/1509.00519v3.pdf:pdf},
+isbn = {1509.00519},
+pages = {1--12},
+title = {{Importance Weighted Autoencoders}},
+url = {http://arxiv.org/abs/1509.00519},
+year = {2015}
+}
+@misc{Gregor2015,
+author = {Gregor, Karol},
+publisher = {University of Oxford},
+title = {{Variational Autoencoders and Image Generation}},
+year = {2015}
+}
+@article{Ioffe2015,
+abstract = {{Training Deep Neural Networks is complicated by the fact that the distribution of each layer's inputs changes during training, as the parameters of the previous layers change. This slows down the training by requiring lower learning rates and careful parameter initialization, and makes it notoriously hard to train models with saturating nonlinearities. We refer to this phenomenon as internal covariate shift, and address the problem by normalizing layer inputs. Our method draws its strength from making normalization a part of the model architecture and performing the normalization for each training mini-batch{\}}. Batch Normalization allows us to use much higher learning rates and be less careful about initialization. It also acts as a regularizer, in some cases eliminating the need for Dropout. Applied to a state-of-the-art image classification model, Batch Normalization achieves the same accuracy with 14 times fewer training steps, and beats the original model by a significant margin. Using an ensemble of batch-normalized networks, we improve upon the best published result on ImageNet classification: reaching 4.9{\%} top-5 validation error (and 4.8{\%} test error), exceeding the accuracy of human raters.},
+archivePrefix = {arXiv},
+arxivId = {1502.03167},
+author = {Ioffe, Sergey and Szegedy, Christian},
+doi = {10.1007/s13398-014-0173-7.2},
+eprint = {1502.03167},
+file = {:Users/jesse/Downloads/1502.03167v3.pdf:pdf},
+isbn = {9780874216561},
+issn = {0717-6163},
+journal = {arXiv},
+pmid = {15003161},
+title = {{Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift}},
+url = {http://arxiv.org/abs/1502.03167},
+year = {2015}
+}
+@article{Kingma2013,
+abstract = {How can we perform efficient inference and learning in directed probabilistic models, in the presence of continuous latent variables with intractable posterior distributions, and large datasets? We introduce a stochastic variational inference and learning algorithm that scales to large datasets and, under some mild differentiability conditions, even works in the intractable case. Our contributions is two-fold. First, we show that a reparameterization of the variational lower bound yields a lower bound estimator that can be straightforwardly optimized using standard stochastic gradient methods. Second, we show that for i.i.d. datasets with continuous latent variables per datapoint, posterior inference can be made especially efficient by fitting an approximate inference model (also called a recognition model) to the intractable posterior using the proposed lower bound estimator. Theoretical advantages are reflected in experimental results.},
+archivePrefix = {arXiv},
+arxivId = {1312.6114},
+author = {Kingma, Diederik P and Welling, Max},
+eprint = {1312.6114},
+file = {:Users/jesse/Downloads/1312.6114v10.pdf:pdf},
+number = {Ml},
+pages = {1--14},
+title = {{Auto-Encoding Variational Bayes}},
+url = {http://arxiv.org/abs/1312.6114},
+year = {2013}
+}
+@article{Larsen2015,
+abstract = {We present an autoencoder that leverages the power of learned representations to better measure similarities in data space. By combining a variational autoencoder (VAE) with a generative adversarial network (GAN) we can use learned feature representations in the GAN discriminator as basis for the VAE reconstruction objective. Thereby, we replace element-wise errors with feature-wise errors that better capture the data distribution while offering invariance towards e.g. translation. We apply our method to images of faces and show that our method outperforms VAEs with element-wise similarity measures in terms of visual fidelity. Moreover, we show that our method learns an embedding in which high-level abstract visual features (e.g. wearing glasses) can be modified using simple arithmetic.},
+archivePrefix = {arXiv},
+arxivId = {1512.09300},
+author = {Larsen, Anders Boesen Lindbo and S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+eprint = {1512.09300},
+file = {:Users/jesse/Downloads/1512.09300.pdf:pdf},
+title = {{Autoencoding beyond pixels using a learned similarity metric}},
+url = {http://arxiv.org/abs/1512.09300},
+year = {2015}
+}
+@misc{Metzen2015,
+author = {Metzen, Jan},
+title = {{Variational Autoencoder in TensorFlow}},
+url = {https://jmetzen.github.io/2015-11-27/vae.html},
+urldate = {2016-04-01},
+year = {2015}
+}
+@inproceedings{Radford,
+address = {Boston},
+author = {Radford, Alec},
+publisher = {ML Forum},
+title = {{Deep Advances in Generative Modeling}}
+}
+@article{Sønderby2016,
+abstract = {Variational autoencoders are a powerful framework for unsupervised learning. However, previous work has been restricted to shallow models with one or two layers of fully factorized stochastic latent variables, limiting the flexibility of the latent representation. We propose three advances in training algorithms of variational autoencoders, for the first time allowing to train deep models of up to five stochastic layers, (1) using a structure similar to the Ladder network as the inference model, (2) warm-up period to support stochastic units staying active in early training, and (3) use of batch normalization. Using these improvements we show state-of-the-art log-likelihood results for generative modeling on several benchmark datasets.},
+archivePrefix = {arXiv},
+arxivId = {1602.02282},
+author = {S{\o}nderby, Casper Kaae and Raiko, Tapani and Maal{\o}e, Lars and S{\o}nderby, S{\o}ren Kaae and Winther, Ole},
+eprint = {1602.02282},
+file = {:Users/jesse/Library/Application Support/Mendeley Desktop/Downloaded/S{\o}nderby et al. - 2016 - How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks.pdf:pdf},
+title = {{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks}},
+url = {http://arxiv.org/abs/1602.02282},
+year = {2016}
+}
+@misc{,
+title = {{Deep Style: Inferring the Unknown to Predict the Future of Fashion | Stitch Fix Technology – Multithreaded}},
+url = {http://multithreaded.stitchfix.com/blog/2015/09/17/deep-style/},
+urldate = {2016-04-01}
+}
+@misc{,
+title = {{Morphing Faces}},
+url = {http://vdumoulin.github.io/morphing{\_}faces/},
+urldate = {2016-04-01}
+}
