@@ -59,10 +59,10 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title=
         #Feed the parameters into the parser to get a clean list of coordinate pairs
         if force_distro:
             if force_distro==1:
-                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='bernoulli')
+                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='gaussian')
                 force_distro+=1
             else:
-                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='gaussian')
+                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='bernoulli')
         else:
             data=test_points(*trial_parameters[trial_name],trial_range=trial_range)
         #Element 0 is data, elements 1, 2, and 3 are xmax, ymax, and ymin
@@ -94,7 +94,10 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title=
         comment_string='%'
     outfile.write('    [%s title={%s},\n' % (comment_string,title))
     outfile.write('    xlabel={%s},ylabel={%s},' % (xlabel,ylabel))
-    outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
+    if axis=='axis':
+        outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(0,x_max*1.1,0,y_max*1.1))
+    else:
+        outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
     #outfile.write('    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},')
     #outfile.write('    legend pos=north west,ymajorgrids=true,grid style=dashed,]')
     #Sort by name so things print in a nice order
@@ -137,12 +140,12 @@ def shade_tests(trial_parameters,xlabel='Epochs',ylabel='Dimension',title='Activ
     #Go through everything in sorted order. Not really important for these, but convenient
     for trial_name in sorted(trials.keys()):
         #Transpose is necessary just for orientation. Sort bunches together all of the shaded layers
-        grid=np.sort(trials[trial_name]['covar'].T,0)
+        grid=np.flipud(np.sort(trials[trial_name]['covar'].T,0))
         if log_scale:
             grid=np.log(grid)
         #vmin and vmax force the scaling parameters for consistency. These have no basis
-        im = plt.imshow(grid,cmap="Greys",origin="lower",vmin=-8,vmax=0)
-        plt.axis([0,max_epochs,trial_parameters[trial_name][0],0])
+        im = plt.imshow(grid,cmap="Greys",origin='lower',vmin=-8,vmax=0)
+        plt.axis([0,max_epochs,0,trial_parameters[trial_name][0]])
         #Colorbar indexes the shades to activity values. The default vertical looks best
         #cb=plt.colorbar(im, orientation='horizontal')
         #cb=plt.colorbar(im)
@@ -280,8 +283,8 @@ if __name__=='__main__':
     #TESTS GO HERE
 
     
-    plot_tests({'Berno':(50,1.0,1,0,0),
-                'Gauss':(50,1.0,1,0,0)},
+    plot_tests({'Berno':(50,1.0,0,0,0),
+                'Gauss':(50,1.0,0,0,0)},
                 axis='semilogyaxis',trial_range=[0],bvsg=True,
                title="Comparison of Bernoulli and Gaussian")
     
