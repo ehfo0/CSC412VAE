@@ -4,6 +4,7 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{pgfplots}
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -101,6 +102,7 @@ Xavier-Glorot initialization addresses this trade-off by sampling initialization
 
 \subsection{Decoder Distribution}
 %FIGURES NEEDED: Gaussian vs Bernoulli Cost Plot
+\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}
 
 
 As mentioned previously, the probabilistic decoder network takes a latent representation $z$ and produces a distribution over possible data values, ${p_\theta(x\mid z)}$. In our initial description of the network architecture we specified that output of the encoder MLP is Gaussian, but we made no specification to the decoder output distribution. \\
@@ -139,6 +141,7 @@ Our findings support the recommendation by Kingma \& Welling that Bernoulli deco
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
+\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
 In their 2015 publication \textit{Importance Weighted Autoencoders}, Burda, Grosse, and Salakhutdinov observe that Kingma \& Welling's $\L(x)$ lower bound on the log-likelihood from Eq.\ref{eq:VAEOBJECTIVE} makes strong assumptions about the posterior inference leading to overly simplified representations. They propose an improvement called Importance Weighted Auto Encoders (IWAE) which is a generative model using the VAE network architecture, but with a few key improvements to model generalizability. \\
 The critical feature of IWAE is that the encoder network uses multiple importance weighted samples to approximate the posterior, where VAE uses a single sample. This allows IWAE to approximate complex posteriors which are not available under the stronger VAE posterior assumptions. \\
 By considering multiple importance weighted samples we introduce a new lower bound on the log-likelihood which is strictly tighter than Eq.\ref{eq:VAEOBJECTIVE}.\\
@@ -153,10 +156,11 @@ Our implementation of IWAE with this lower bound supports their findings. We obs
 
 %\subsection{Random Dropout}
 %FIGURES NEEDED: Vanilla+IW+Dropout cost plot for all values of keep probability, average across trials for smoothness.
-
+\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
 
 \subsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
+\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
 Batch normalization is a recent method developed to improve stability and convergence speed in deep networks \cite{Ioffe2015}. In the recent paper \textit{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks} by S\o nderby et al. 2016, the authors show that batch normalization is an essential method for learning deep VAEs \cite{Sonderby2016}. That is, deep generative models with several latent layers. Though we are only considering a shallow model with a single latent layer, we were interested to see how batch normalization affects training and, as we will discuss later, the latent space dimensionality.\\
 Batch normalization was developed to improve learning stability during deep network training. As parameters change during learning the layer output distributions change for each hidden layer, requiring later layers to respond to these distribution changes. The problem that batch normalization attempts to address is that changes in early layer output distributions can cause noisy changes to later layers.\\
 Batch normalization addresses this problem by normalizing the inputs of the activation function for each layer so that the inputs across each training batch have a mean of 0 and a variance of 1. However, batch normalization restricts the representation of each layer by assuming this normal distribution. To alleviate some of this restriction, batch normalization introduces learnable parameters to scale the variance of the normal distribution, $\gamma$ and shift the mean, $\beta$. Therefore, we transform each activation function input, $x_i$, with the batch normalization given by:
@@ -170,6 +174,7 @@ See the result of training with batch normalization in Figure %NEEDS FIGURE
 
 \subsection{Warm Up}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU cost plot
+\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}
 Recall that the log-likelihood lower bound in Eq.\ref{eq:VAEOBJECTIVE} contains a reconstruction term and a variational regularization term. Further, notice that without that variational regularization term the lower bound becomes that for a standard deterministic autoencoder. It has been observed that the variational regularization term causes some latent dimensions to become inactive or 'pruned' during training \cite{MacKay2001, Burda2016}. In the later sections of this report we consider the activity of the latent dimensions, particularly we are interested in how training maintains or prunes latent dimensions. \\
 Pruning non-informative dimensions later in training could be considered advantageous for automatic relevance determination. However, if latent dimensions are pruned too early in training they will not have a chance to learn informative representations. Once the dimensions become inactive in training, they will not be reactivated. This problem of early latent dimension pruning is particularly troublesome for deep VAEs, because deep latent layers depend on the shallow latent dimensions in the network. If shallow latent dimensions are pruned early,  deep latent layers will not be able to learn useful representations \cite{Sonderby2016}.\\
 To avoid the problem of early pruning due to the variational regularization, we 'warm up' our VAE. Warm-up is achieved by initializing the learning process with a standard deterministic autoencoder, and then linearly introducing the variational regularization. This way the latent dimensions have a chance to learn useful representations as in a deterministic autoencoder before being possibly pruned by variational regularization.\\
@@ -184,26 +189,37 @@ See the result of training with warm-up in Figure %NEEDS FIGURE.
 
 \subsection{Initial Latent Dimension}
 %FIGURES NEEDED: Vanilla+IW across initial latet dimension values cost plot
-
+\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}
 \section{Latent Dimension Activity}
 \subsection{Activity Metric}
 \subsection{Effects of Implementation on Activity}
 \subsubsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW latent line plot and smudge plot
+\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
 
 \subsubsection{Random Dropout}
 %FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
-
+\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
+\input{"../plots/img/Comparison of Dropout Values for Activity.tex"}
+\includegraphics[scale=0.75]{{../plots/img/trial.50.0.5.0.0.1.KP=0.5}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.0.7.0.0.1.KP=0.7}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.0.9.0.0.1.KP=0.9}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.KP=1.0}.png}\\
 
 \subsubsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN latent line and smudge plot
-
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
 \subsubsection{Warm Up}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU latent line and smudge plot
-
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}\\
+\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
 \subsubsection{Initial Latent Dimension}
 %FIGURES NEEDED: Vanilla+IW across initial latet dimension values latent line plot
-
+\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}
+\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}
 
 \section{Latent Space Visualization}
 \subsection{Data Reconstruction}

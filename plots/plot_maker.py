@@ -12,20 +12,28 @@ from fnmatch import fnmatch
 #dfolder="../trials_piecemeal/"
 dfolder="../trials_final/"
 img_folder="img/"
-latex_path_to_img="../"+img_folder
+latex_path_to_img="../plots/"+img_folder
 img_ext='png'
 max_epochs=300
+global_epoch_cap=299
 #Generates a filename to be read from based on the parameters
-def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_folder=dfolder,ext='.pkl',search=True):
+def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_folder=dfolder,ext='.pkl',search=True,epoch_cap=global_epoch_cap,force_distro=None):
     if trial_num!=None:
         #return data_folder+'trial_num.{}.{}.{}.{}.{}.{}{}'.format(trial_num,z_dim,keep_prob,gen_dist,b_normal,warmup,ext)
         #return data_folder+'trial_num.{}.{}.{}.{}.{}{}'.format(trial_num,z_dim,keep_prob,b_normal,warmup,ext)
-        query='{}.{}.{}.{}.{}.trial{}*{}'.format(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num,ext)
+        query='{}.{}.{}.{}.{}.trial{}*{}{}'.format(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num,epoch_cap,ext)
         fallback=data_folder+'{}.{}.{}.{}.{}.trial{}{}'.format(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num,ext)
+        if force_distro:
+            filename=data_folder+'{}.{}.{}.{}.{}.trial{}.endedat{}.{}{}'.format(z_dim,keep_prob,
+                                                                               b_normal,warmup,i_weighting,
+                                                                               trial_num,epoch_cap,force_distro,ext)
+            errprint("Forced to: "+filename)
+            return filename
         if not search:
             return fallback
         for file in os.listdir(data_folder):
             if fnmatch(file,query):
+                #errprint('Found: '+data_folder+file)
                 return data_folder+file
         errprint("Falling back on filename search: "+query)
         return fallback
@@ -35,17 +43,27 @@ def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_f
 #Function for making line plots of data. Feeds the parameters to test_points,
 # which reads from the data file and parses everything into coordinate pairs
 def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for parameter settings',
-               axis='axis',plot='cost',trial_range=[1]):
+               axis='axis',plot='cost',trial_range=[1],bvsg=False):
     #Values for framing the plot
     x_max=y_max=0
     y_min=sys.maxint
     x_min=0
     #Dictionary of processed data
     trials={}
+    force_distro=None
+    if bvsg:
+        force_distro=1
     #Iterate over the dictionary, keyed by name
     for trial_name in trial_parameters:
         #Feed the parameters into the parser to get a clean list of coordinate pairs
-        data=test_points(*trial_parameters[trial_name],trial_range=trial_range)
+        if force_distro:
+            if force_distro==1:
+                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='bernoulli')
+                force_distro+=1
+            else:
+                data=test_points(*trial_parameters[trial_name],trial_range=trial_range,force_distro='gaussian')
+        else:
+            data=test_points(*trial_parameters[trial_name],trial_range=trial_range)
         #Element 0 is data, elements 1, 2, and 3 are xmax, ymax, and ymin
         data_x=data[plot][1]
         if data_x>x_max:
@@ -63,31 +81,39 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for pa
     color_index=0
     #List of trial names that will eventually be put into the legend
     legend_string=''
+    #Regenerate a namestring without the pkl extension or the folder name so
+    # we have a consistent naming scheme across trials and plot images
+    img_ns=title
+    outfile_name=img_folder+'%s.%s' % (img_ns,'tex')
+    outfile=open(outfile_name,'w')
     #Latex headers for the plot
-    print '\\begin{tikzpicture}\\begin{%s}' % axis
-    print '    [title={%s},' % title
-    print '    xlabel={%s},ylabel={%s},' % (xlabel,ylabel)
-    print '    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1)
-    #print '    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},'
-    #print '    legend pos=north west,ymajorgrids=true,grid style=dashed,]'
+    outfile.write('\\begin{tikzpicture}\\begin{%s}' % axis)
+    outfile.write('    [title={%s},' % title)
+    outfile.write('    xlabel={%s},ylabel={%s},' % (xlabel,ylabel))
+    outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
+    #outfile.write('    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},')
+    #outfile.write('    legend pos=north west,ymajorgrids=true,grid style=dashed,]')
     #Sort by name so things print in a nice order
     for trial_name in sorted(trials.keys()):
         #No data, no plot
-        if len(trials[trial_name][plot]):
+        if len(trials[trial_name][plot]) and len(trials[trial_name][plot][0]):
             errprint("Publishing plot for "+trial_name)
             #Header for the line to specify color (and other parameters, optionally)
-            print '    \\addplot[color={},]'.format(color_list[color_index])
+            outfile.write('    \\addplot[color={},]'.format(color_list[color_index]))
             #Move on to the next color in the list
             color_index+=1
             #Print out the list of coordinates for the line
-            print '    coordinates {'
-            print trials[trial_name][plot][0]
-            print '    };'
+            outfile.write('    coordinates {')
+            outfile.write(trials[trial_name][plot][0])
+            outfile.write('    };')
             #Append this trial to the legen
             legend_string+=trial_name+','
     #Latex footers for the plot
-    print '    \\legend{%s}' % legend_string
-    print '\\end{%s}\\end{tikzpicture}\\\\' % axis
+    outfile.write('    \\legend{%s}' % legend_string)
+    outfile.write('\\end{%s}\\end{tikzpicture}\\\\' % axis)
+    outfile.flush()
+    outfile.close()
+    print "\\input{%s}" % ('"%s.%s"' % (latex_path_to_img+img_ns,'tex'))
 
 #Function for making shade plots of data. Feeds the parameters to test_points,
 # which reads from the data file and parses everything into coordinate pairs
@@ -149,7 +175,7 @@ def print_points(data,dtype=None):
 # trial_num's to be read from. This is better than using n_trials because some of them
 # have non-NaN related funny business (like the cost suddenly hitting 0) that
 # mess with the averaging. In this case, discrimination is a good thing
-def test_points(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_range=[1]):
+def test_points(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_range=[1],force_distro=None):
     #We do need the number of trials for building the arrays
     n_trials=len(trial_range)
     #Initialize some empty ndarrays. Covar will be replaced
@@ -160,12 +186,12 @@ def test_points(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_range=[1]):
     #Initialize the current longest known list of covariances. This will get longer
     longest_covar=0
     #Cutoff point for what counts as activity
-    threshold=1e-2
+    threshold=1e-1
     #Confusing notation ahead. i indexes the cost array above, not the trial_num in the file name
     # which is trial_range[i]. This is how we can jump around and skip the funny business
     for i in xrange(0,n_trials):
         #Generate the file name based on the parameters
-        nstring=namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=trial_range[i])
+        nstring=namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=trial_range[i],force_distro=force_distro)
         #Read the data from the file. Set up as:
         #{'cost':cost_list,'covar':covar_list}
         data=pickle.load(open(nstring,'r'))
@@ -235,7 +261,7 @@ if __name__=='__main__':
     # file paths specified at the top of the script
     #Using a redirect is better. E.g., python plot_maker.py > latex/dum.tex
     stdout_hold=sys.stdout
-    sys.stdout=open('latex/dum.tex','w')
+    sys.stdout=open('/home/matt/412/latex/plots.tex','w')
     
     #LATEX HEADER
     print '\\documentclass{article}'
@@ -244,33 +270,40 @@ if __name__=='__main__':
 
     #TESTS GO HERE
 
+    
+    plot_tests({'Berno':(50,1.0,1,0,0),
+                'Gauss':(50,1.0,1,0,0)},
+                axis='semilogyaxis',trial_range=[0],bvsg=True,
+               title="Comparison of Bernoulli and Gaussian")
+    
     plot_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1)},
-                axis='semilogyaxis',trial_range=[0])
+                axis='semilogyaxis',trial_range=[0],
+               title="Comparison of Vanilla and Importance Weighted")
     params={}
-    for keep in [1.0,0.9,0.8,0.7,0.6,0.5]:
+    for keep in [1.0,0.9,0.7,0.5]:
         params['KP='+str(keep)]=(50,keep,0,0,1)
-    plot_tests(params,plot='cost',trial_range=range(0))
-    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
-    shade_tests(params,trial_range=range(0))
+    plot_tests(params,plot='cost',trial_range=range(1),
+    title="Comparison of Dropout Values for Cost")
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
+    title="Comparison of Dropout Values for Activity")
+    shade_tests(params,trial_range=range(1))
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+BN':(50,1.0,1,0,1)},
-               axis='semilogyaxis',trial_range=[0])
+               axis='semilogyaxis',trial_range=[0],
+               title="Comparison of Importance Weighted and Batch Normalized")
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+WU':(50,1.0,0,1,1)},
-               axis='semilogyaxis',trial_range=[0])
+               axis='semilogyaxis',trial_range=[0],
+               title="Comparison of Importance Weighted and Warmed-Up")
     params={}
     for dim in [2, 10, 20, 50, 100]:
         params['D='+str(dim)]=(dim,1.0,0,0,1)
-    plot_tests(params,plot='cost',trial_range=range(0))
-    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
-    shade_tests(params,trial_range=range(0))
-    params={}
-    for dim in [2, 10, 20, 50, 100]:
-        params['D='+str(dim)]=(dim,1.0,0,0,1)
-    plot_tests(params,plot='cost',trial_range=range(0))
-    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
-    shade_tests(params,trial_range=range(0))
+    plot_tests(params,plot='cost',trial_range=range(1),
+    title="Comparison of Dimension Values for Cost")
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',trial_range=range(1),
+    title="Comparison of Dimension Values for Activity")
+    #shade_tests(params,trial_range=range(1))
     shade_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1),
                 'Berno+BN+IW':(50,1.0,1,0,1),
