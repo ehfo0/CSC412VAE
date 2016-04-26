@@ -5,11 +5,11 @@
 \BOOKMARK [2][-]{subsection.2.3}{Decoder Distribution}{section.2}% 5
 \BOOKMARK [3][-]{subsubsection.2.3.1}{Gaussian Decoder and Encoder Structure}{subsection.2.3}% 6
 \BOOKMARK [3][-]{subsubsection.2.3.2}{Bernoulli Decoder Structure}{subsection.2.3}% 7
-\BOOKMARK [2][-]{subsection.2.4}{Importance Weighting}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.5}{Random Dropout}{section.2}% 9
-\BOOKMARK [2][-]{subsection.2.6}{Batch Normalization}{section.2}% 10
-\BOOKMARK [2][-]{subsection.2.7}{Warm Up}{section.2}% 11
-\BOOKMARK [2][-]{subsection.2.8}{Initial Latent Dimension}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Comparing Decoder Distributions}{subsection.2.3}% 8
+\BOOKMARK [2][-]{subsection.2.4}{Importance Weighting}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.5}{Batch Normalization}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.6}{Warm Up}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.7}{Initial Latent Dimension}{section.2}% 12
 \BOOKMARK [1][-]{section.3}{Latent Dimension Activity}{}% 13
 \BOOKMARK [2][-]{subsection.3.1}{Activity Metric}{section.3}% 14
 \BOOKMARK [2][-]{subsection.3.2}{Effects of Implementation on Activity}{section.3}% 15
