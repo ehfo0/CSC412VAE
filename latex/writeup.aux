@@ -17,6 +17,7 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{Kingma2013}
+\providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction to Variational Autoencoders}{1}{section.1}}
 \newlabel{eq:VAEOBJECTIVE}{{2}{1}{Introduction to Variational Autoencoders}{equation.1.2}{}}
 \citation{Kingma2013}
@@ -24,13 +25,22 @@
 \citation{Metzen2015}
 \citation{Ahuja}
 \citation{Glorot2010}
+\citation{Kingma2013}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Implementing Variational Autoencoders}{2}{section.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Network Architecture}{2}{subsection.2.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Xavier Initialization}{2}{subsection.2.2}}
-\citation{Kingma2013}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Decoder Distribution}{3}{subsection.2.3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Gaussian Decoder and Encoder Structure}{3}{subsubsection.2.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Bernoulli Decoder Structure}{4}{subsubsection.2.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Bernoulli Decoder Structure}{3}{subsubsection.2.3.2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:bergau}{{1a}{4}{Bernoulli v.s Gaussian decoder distributions\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:bergau}{{a}{4}{Bernoulli v.s Gaussian decoder distributions\relax }{figure.caption.1}{}}
+\newlabel{fig:variw}{{1b}{4}{Variational v.s. Importance Weighted\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:variw}{{b}{4}{Variational v.s. Importance Weighted\relax }{figure.caption.1}{}}
+\newlabel{fig:bncost}{{1c}{4}{Effect of Batch Normalization (BN)\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:bncost}{{c}{4}{Effect of Batch Normalization (BN)\relax }{figure.caption.1}{}}
+\newlabel{fig:wucost}{{1d}{4}{Effect of Warm-Up\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:wucost}{{d}{4}{Effect of Warm-Up\relax }{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.3}Comparing Decoder Distributions}{4}{subsubsection.2.3.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Importance Weighting}{4}{subsection.2.4}}
 \citation{Ioffe2015}
@@ -39,28 +49,27 @@
 \citation{MacKay2001}
 \citation{Burda2016}
 \citation{Sonderby2016}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Batch Normalization}{6}{subsection.2.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Warm Up}{7}{subsection.2.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Initial Latent Dimension}{8}{subsection.2.7}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Latent Dimension Activity}{8}{section.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Activity Metric}{8}{subsection.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Effects of Implementation on Activity}{8}{subsection.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Importance Weighting}{8}{subsubsection.3.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Random Dropout}{9}{subsubsection.3.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Batch Normalization}{13}{subsubsection.3.2.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Warm Up}{15}{subsubsection.3.2.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Batch Normalization}{5}{subsection.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Warm Up}{5}{subsection.2.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Initial Latent Dimension}{6}{subsection.2.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Latent Dimension Activity}{7}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Activity Metric}{7}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Effects of Implementation on Activity}{7}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Importance Weighting}{7}{subsubsection.3.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Batch Normalization}{9}{subsubsection.3.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.3}Warm Up}{10}{subsubsection.3.2.3}}
 \bibstyle{plain}
 \bibdata{bib}
 \bibcite{Ahuja}{1}
 \bibcite{Burda2016}{2}
 \bibcite{Glorot2010}{3}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.5}Initial Latent Dimension}{17}{subsubsection.3.2.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Latent Space Visualization}{17}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Reconstruction}{17}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Latent Transformation}{17}{subsection.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Latent Hyperplane Lattice Generation}{17}{subsection.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}References}{17}{subsection.4.4}}
 \bibcite{Ioffe2015}{4}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.4}Initial Latent Dimension}{11}{subsubsection.3.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Latent Space Visualization}{11}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Reconstruction}{11}{subsection.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Latent Transformation}{11}{subsection.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Latent Hyperplane Lattice Generation}{11}{subsection.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}References}{11}{subsection.4.4}}
 \bibcite{Kingma2013}{5}
 \bibcite{MacKay2001}{6}
 \bibcite{Metzen2015}{7}
