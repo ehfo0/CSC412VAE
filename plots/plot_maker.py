@@ -16,6 +16,7 @@ latex_path_to_img="../plots/"+img_folder
 img_ext='png'
 max_epochs=300
 global_epoch_cap=299
+include_titles=False
 #Generates a filename to be read from based on the parameters
 def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_folder=dfolder,ext='.pkl',search=True,epoch_cap=global_epoch_cap,force_distro=None):
     if trial_num!=None:
@@ -88,7 +89,10 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title=
     outfile=open(outfile_name,'w')
     #Latex headers for the plot
     outfile.write('\\begin{tikzpicture}\\begin{%s}' % axis)
-    outfile.write('    [title={%s},' % title)
+    comment_string=''
+    if not include_titles:
+        comment_string='%'
+    outfile.write('    [%s title={%s},\n' % (comment_string,title))
     outfile.write('    xlabel={%s},ylabel={%s},' % (xlabel,ylabel))
     outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
     #outfile.write('    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},')
@@ -140,10 +144,11 @@ def shade_tests(trial_parameters,xlabel='Epochs',ylabel='Dimension',title='Activ
         #cb=plt.colorbar(im)
         #Nice labels for the colorbar, axes, and plot
         cb.ax.get_yaxis().labelpad = 25
-        cb.ax.set_ylabel('Cov',rotation=270)
+        cb.ax.set_ylabel('Cov',rotation=90)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
-        plt.suptitle("%s %s" % (title,trial_name))
+        if include_titles:
+            plt.suptitle("%s %s" % (title,trial_name))
         #Uncomment this to have a matplotlib window pop up with the plot in it
         #plt.show()
         #Regenerate a namestring without the pkl extension or the folder name so
