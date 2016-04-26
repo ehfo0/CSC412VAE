@@ -307,6 +307,7 @@ if __name__=='__main__':
     shade_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1),
                 'Berno+BN+IW':(50,1.0,1,0,1),
+                 'Berno+WU+IW':(50,1.0,1,0,1),
                 'Berno+BN+WU+IW':(50,1.0,1,1,1)},
                 trial_range=[0])
     
