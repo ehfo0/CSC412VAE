@@ -283,8 +283,12 @@ if __name__=='__main__':
     
     plot_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1)},
-                axis='semilogyaxis',trial_range=[0],
-               title="Comparison of Vanilla and Importance Weighted")
+                axis='semilogyaxis',trial_range=range(2),
+               title="Comparison of Vanilla and Importance Weighted Cost")
+    plot_tests({'Berno':(50,1.0,0,0,0),
+                'Berno+IW':(50,1.0,0,0,1)},
+                plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
+               title="Comparison of Vanilla and Importance Weighted Activity")
     params={}
     for keep in [1.0,0.9,0.7,0.5]:
         params['KP='+str(keep)]=(50,keep,0,0,1)
@@ -295,12 +299,20 @@ if __name__=='__main__':
     shade_tests(params,trial_range=range(1))
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+BN':(50,1.0,1,0,1)},
-               axis='semilogyaxis',trial_range=[0],
-               title="Comparison of Importance Weighted and Batch Normalized")
+               axis='semilogyaxis',trial_range=range(2),
+               title="Comparison of Importance Weighted and Batch Normalized for Cost")
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+WU':(50,1.0,0,1,1)},
-               axis='semilogyaxis',trial_range=[0],
-               title="Comparison of Importance Weighted and Warmed-Up")
+               axis='semilogyaxis',trial_range=range(2),
+               title="Comparison of Importance Weighted and Warmed-Up for Cost")
+    plot_tests({'Berno+IW':(50,1.0,0,0,1),
+                'Berno+IW+BN':(50,1.0,1,0,1)},
+               plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
+               title="Comparison of Importance Weighted and Batch Normalized for Activity")
+    plot_tests({'Berno+IW':(50,1.0,0,0,1),
+                'Berno+IW+WU':(50,1.0,0,1,1)},
+               plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
+               title="Comparison of Importance Weighted and Warmed-Up for Activity")
     params={}
     for dim in [2, 10, 20, 50, 100]:
         params['D='+str(dim)]=(dim,1.0,0,0,1)
