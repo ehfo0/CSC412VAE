@@ -3,47 +3,49 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: writeup.aux
 The style file: plain.bst
 Database file #1: bib.bib
+Warning--I didn't find a database entry for "Sonderby2016"
+Warning--empty journal in Burda2016
 Warning--empty journal in Kingma2013
 Warning--there's a number but no volume in Kingma2013
-You've used 1 entry,
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            504 strings with 4089 characters,
-and the built_in function-call counts, 327 in all, are:
-= -- 31
-> -- 13
-< -- 0
-+ -- 5
-- -- 4
-* -- 26
-:= -- 60
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 5
+            532 strings with 4795 characters,
+and the built_in function-call counts, 1603 in all, are:
+= -- 163
+> -- 64
+< -- 2
++ -- 25
+- -- 20
+* -- 102
+:= -- 271
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 11
-empty$ -- 25
-format.name$ -- 4
-if$ -- 62
+cite$ -- 8
+duplicate$ -- 64
+empty$ -- 122
+format.name$ -- 20
+if$ -- 332
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 6
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 26
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 20
 quote$ -- 0
-skip$ -- 6
+skip$ -- 48
 stack$ -- 0
-substring$ -- 21
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 104
+swap$ -- 13
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 2
-while$ -- 4
-width$ -- 2
-write$ -- 12
-(There were 2 warnings)
+type$ -- 20
+warning$ -- 3
+while$ -- 20
+width$ -- 6
+write$ -- 54
+(There were 4 warnings)

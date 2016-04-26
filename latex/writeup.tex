@@ -53,10 +53,20 @@ paragraph.
 \end{abstract}
 
 \section{Introduction to Variational Autoencoders}
-Variational auto-encoders (VAEs), as defined by Kingma \& Welling, 2013 [1], are probabilistic implementations of traditional auto-encoders in which neurons in a latent layer are treated not as fixed values but as probability distributions. This is a major boon to semi-supervised learning (Kingma et al., 2014 [2]) as it allows for non-deterministic generation of data with labels to be trained on. During training, the VAE builds a recognition network represented by the function $q(\textbf{z}|\textbf{x};\theta)$ to predict the nodes of a latent space vector $\textbf{z}$ composed of randomly distributed variables, given a data vector $\textbf{x}$ and parameters $\theta$, as well as a generative network $p(\textbf{x}|\textbf{z};\theta)$ to produce the latter given the former. This is done by maximizing the lower bound on the likelihood function given by:
+
+
+
 \begin{align}
-  L(\textbf{x}^{(i)})=D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)-\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]
+\log p(x)\geq \mathbb{E}_{q_\phi(z|x)}[\log\frac{p_\theta(x,z)}{q_\phi(z|x)}]=-\L(x)\\
+\intertext{where}
+  \L(x)=D_{KL}\left(q_\phi(z|x)||p_\theta(z)\right)-\mathbb{E}_{q_\phi(z|x)}\left[\log{p_\theta(x|z)}\right]
+  \label{eq:VAEOBJECTIVE}
 \end{align}
+
+
+
+Variational auto-encoders (VAEs), as defined by Kingma \& Welling, 2013 [1], are probabilistic implementations of traditional auto-encoders in which neurons in a latent layer are treated not as fixed values but as probability distributions. This is a major boon to semi-supervised learning (Kingma et al., 2014 [2]) as it allows for non-deterministic generation of data with labels to be trained on. During training, the VAE builds a recognition network represented by the function $q(\textbf{z}|\textbf{x};\theta)$ to predict the nodes of a latent space vector $\textbf{z}$ composed of randomly distributed variables, given a data vector $\textbf{x}$ and parameters $\theta$, as well as a generative network $p(\textbf{x}|\textbf{z};\theta)$ to produce the latter given the former. This is done by maximizing the lower bound on the likelihood function given by:
+
 In this equation the expected value term measures the likelihood of the generative network by measuring the log likelihood of a reconstruction of the data, while the KL divergence term measures the likelihood of the recognition network by comparing the recognized posterior probability to the real posterior. The loss function, $-L(\textbf{x}^{(i)})$, is minimized by way of gradient descent, which can be made more computationally efficient by the use of the stochastic Adam algorithm, researched by Kingma and Ba, 2015 [3].
 In an intuitive sense, the latent space distribution $q(\textbf{z}|\textbf{x};\theta)$ is a generic representation of the class of the data vector $\textbf{x}$. When the distribution of $\textbf{z}$ is taken to be Gaussian, as it will be in this experiment, the means of the distribution $E_{q}\left[\textbf{z}\right]$ intuitively represent a prototypical element of the class seen in the label. Based on this idea, Burda, Grosse, \& Salakhutdinov, 2016 [4] considered the "activity" of a particular node as:
 \begin{align}
@@ -65,7 +75,7 @@ In an intuitive sense, the latent space distribution $q(\textbf{z}|\textbf{x};\t
 In this equation, $u$ is a single dimension of the full latent vector $\textbf{z}$ and $\epsilon$ is a threshold above which the covariance function indicates substantial activity. This measurement, which reflects the variance of the distribution means in a particular dimension, is a measurement of how pronounced the change in distribution is across different classes in the data, where a higher propensity for change represents a high significance in both predicting and generating (that is, characterizing in the latent space) data of a particular class. The research cited suggests that in general most dimensions of a high dimensional latent space are "pruned out" during training. That is, they are not used to store any significant information about the data, and thus are in a sense wasteful. One of the goals of this experiment is to determine whether this spatial inefficiency in the latent space is simply an inconsequential byproduct of the training process or whether it has a significant impact on the effectiveness of the VAE.
 A body of research is emerging, such as Johnson, et al. 2016 [5], Burda, Grosse, \& Salakhutdinov, 2016 [4], and Sønderby et al., 2016 [6] to test various additions and modifications to the original definition of VAEs in order to improve the effectiveness of the networks themselves as well as the process of training them. Sønderby et al., 2016 [6] attempted to better utilize the full dimensionality of the latent space by modifying the training process. In the experiment, two features are added to the VAE with the express purpose of preventing nodes with small contributions from being quickly disregarded. The first is batch normalization (proposed by Ioffe \& Szegedy, 2015 [7]), wherein the weights of nodes in the deterministic layers of the VAE are normalized by their first moment. This prevents weights of different nodes in the same layer from becoming strongly divergent, with certain nodes contributing a much larger share of information to successive layers than others due to their increased weights. The second is called warmup, in which a scaling parameter is added to the negative of the likelihood function in Equation (1), producing the modified loss function:
 \begin{align}
-  -L(\textbf{x}^{(i)})=\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]-\beta D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)
+  -\L(\textbf{x}^{(i)})=\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]-\beta D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)
 \end{align}
 The value of $\beta$ is initialized to zero, and scaled up linearly over the training epochs so that the loss due to the generative network, which is strongly dependent on the state of the latent space, is not a strong factor in early training stages, and thus nodes in the latent space that have little relevance early in the training process are not prevented from having their weights increased later in the process by virtue of their irrelevance. Rather, what would otherwise be a large loss in the generative network is tolerated early on, giving time for more latent space dimensions to become active over different data vectors. The experiment discovered that these two features had a strong effect on the number of active latent space dimensions, thus increasing the spatial efficiency of the stochastic layer.
 With these examples as precedent, we will proceed first with several attempts to increase the spatial efficiency (equivalently, the number of active dimensions) of the latent space using an array of features and modifications added to the canonical implementation of VAEs by Kingma \& Welling, 2013 [1]. We will then conduct an experiment to measure the effect that a change in the value of our activity metric has on the overall performance of the VAE.\\
@@ -76,7 +86,7 @@ With these examples as precedent, we will proceed first with several attempts to
 In this section we will detail methods for VAE implementation and effect on learning rate.\\
 \subsection{Network Architecture}
 Each of the following methods were included into what will we call the `Vanilla VAE'. The network architecture for the Vanilla VAE and all additional methods is similar to the architecture introduced in the Section $3$ example of Auto-Encoding Variational Bayes \cite{Kingma2013}.\\
-The encoder and decoder sub-networks are symmetric, simple, fully-connected neural networks, namely Multi Layer Perceptrons (MLP). Both feature two deterministic, or hidden, layers each with $200$ dimensions (or nodes) per layer. A stochastic, or latent, layer with dimensions $n_z$ on top the deterministic layers. In all layers the activation is the softplus function.\\
+The encoder and decoder sub-networks are symmetric, simple, fully-connected neural networks, namely Multi Layer Perceptrons (MLP). Both feature two deterministic, or hidden, layers each with $200$ dimensions (or nodes) per layer. A stochastic, or latent, layer with dimensions $n_z$ on top the deterministic layers. In hidden layers the activation is the softplus function.\\
 Practically, the probabilistic encoder network takes data from the input space and encodes a representation into a latent space with dimension $n_z$. In particular, this latent representation, ${q_\phi(z \mid x)}$ is a Gaussian distribution over the possible latent values of $z$ from which data $x$ could have been generated. The probabilistic decoder network takes a latent representation and produces a distribution ${p_\theta(x\mid z)}$ over possible data values $x$ generated by $z$.\\
 We implement this network and the following additional methods in Tensorflow. We learn the MLP weights and bias parameters, representing the $\phi$ and $\theta$ distribution parameters, with Adam optimization minimizing $\L(x)$ with parameters $\beta_1 = 0.9, \beta_2 = 0.9, \epsilon = 10^{-4}$ with batch size $100$, learning rate $0.001$, trained for $300$ epochs.
 
@@ -100,31 +110,77 @@ Two choices for decoder distributions were outlined in \textit{Auto-Encoding Var
 For continuous, real-valued data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a multivariate Gaussian distribution. This gives the following structure for the decoder distribution with two hidden deterministic layers $h_1$ and $h_2$:
 
 \begin{align*}
-    \log p_\theta(x\mid z) & \log \mathcal{N}(x; \mu, \sigma^2 I)\\
+    \log p_\theta(x\mid z) &= \log \mathcal{N}(x; \mu, \sigma^2 I)\\
     \intertext{where}\\
-    \mu &= W_\mu h_2 + b_\mu\\
-    \log \sigma^2 &= W_\sigma h_2+ b_\sigma\\
+    \mu &= \text{sigmoid}(W_\mu h_2 + b_\mu)\\
+    \log \sigma^2 &= \text{tanh}(W_\sigma h_2+ b_\sigma)\\
     h_2 &= \text{softplus}(W_{2} h_1 + b_{2})\\
     h_1 &= \text{softplus}(W_{1} z + b_{1})
 \end{align*}
 
-Note that the parameters $\{W_1,W_2,W_\mu,W_\sigma,b_1,b_2,b_\mu,b_\sigma\}$ here are the learned parameters of the decoder MLP, and represent the decoder distribution parameter, $\theta$ in $p_\theta(x\mid z)$. Further, since the encoder distribution is always a multivariate Gaussian distribution, we use this structure for the encoder, where the $z$ and $x$ are swapped and the weights and biases represent the encoder distribution parameter, $\phi$ in ${q_\phi(z \mid x)}$.\\
+Note that the parameters $\{W_1,W_2,W_\mu,W_\sigma,b_1,b_2,b_\mu,b_\sigma\}$ here are the learned parameters of the decoder MLP, and represent the decoder distribution parameter, $\theta$ in $p_\theta(x\mid z)$. Further, since our encoder distribution is always a multivariate Gaussian distribution, we use this structure for the encoder, where the $z$ and $x$ are swapped and the weights and biases represent the encoder distribution parameter, $\phi$ in ${q_\phi(z \mid x)}$.\\
 
 \subsubsection{Bernoulli Decoder Structure}
-For binary data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a multivariate Bernoulli distribution.
+For binary data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a multivariate Bernoulli distribution. This gives the following structure for our decoder distribution with two hidden deterministic layers $h_1$ and $h_2$:
+
+\begin{align*}
+    \log p_\theta(x\mid z) &= \sum_{i=1}^D x_i \log y_i + (1-x_i) \cdot \log (1-y_i)\\
+    \intertext{where}\\
+    y&=\text{sigmoid}(W_\mu h_2 + b_\mu)\\
+    h_2&= \text{softplus}(W_2 h_1 +b_2)\\
+    h_1 &= \text{softplus}(W_1 z + b_1)\\
+\end{align*}
+
+Again, here the Bernoulli decoder distribution parameter $\theta$ is represented by the learned MLP weights and biases $\theta = \{W_1,W_2,W_\mu,b_1,b_2,b_\mu\}$.\\
+
+\subsubsection{Comparing Decoder Distributions}
+Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure %NEEDS FIGURE.
+
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
+In their 2015 publication \textit{Importance Weighted Autoencoders}, Burda, Grosse, and Salakhutdinov observe that Kingma \& Welling's $\L(x)$ lower bound on the log-likelihood from Eq.\ref{eq:VAEOBJECTIVE} makes strong assumptions about the posterior inference leading to overly simplified representations. They propose an improvement called Importance Weighted Auto Encoders (IWAE) which is a generative model using the VAE network architecture, but with a few key improvements to model generalizability. \\
+The critical feature of IWAE is that the encoder network uses multiple importance weighted samples to approximate the posterior, where VAE uses a single sample. This allows IWAE to approximate complex posteriors which are not available under the stronger VAE posterior assumptions. \\
+By considering multiple importance weighted samples we introduce a new lower bound on the log-likelihood which is strictly tighter than Eq.\ref{eq:VAEOBJECTIVE}.\\
+Given $K$ independent samples $\{z_1,\mathellipsis,z_K\}$ from the encoder distribution $z_k\sim q_\phi(z|x)$ we define the new lower bound given by the $K$-sample importance weighting expectation of the log-likelihood:
+\begin{equation}
+   \L_K(x) = \mathbb{E}_{z_1,\mathellipsis,z_K \sim q_\phi(z|x)}[\log\frac{1}{K}\sum_{k=1}^{K}\frac{p_\theta(x,z_k)}{q_\phi(z_k|x)}]
+\end{equation}
+The term inside the sum is the normalized importance weights for the joint distribution.\\
+Note in particular that the case $K=1$ corresponds exactly to Kingma \& Welling's $\L(x)$ from Eq.\ref{eq:VAEOBJECTIVE}.\\
+Burda, Grosse, and Salakhutdinov show that this importance weighted lower bound is strictly tighter than the vanilla lower bound. In particular, that $\log p(x) \geq \L_{K+1}(x)>\L_K(x)$\\
+Our implementation of IWAE with this lower bound supports their findings. We observed that with $K=5$ samples IWAE significantly improves the learned log-likelihood bound during training. The results of this experiment can be found in Figure %NEEDS FIGURE.
 
-\subsection{Random Dropout}
+%\subsection{Random Dropout}
 %FIGURES NEEDED: Vanilla+IW+Dropout cost plot for all values of keep probability, average across trials for smoothness.
 
 
 \subsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
+Batch normalization is a recent method developed to improve stability and convergence speed in deep networks \cite{Ioffe2015}. In the recent paper \textit{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks} by S\o nderby et al. 2016, the authors show that batch normalization is an essential method for learning deep VAEs \cite{Sonderby2016}. That is, deep generative models with several latent layers. Though we are only considering a shallow model with a single latent layer, we were interested to see how batch normalization affects training and, as we will discuss later, the latent space dimensionality.\\
+Batch normalization was developed to improve learning stability during deep network training. As parameters change during learning the layer output distributions change for each hidden layer, requiring later layers to respond to these distribution changes. The problem that batch normalization attempts to address is that changes in early layer output distributions can cause noisy changes to later layers.\\
+Batch normalization addresses this problem by normalizing the inputs of the activation function for each layer so that the inputs across each training batch have a mean of 0 and a variance of 1. However, batch normalization restricts the representation of each layer by assuming this normal distribution. To alleviate some of this restriction, batch normalization introduces learnable parameters to scale the variance of the normal distribution, $\gamma$ and shift the mean, $\beta$. Therefore, we transform each activation function input, $x_i$, with the batch normalization given by:
+
+\begin{align*}
+    \text{BN}(x_i)=\gamma(\frac{x_i-\mu_B}{\sqrt{\sigma_B^2+\epsilon}})+\beta\\
+\end{align*} 
+where $\mu_B$ and $\sigma$ is the mean and standard deviation of the layer's activation function input across the batch, $\epsilon$ is a small constant to the variance to avoid division by 0, and $\gamma$ and $\beta$ are learnable scale and shift parameters. Note in particular that when learning with batch normalization, the learned shift parameter $\beta$ for each layer replaces the need for bias terms added to that layer's activation inputs. \\
+To train our model we add batch normalization before the activation for all layers in our auto-encoder except the output layers, as described in \cite{Sonderby2016}. \\
+See the result of training with batch normalization in Figure %NEEDS FIGURE
 
 \subsection{Warm Up}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU cost plot
+Recall that the log-likelihood lower bound in Eq.\ref{eq:VAEOBJECTIVE} contains a reconstruction term and a variational regularization term. Further, notice that without that variational regularization term the lower bound becomes that for a standard deterministic autoencoder. It has been observed that the variational regularization term causes some latent dimensions to become inactive or 'pruned' during training \cite{MacKay2001, Burda2016}. In the later sections of this report we consider the activity of the latent dimensions, particularly we are interested in how training maintains or prunes latent dimensions. \\
+Pruning non-informative dimensions later in training could be considered advantageous for automatic relevance determination. However, if latent dimensions are pruned too early in training they will not have a chance to learn informative representations. Once the dimensions become inactive in training, they will not be reactivated. This problem of early latent dimension pruning is particularly troublesome for deep VAEs, because deep latent layers depend on the shallow latent dimensions in the network. If shallow latent dimensions are pruned early,  deep latent layers will not be able to learn useful representations \cite{Sonderby2016}.\\
+To avoid the problem of early pruning due to the variational regularization, we 'warm up' our VAE. Warm-up is achieved by initializing the learning process with a standard deterministic autoencoder, and then linearly introducing the variational regularization. This way the latent dimensions have a chance to learn useful representations as in a deterministic autoencoder before being possibly pruned by variational regularization.\\
+We introduce a warm-up parameter $\beta$ to our objective function which increases linearly from 0 to 1 during the first $N_T$ epochs of training:
+
+\begin{equation}
+    -\L(x)_T=-\beta D_{KL}\left(q_\phi(z|x)||p_\theta(z)\right)+\mathbb{E}_{q_\phi(z|x)}\left[\log{p_\theta(x|z)}\right]
+\end{equation}
+
+Again, note that this causes the first epoch to initialize a standard deterministic autoencoder, then linearly introduce the variational behaviour. Further, observe that after $N_T$ epochs the model remains a fully variational autoencoder. This warm-up can also be applied to the lower bound objective of the IWAE identically, by linearly scaling the variational regularization term.\\
+See the result of training with warm-up in Figure %NEEDS FIGURE.
 
 \subsection{Initial Latent Dimension}
 %FIGURES NEEDED: Vanilla+IW across initial latet dimension values cost plot
