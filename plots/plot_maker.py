@@ -94,7 +94,10 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title=
         comment_string='%'
     outfile.write('    [%s title={%s},\n' % (comment_string,title))
     outfile.write('    xlabel={%s},ylabel={%s},' % (xlabel,ylabel))
-    outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
+    if axis=='axis':
+        outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(0,x_max*1.1,0,y_max*1.1))
+    else:
+        outfile.write('    xmin={}, xmax={},ymin={}, ymax={},]'.format(x_min*0.9,x_max*1.1,y_min*0.9,y_max*1.1))
     #outfile.write('    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},')
     #outfile.write('    legend pos=north west,ymajorgrids=true,grid style=dashed,]')
     #Sort by name so things print in a nice order
