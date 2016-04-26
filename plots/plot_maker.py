@@ -44,7 +44,7 @@ def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_f
 #Function for making line plots of data. Feeds the parameters to test_points,
 # which reads from the data file and parses everything into coordinate pairs
 def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title='Cost for parameter settings',
-               axis='axis',plot='cost',trial_range=[1],bvsg=False):
+               axis='axis',plot='cost',trial_range=[1],bvsg=False,force_keys=None):
     #Values for framing the plot
     x_max=y_max=0
     y_min=sys.maxint
@@ -98,7 +98,11 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title=
     #outfile.write('    xtick={0,20,40,60,80,100},ytick={0,20,40,60,80,100,120},')
     #outfile.write('    legend pos=north west,ymajorgrids=true,grid style=dashed,]')
     #Sort by name so things print in a nice order
-    for trial_name in sorted(trials.keys()):
+    if force_keys:
+        keys=force_keys
+    else:
+        keys=sorted(trials.keys())
+    for trial_name in keys:
         #No data, no plot
         if len(trials[trial_name][plot]) and len(trials[trial_name][plot][0]):
             errprint("Publishing plot for "+trial_name)
@@ -314,18 +318,22 @@ if __name__=='__main__':
                plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
                title="Comparison of Importance Weighted and Warmed-Up for Activity")
     params={}
+    force_keys=[]
     for dim in [2, 10, 20, 50, 100]:
-        params['D='+str(dim)]=(dim,1.0,0,0,1)
-    plot_tests(params,plot='cost',trial_range=range(1),
+        key='D='+str(dim)
+        params[key]=(dim,1.0,0,0,1)
+        force_keys.append(key)
+    plot_tests(params,plot='cost',trial_range=range(1),force_keys=force_keys,
     title="Comparison of Dimension Values for Cost")
-    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',trial_range=range(1),
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',trial_range=range(1),force_keys=force_keys,
     title="Comparison of Dimension Values for Activity")
     #shade_tests(params,trial_range=range(1))
     shade_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1),
                 'Berno+BN+IW':(50,1.0,1,0,1),
                  'Berno+WU+IW':(50,1.0,1,0,1),
-                'Berno+BN+WU+IW':(50,1.0,1,1,1)},
+                 'Berno+BN+WU+IW':(50,1.0,1,1,1),
+                 'Berno+BN':(50,1.0,1,0,0)},
                 trial_range=[0])
     
     # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
