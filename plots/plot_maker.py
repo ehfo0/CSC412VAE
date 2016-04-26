@@ -140,11 +140,11 @@ def shade_tests(trial_parameters,xlabel='Epochs',ylabel='Dimension',title='Activ
         im = plt.imshow(grid,cmap="Greys",origin="lower",vmin=-8,vmax=0)
         plt.axis([0,max_epochs,trial_parameters[trial_name][0],0])
         #Colorbar indexes the shades to activity values. The default vertical looks best
-        cb=plt.colorbar(im, orientation='horizontal')
+        #cb=plt.colorbar(im, orientation='horizontal')
         #cb=plt.colorbar(im)
         #Nice labels for the colorbar, axes, and plot
-        cb.ax.get_yaxis().labelpad = 25
-        cb.ax.set_ylabel('Cov',rotation=90)
+        #cb.ax.get_yaxis().labelpad = 25
+        #cb.ax.set_ylabel('Cov',rotation=90)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
         if include_titles:
