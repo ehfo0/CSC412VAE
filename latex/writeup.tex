@@ -4,7 +4,8 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{pgfplots,adjustbox}
+\usepackage{pgfplots,adjustbox,graphicx}
+\usepackage{subcaption}
 
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
 
@@ -138,16 +139,36 @@ Again, here the Bernoulli decoder distribution parameter $\theta$ is represented
 Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}.
 
 \begin{figure}
+\captionsetup[subfigure]{justification=centering}
     \centering
-
-    \input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}
+     \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
     \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
     \label{fig:bergau}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
+    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
+    \label{fig:bergau}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
+    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
+    \label{fig:bergau}
+    \end{subfigure}
+    
+
+%    \begin{subfigure}[b]{0.20\textwidth}
+%    \input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
+%    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
+%    \label{fig:bergau}
+%    \end{subfigure}
 \end{figure}
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
-\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
+%\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
 In their 2015 publication \textit{Importance Weighted Autoencoders}, Burda, Grosse, and Salakhutdinov observe that Kingma \& Welling's $\L(x)$ lower bound on the log-likelihood from Eq.\ref{eq:VAEOBJECTIVE} makes strong assumptions about the posterior inference leading to overly simplified representations. They propose an improvement called Importance Weighted Auto Encoders (IWAE) which is a generative model using the VAE network architecture, but with a few key improvements to model generalizability. \\
 The critical feature of IWAE is that the encoder network uses multiple importance weighted samples to approximate the posterior, where VAE uses a single sample. This allows IWAE to approximate complex posteriors which are not available under the stronger VAE posterior assumptions. \\
 By considering multiple importance weighted samples we introduce a new lower bound on the log-likelihood which is strictly tighter than Eq.\ref{eq:VAEOBJECTIVE}.\\
@@ -162,12 +183,14 @@ Our implementation of IWAE with this lower bound supports their findings. We obs
 
 %\subsection{Random Dropout}
 %FIGURES NEEDED: Vanilla+IW+Dropout cost plot for all values of keep probability, average across trials for smoothness.
-\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
+%\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
 
 
 \subsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
-\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
+%\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
+
+
 Batch normalization is a recent method developed to improve stability and convergence speed in deep networks \cite{Ioffe2015}. In the recent paper \textit{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks} by S\o nderby et al. 2016, the authors show that batch normalization is an essential method for learning deep VAEs \cite{Sonderby2016}. That is, deep generative models with several latent layers. Though we are only considering a shallow model with a single latent layer, we were interested to see how batch normalization affects training and, as we will discuss later, the latent space dimensionality.\\
 Batch normalization was developed to improve learning stability during deep network training. As parameters change during learning the layer output distributions change for each hidden layer, requiring later layers to respond to these distribution changes. The problem that batch normalization attempts to address is that changes in early layer output distributions can cause noisy changes to later layers.\\
 Batch normalization addresses this problem by normalizing the inputs of the activation function for each layer so that the inputs across each training batch have a mean of 0 and a variance of 1. However, batch normalization restricts the representation of each layer by assuming this normal distribution. To alleviate some of this restriction, batch normalization introduces learnable parameters to scale the variance of the normal distribution, $\gamma$ and shift the mean, $\beta$. Therefore, we transform each activation function input, $x_i$, with the batch normalization given by:
