@@ -42,7 +42,7 @@ def namestring(z_dim,keep_prob,b_normal,warmup,i_weighting,trial_num=None,data_f
 
 #Function for making line plots of data. Feeds the parameters to test_points,
 # which reads from the data file and parses everything into coordinate pairs
-def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for parameter settings',
+def plot_tests(trial_parameters,xlabel='Epochs',ylabel='$\mathcal{L}(x)$',title='Cost for parameter settings',
                axis='axis',plot='cost',trial_range=[1],bvsg=False):
     #Values for framing the plot
     x_max=y_max=0

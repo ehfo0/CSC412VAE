@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 14:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 15:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -672,7 +672,58 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
 ks.code.tex
 File: pgflibraryplotmarks.code.tex 2013/07/20 v3.0.0 (rcs-revision 1.13)
-))) (./writeup.aux)
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks36
+\XKV@tempa@toks=\toks37
+)
+\XKV@depth=\count142
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box42
+)
+\tc@llx=\dimen181
+\tc@lly=\dimen182
+\tc@urx=\dimen183
+\tc@ury=\dimen184
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen185
+\adjbox@Height=\dimen186
+\adjbox@Depth=\dimen187
+\adjbox@Totalheight=\dimen188
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count143
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box43
+\sift@deathcycles=\count144
+\@vwid@loff=\dimen189
+\@vwid@roff=\dimen190
+))
+(./writeup.aux)
 \openout1 = `writeup.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
@@ -690,25 +741,23 @@ LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
 LaTeX Font Info:    ... okay on input line 44.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 44.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-\AtBeginShipoutBox=\box42
-
+\AtBeginShipoutBox=\box44
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen181
-\scratchbox=\box43
-\nofMPsegments=\count143
-\nofMParguments=\count144
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen182
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count145
+\scratchdimen=\dimen191
+\scratchbox=\box45
+\nofMPsegments=\count146
+\nofMParguments=\count147
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count148
+\MPscratchDim=\dimen192
+\MPnumerator=\count149
+\makeMPintoPDFobject=\count150
+\everyMPtoPDFconversion=\toks39
 )
 Package hyperref Info: Link coloring OFF on input line 44.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -717,7 +766,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count148
+\c@section@level=\count151
 )
 LaTeX Info: Redefining \ref on input line 44.
 LaTeX Info: Redefining \pageref on input line 44.
@@ -802,37 +851,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
 
-
-LaTeX Warning: Reference `fig:bergau' on page 3 undefined on input line 138.
-
 (../plots/img/Comparison of Bernoulli and Gaussian.tex) [3]
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex) [4]
 (../plots/img/Comparison of Dropout Values for Cost.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--165
+Underfull \hbox (badness 10000) in paragraph at lines 1--166
 
  []
 
 (../plots/img/Comparison of Importance Weighted and Batch Normalized.tex)
 
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 170.
+LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 171.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
 
-LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 178.
+LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 179.
 
 (../plots/img/Comparison of Importance Weighted and Warmed-Up.tex)
 
-LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 185.
+LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 186.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
 (../plots/img/Comparison of Dimension Values for Cost.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--199
+Underfull \hbox (badness 10000) in paragraph at lines 1--200
 
  []
 
@@ -841,13 +887,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--205
+Underfull \hbox (badness 10000) in paragraph at lines 1--206
 
  []
 
 (../plots/img/Comparison of Dropout Values for Cost.tex)
 (../plots/img/Comparison of Dropout Values for Activity.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--210
+Underfull \hbox (badness 10000) in paragraph at lines 1--211
 
  []
 
@@ -855,39 +901,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--210
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-<../plots/img/trial.50.0.5.0.0.1.KP=0.5.png, id=181, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.0.5.0.0.1.KP=0.5.png, id=182, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.0.5.0.0.1.KP=0.5.png Graphic file (type png)
 
 <use ../plots/img/trial.50.0.5.0.0.1.KP=0.5.png>
 Package pdftex.def Info: ../plots/img/trial.50.0.5.0.0.1.KP=0.5.png used on inp
-ut line 211.
+ut line 212.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.0.7.0.0.1.KP=0.7.png, id=183, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.0.7.0.0.1.KP=0.7.png, id=184, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.0.7.0.0.1.KP=0.7.png Graphic file (type png)
 
 <use ../plots/img/trial.50.0.7.0.0.1.KP=0.7.png>
 Package pdftex.def Info: ../plots/img/trial.50.0.7.0.0.1.KP=0.7.png used on inp
-ut line 212.
+ut line 213.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.0.9.0.0.1.KP=0.9.png, id=184, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.0.9.0.0.1.KP=0.9.png, id=185, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.0.9.0.0.1.KP=0.9.png Graphic file (type png)
 
 <use ../plots/img/trial.50.0.9.0.0.1.KP=0.9.png>
 Package pdftex.def Info: ../plots/img/trial.50.0.9.0.0.1.KP=0.9.png used on inp
-ut line 213.
+ut line 214.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.1.0.0.0.1.KP=1.0.png, id=185, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.1.0.0.0.1.KP=1.0.png, id=186, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.1.0.0.0.1.KP=1.0.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.KP=1.0.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.KP=1.0.png used on inp
-ut line 214.
+ut line 215.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--215
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
 
  []
 
@@ -899,22 +945,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10 <../plots/img/trial.50.0.5.0.0.1.KP=0.5.png> <../plots/img/trial.50.0.7.0.
 0.1.KP=0.7.png>]
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=196, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=197, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 216.
+t line 217.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=197, 508.0581pt x 401.8212pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=198, 508.0581pt x 401.8212pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 217.
+nput line 218.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--218
+Underfull \hbox (badness 10000) in paragraph at lines 217--219
 
  []
 
@@ -927,18 +973,18 @@ alized.tex)
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 223.
+nput line 224.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=204, 508.0581pt x 401.8212
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=205, 508.0581pt x 401.8212
 pt>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 224.
+n input line 225.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--225
+Underfull \hbox (badness 10000) in paragraph at lines 1--226
 
  []
 
@@ -955,18 +1001,18 @@ File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 229.
+nput line 230.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png, id=216, 508.0581pt x 401.8212
+<../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png, id=217, 508.0581pt x 401.8212
 pt>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png used o
-n input line 230.
+n input line 231.
 (pdftex.def)             Requested size: 381.04263pt x 301.36514pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--231
+Underfull \hbox (badness 10000) in paragraph at lines 1--232
 
  []
 
@@ -979,7 +1025,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15]
 (../plots/img/Comparison of Dimension Values for Cost.tex)
 (../plots/img/Comparison of Dimension Values for Activity.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--236
+Underfull \hbox (badness 10000) in paragraph at lines 1--237
 
  []
 
@@ -988,31 +1034,28 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16 <../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png>] (./writeup.bbl [17]) [1
 8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 258.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 258.
 
 (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 257.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 258.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 258.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 9413643D748C7C2C292678C3CF6F1623;1847.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 257.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 258.
  ) 
 Here is how much of TeX's memory you used:
- 29784 strings out of 493089
- 727120 string characters out of 6134842
- 986801 words of memory out of 5000000
- 32749 multiletter control sequences out of 15000+600000
+ 30502 strings out of 493089
+ 738916 string characters out of 6134842
+ 999623 words of memory out of 5000000
+ 33432 multiletter control sequences out of 15000+600000
  16580 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,19n,77p,28421b,2092s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,19n,77p,28433b,2090s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1028,10 +1071,10 @@ exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on writeup.pdf (18 pages, 662354 bytes).
+Output written on writeup.pdf (18 pages, 662789 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
+ 303 PDF objects out of 1000 (max. 8388607)
+ 250 compressed objects within 3 object streams
  57 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
