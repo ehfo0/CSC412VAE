@@ -59,7 +59,7 @@ def plot_tests(trial_parameters,xlabel='Epochs',ylabel='Cost',title='Cost for pa
         trials[trial_name]=data
         
     #List of colors for lines, in the order they'll be drawn
-    color_list=['red','green','blue','orange','purple']
+    color_list=['red','green','blue','orange','purple','crimson','magenta']
     color_index=0
     #List of trial names that will eventually be put into the legend
     legend_string=''
@@ -244,6 +244,39 @@ if __name__=='__main__':
 
     #TESTS GO HERE
 
+    plot_tests({'Berno':(50,1.0,0,0,0),
+                'Berno+IW':(50,1.0,0,0,1)},
+                axis='semilogyaxis',trial_range=[0])
+    params={}
+    for keep in [1.0,0.9,0.8,0.7,0.6,0.5]:
+        params['KP='+str(keep)]=(50,keep,0,0,1)
+    plot_tests(params,plot='cost',trial_range=range(0))
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
+    shade_tests(params,trial_range=range(0))
+    plot_tests({'Berno+IW':(50,1.0,0,0,1),
+                'Berno+IW+BN':(50,1.0,1,0,1)},
+               axis='semilogyaxis',trial_range=[0])
+    plot_tests({'Berno+IW':(50,1.0,0,0,1),
+                'Berno+IW+WU':(50,1.0,0,1,1)},
+               axis='semilogyaxis',trial_range=[0])
+    params={}
+    for dim in [2, 10, 20, 50, 100]:
+        params['D='+str(dim)]=(dim,1.0,0,0,1)
+    plot_tests(params,plot='cost',trial_range=range(0))
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
+    shade_tests(params,trial_range=range(0))
+    params={}
+    for dim in [2, 10, 20, 50, 100]:
+        params['D='+str(dim)]=(dim,1.0,0,0,1)
+    plot_tests(params,plot='cost',trial_range=range(0))
+    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(0))
+    shade_tests(params,trial_range=range(0))
+    shade_tests({'Berno':(50,1.0,0,0,0),
+                'Berno+IW':(50,1.0,0,0,1),
+                'Berno+BN+IW':(50,1.0,1,0,1),
+                'Berno+BN+WU+IW':(50,1.0,1,1,1)},
+                trial_range=[0])
+    
     # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
     #             'Berno':(50,1.0,'bernoulli',0,0)})
     # plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
@@ -252,9 +285,9 @@ if __name__=='__main__':
     #            axis='semilogyaxis',trial_range=[1])
     # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
     #             'Berno':(50,1.0,'bernoulli',0,0)},
-    #            plot='covar_cut',ylabel='Active Dimensions')
+    #            plot='covar_cut',label='Active Dimensions')
     # plot_tests({'Berno':(50,1.0,'bernoulli',0,0),
-    #             'Berno+BN':(50,1.0,'bernoulli',1,0),
+    #             'Berno+BN':(50,1`.0,'bernoulli',1,0),
     #             'Berno+BN+WU':(50,1.0,'bernoulli',1,1)},
     #            plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters')
     #shade_tests({'Gauss':(50,1.0,'gaussian',0,0),
@@ -268,11 +301,11 @@ if __name__=='__main__':
     #             'Berno+BN+IW':(50,1.0,1,0,1),
     #             'Berno+BN+WU+IW':(50,1.0,1,1,1)},
     #            axis='semilogyaxis',trial_range=[0])
-    shade_tests({'Berno':(50,1.0,0,0,0),
-                'Berno+IW':(50,1.0,0,0,1),
-                'Berno+BN+IW':(50,1.0,1,0,1),
-                'Berno+BN+WU+IW':(50,1.0,1,1,1)},
-                trial_range=[0])
+    # shade_tests({'Berno':(50,1.0,0,0,0),
+    #             'Berno+IW':(50,1.0,0,0,1),
+    #             'Berno+BN+IW':(50,1.0,1,0,1),
+    #             'Berno+BN+WU+IW':(50,1.0,1,1,1)},
+    #             trial_range=[0])
     #Test dropout rate
     # params={}
     # for keep in [1.0,0.9,0.8,0.7,0.6]:
@@ -281,12 +314,12 @@ if __name__=='__main__':
     # plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(4))
     # shade_tests(params,trial_range=range(4))
     #Test initial latent dimensions
-    params={}
-    for dim in [2, 10, 20, 50, 100]:
-        params['D='+str(dim)]=(dim,1.0,0,0,1)
-    plot_tests(params,plot='cost',trial_range=range(1))
-    plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(1))
-    shade_tests(params,trial_range=range(1))
+    # params={}
+    # for dim in [2, 10, 20, 50, 100]:
+    #     params['D='+str(dim)]=(dim,1.0,0,0,1)
+    # plot_tests(params,plot='cost',trial_range=range(1))
+    # plot_tests(params,plot='covar_cut',ylabel='Active Dimensions',title='Active Dimensions for Parameters',trial_range=range(1))
+    # shade_tests(params,trial_range=range(1))
     #LATEX FOOTER
     print '\\end{document}'
 
