@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{Ahuja}
+Arun Ahuja.
+\newblock {Generative Models in Tensorflow}.
+
 \bibitem{Burda2016}
 Yuri Burda, Roger Grosse, and Ruslan Salakhutdinov.
 \newblock {Importance Weighted Autoencoders}.
@@ -28,5 +32,9 @@ David MacKay.
 \newblock {Local minima, symmetry-breaking, and model pruning in variational
   free energy minimization}.
 \newblock {\em Inference Group, Cavendish Laboratory,}, pages 1--10, 2001.
+
+\bibitem{Metzen2015}
+Jan Metzen.
+\newblock {Variational Autoencoder in TensorFlow}, 2015.
 
 \end{thebibliography}
