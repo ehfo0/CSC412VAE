@@ -322,7 +322,7 @@ if __name__=='__main__':
                title="Comparison of Importance Weighted and Warmed-Up for Activity")
     params={}
     force_keys=[]
-    for dim in [2, 10, 20, 50, 100]:
+    for dim in [2, 5, 10, 20, 50, 100]:
         key='D='+str(dim)
         params[key]=(dim,1.0,0,0,1)
         force_keys.append(key)
