@@ -310,7 +310,7 @@ if __name__=='__main__':
                title="Comparison of Importance Weighted and Batch Normalized for Cost")
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+WU':(50,1.0,0,1,1)},
-               axis='semilogyaxis',trial_range=range(2),
+               axis='semilogyaxis',trial_range=range(7,10),
                title="Comparison of Importance Weighted and Warmed-Up for Cost")
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+BN':(50,1.0,1,0,1)},
@@ -318,7 +318,7 @@ if __name__=='__main__':
                title="Comparison of Importance Weighted and Batch Normalized for Activity")
     plot_tests({'Berno+IW':(50,1.0,0,0,1),
                 'Berno+IW+WU':(50,1.0,0,1,1)},
-               plot='covar_cut',ylabel='Active Dimensions',trial_range=range(2),
+               plot='covar_cut',ylabel='Active Dimensions',trial_range=range(7,10),
                title="Comparison of Importance Weighted and Warmed-Up for Activity")
     params={}
     force_keys=[]
@@ -334,10 +334,10 @@ if __name__=='__main__':
     shade_tests({'Berno':(50,1.0,0,0,0),
                 'Berno+IW':(50,1.0,0,0,1),
                 'Berno+BN+IW':(50,1.0,1,0,1),
-                 'Berno+WU+IW':(50,1.0,1,0,1),
                  'Berno+BN+WU+IW':(50,1.0,1,1,1),
                  'Berno+BN':(50,1.0,1,0,0)},
                 trial_range=[0])
+    shade_tests({'Berno+WU+IW':(50,1.0,0,1,1)},trial_range=[7])
     
     # plot_tests({'Gauss':(50,1.0,'gaussian',0,0),
     #             'Berno':(50,1.0,'bernoulli',0,0)})
