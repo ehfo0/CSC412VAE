@@ -138,38 +138,6 @@ Again, here the Bernoulli decoder distribution parameter $\theta$ is represented
 \subsubsection{Comparing Decoder Distributions}
 Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}.
 
-\begin{figure}
-\captionsetup[subfigure]{justification=centering}
-    \centering
-     \begin{subfigure}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
-    \caption{Bernoulli v.s Gaussian decoder distributions}
-    \label{fig:bergau}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
-    \caption{Variational v.s. Importance Weighted}
-    \label{fig:variw}
-    \end{subfigure}\\[0.3in]
-    \begin{subfigure}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
-    \caption{Effect of Batch Normalization (BN)}
-    \label{fig:bncost}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}}
-    \caption{Effect of Warm-Up}
-    \label{fig:wucost}
-    \end{subfigure}
-%    \begin{subfigure}[b]{0.20\textwidth}
-%    \input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
-%    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
-%    \label{fig:bergau}
-%    \end{subfigure}
-\end{figure}
-
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
 %\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
@@ -221,44 +189,130 @@ We introduce a warm-up parameter $\beta$ to our objective function which increas
 Again, note that this causes the first epoch to initialize a standard deterministic autoencoder, then linearly introduce the variational behaviour. Further, observe that after $N_T$ epochs the model remains a fully variational autoencoder. This warm-up can also be applied to the lower bound objective of the IWAE identically, by linearly scaling the variational regularization term.\\
 See the result of training with warm-up in Figure %NEEDS FIGURE.
 
-\subsection{Initial Latent Dimension}
+\subsection{Latent Space Dimensionality}
 %FIGURES NEEDED: Vanilla+IW across initial latet dimension values cost plot
-\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}
+%\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}
+Finally, we were interested in determining how the choice of latent space dimensionality affected the training of our model. As described previously, the number of latent dimensions, $n_z$ is given by the number of nodes in the stochastic layers of the model. \\
+To experiment with this parameter, we trained multiple Importance Weighted VAEs with dimensionality ${n_z \in \{2,10,20,50,100\}}$. See the effect of dimensionality on training in Figure \ref{fig:latdimcost}. To summarize our results, models with 2 latent dimensions were not trained as successfully as models with higher latent dimensions. Further, it is interesting to note that all models with $n_z\geq10$ converged to the same log-likelihood bound. This suggests to us that the additional latent dimensionality was not useful for learning latent representations of the MNIST data. In fact, $n_z=10$ converged slightly faster than higher latent dimensional models, further suggesting that the additional dimensions were superfluous to training.\\
+We were particularly interested in this question of latent space dimensionality. It is especially suggestive that models with $n_z\geq10$ perform identically, given that there are 10 classes of digits in MNIST. This motivates our inquiry for the next section where we explore usefulness of latent dimensions by describing their activity. 
+
+\begin{figure}
+\captionsetup[subfigure]{justification=centering}
+    \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
+    \caption{Bernoulli v.s Gaussian decoder distributions}
+    \label{fig:bergau}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
+    \caption{Variational v.s. Importance Weighted (IW)}
+    \label{fig:variw}
+    \end{subfigure}\\[0.3in]
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
+    \caption{Effect of Batch Normalization (BN)}
+    \label{fig:bncost}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}}
+    \caption{Effect of Warm-Up}
+    \label{fig:wucost}
+    \end{subfigure}\\[0.3in]
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}}
+    \caption{Latent Dimensionality}
+    \label{fig:latdimcost}
+    \end{subfigure}
+\end{figure}
+
 \section{Latent Dimension Activity}
 \subsection{Activity Metric}
 \subsection{Effects of Implementation on Activity}
 \subsubsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW latent line plot and smudge plot
-\input{"../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex"}
+%\input{"../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex"}
 %\subsubsection{Random Dropout}
 %%FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
 %\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
 %\input{"../plots/img/Comparison of Dropout Values for Activity.tex"}
 
-\includegraphics[scale=0.75]{{../plots/img/trial.50.0.5.0.0.1.KP=0.5}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.0.7.0.0.1.KP=0.7}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.0.9.0.0.1.KP=0.9}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.KP=1.0}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.5.0.0.1.KP=0.5}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.7.0.0.1.KP=0.7}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.9.0.0.1.KP=0.9}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.KP=1.0}.png}\\
+\begin{figure}
+\captionsetup[subfigure]{justification=centering}
+    \begin{subfigure}{\textwidth}
+    \centering
+    \caption*{\textbf{Dimension Activity Log Scale Legend}}
+    \includegraphics[scale=0.5]{{../plots/img/colorbar}.png}
+    \end{subfigure}\\
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}
+    \caption{Vanilla VAE with Bernoulli Decoder Distribution}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}
+    \caption{Importance Weighted (IW)}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}
+    \caption{IW + Batch Normalization (BN)}
+    \end{subfigure}
+    \begin{subfigure}{\textwidth}
+    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW}.png}
+    \caption{IW + Warm Up (WU)}
+    \end{subfigure}
+\end{figure}
 
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
+
+\begin{figure}
+\captionsetup[subfigure]{justification=centering}
+    \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex"}}
+    \caption{Effect of Importance Weighted (IW)}
+    \label{fig:iwlat}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized for Activity.tex"}}
+    \caption{Effect of Batch Normalization (BN)}
+    \label{fig:bnlat}
+    \end{subfigure}\\[0.3in]
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex"}}
+    \caption{Effect of Warm-Up}
+    \label{fig:wulat}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}}
+    \caption{Latent Dimensionality}
+    \label{fig:latdimlat}
+    \end{subfigure}
+\end{figure}
+
 
 
 \subsubsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN latent line and smudge plot
-\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized for Activity.tex"}
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
+%\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized for Activity.tex"}
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
 
 \subsubsection{Warm Up}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU latent line and smudge plot
-\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex"}
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
-\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW}.png}\\
+%\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex"}
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
+%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW}.png}\\
 
 \subsubsection{Initial Latent Dimension}
 %FIGURES NEEDED: Vanilla+IW across initial latet dimension values latent line plot
-\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}
+%\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}
 
 \section{Latent Space Visualization}
 \subsection{Data Reconstruction}
@@ -269,7 +323,7 @@ See the result of training with warm-up in Figure %NEEDS FIGURE.
 %FIGURES NEEDED: Hyperplane lattice for nz=2, two dimensions with high variance, and bad variance example.
 
 
-\subsection{References}
+
 \bibliographystyle{plain}
 \bibliography{bib}
 
