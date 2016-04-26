@@ -143,22 +143,26 @@ Our findings support the recommendation by Kingma \& Welling that Bernoulli deco
     \centering
      \begin{subfigure}[b]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
-    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
+    \caption{Bernoulli v.s Gaussian decoder distributions}
     \label{fig:bergau}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
-    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
-    \label{fig:bergau}
-    \end{subfigure}\\
+    \caption{Variational v.s. Importance Weighted}
+    \label{fig:variw}
+    \end{subfigure}\\[0.3in]
     \begin{subfigure}[b]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
-    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
-    \label{fig:bergau}
+    \caption{Effect of Batch Normalization (BN)}
+    \label{fig:bncost}
     \end{subfigure}
-    
-
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}}
+    \caption{Effect of Warm-Up}
+    \label{fig:wucost}
+    \end{subfigure}
 %    \begin{subfigure}[b]{0.20\textwidth}
 %    \input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
 %    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
@@ -204,7 +208,7 @@ See the result of training with batch normalization in Figure %NEEDS FIGURE
 
 \subsection{Warm Up}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU cost plot
-\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}
+%\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}
 Recall that the log-likelihood lower bound in Eq.\ref{eq:VAEOBJECTIVE} contains a reconstruction term and a variational regularization term. Further, notice that without that variational regularization term the lower bound becomes that for a standard deterministic autoencoder. It has been observed that the variational regularization term causes some latent dimensions to become inactive or `pruned' during training \cite{MacKay2001, Burda2016}. In the later sections of this report we consider the activity of the latent dimensions, particularly we are interested in how training maintains or prunes latent dimensions. \\
 Pruning non-informative dimensions later in training could be considered advantageous for automatic relevance determination. However, if latent dimensions are pruned too early in training they will not have a chance to learn informative representations. Once the dimensions become inactive in training, they will not be reactivated. This problem of early latent dimension pruning is particularly troublesome for deep VAEs, because deep latent layers depend on the shallow latent dimensions in the network. If shallow latent dimensions are pruned early,  deep latent layers will not be able to learn useful representations \cite{Sonderby2016}.\\
 To avoid the problem of early pruning due to the variational regularization, we `warm up' our VAE. Warm-up is achieved by initializing the learning process with a standard deterministic autoencoder, and then linearly introducing the variational regularization. This way the latent dimensions have a chance to learn useful representations as in a deterministic autoencoder before being possibly pruned by variational regularization.\\
@@ -227,10 +231,10 @@ See the result of training with warm-up in Figure %NEEDS FIGURE.
 %FIGURES NEEDED: Vanilla vs Vanilla + IW latent line plot and smudge plot
 \input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
 
-\subsubsection{Random Dropout}
-%FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
-\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
-\input{"../plots/img/Comparison of Dropout Values for Activity.tex"}
+%\subsubsection{Random Dropout}
+%%FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
+%\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
+%\input{"../plots/img/Comparison of Dropout Values for Activity.tex"}
 
 \includegraphics[scale=0.75]{{../plots/img/trial.50.0.5.0.0.1.KP=0.5}.png}\\
 \includegraphics[scale=0.75]{{../plots/img/trial.50.0.7.0.0.1.KP=0.7}.png}\\
