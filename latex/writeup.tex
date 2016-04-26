@@ -4,6 +4,8 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{pgfplots}
+
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -97,17 +99,11 @@ We implement this network and the following additional methods in Tensorflow. Ou
 
 \subsection{Xavier Initialization}
 All parameters in the MLP were initialized with the Xavier-Glorot method outlined in \cite{Glorot2010}. Xavier-Glorot initialization is shown to improve learning in deep networks by establishing a reasonable range for initial values. Especially for deep networks there is an initial value trade-off. If the initial weights are too small then the signal will shrink through the layers and and the influence will trend too small to be useless. If the weights are too large then the signal growth through the layers will trend to large to be representative.\\
-Xavier-Glorot initialization addresses this trade-off by sampling initialization weights from a Gaussian distribution with zero mean and variance as a function of the network connections for the node. The variance for weight $w$  of a neuron is given as a function of the number of neurons feeding into it $n_{in}$ and the number of neurons the result feeds to $n_{out}$
-\begin{equation*}
-    \text{Var}(w) = \frac{2}{n_{in}+n_{out}}
-\end{equation*}
+Xavier-Glorot initialization addresses this trade-off by sampling initialization weights from a Gaussian distribution with zero mean and variance as a function of the network connections for the node. The variance for weight $w$  of a neuron is given as a function of the number of neurons feeding into it $n_{in}$ and the number of neurons the result feeds to $n_{out}$. Then the variance is defined as $\text{Var}(w) = \frac{2}{n_{in}+n_{out}}$.
 
 
 \subsection{Decoder Distribution}
 %FIGURES NEEDED: Gaussian vs Bernoulli Cost Plot
-\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}
-
-
 As mentioned previously, the probabilistic decoder network takes a latent representation $z$ and produces a distribution over possible data values, ${p_\theta(x\mid z)}$. In our initial description of the network architecture we specified that output of the encoder MLP is Gaussian, but we made no specification to the decoder output distribution. \\
 Two choices for decoder distributions were outlined in \textit{Auto-Encoding Variational Bayes}, where the authors suggest that the choice of preferred decoder distribution depends on the type of data \cite{Kingma2013}. \\
 
@@ -139,8 +135,14 @@ For binary data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a mu
 Again, here the Bernoulli decoder distribution parameter $\theta$ is represented by the learned MLP weights and biases $\theta = \{W_1,W_2,W_\mu,b_1,b_2,b_\mu\}$.\\
 
 \subsubsection{Comparing Decoder Distributions}
-Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure %NEEDS FIGURE.
+Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}.
 
+\begin{figure}
+    \centering
+    \input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}
+    \caption{Training rates for Bernoulli and Gaussian decoder distributions.}
+    \label{fig:bergau}
+\end{figure}
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
