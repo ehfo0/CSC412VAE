@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 19:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1095,26 +1095,46 @@ File: ../plots/img/vis_scatter2.png Graphic file (type png)
 Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 275.
 (pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
 
-<../plots/img/vis_latent2_1.png, id=213, 578.16pt x 722.7pt>
+Underfull \hbox (badness 2096) in paragraph at lines 280--281
+\OT1/ptm/m/n/10 method clearly demon-strates which classes
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 280--281
+\OT1/ptm/m/n/10 the VAE suc-cess-fully mod-elled, and which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+<../plots/img/vis_latent2_1.png, id=214, 578.16pt x 722.7pt>
 File: ../plots/img/vis_latent2_1.png Graphic file (type png)
 
 <use ../plots/img/vis_latent2_1.png>
-Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 283.
+Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 285.
 
 (pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
- (./writeup.bbl
-Underfull \hbox (badness 1122) in paragraph at lines 8--11
+ [9 <../plots/img/vis_recon.png> <../plots/img/vis_scatter2.png>] (./writeup.bb
+l
+Underfull \hbox (badness 7722) in paragraph at lines 8--11
 []\OT1/ptm/m/n/10 Yuri Burda, Roger Grosse, and Rus-lan
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 26--29
-[]\OT1/ptm/m/n/10 Diederik P Kingma and Max Welling.
+Underfull \hbox (badness 1019) in paragraph at lines 20--24
+\OT1/ptm/m/n/10 Nor-mal-iza-tion: Ac-cel-er-at-ing Deep Net-work
  []
 
-[9 <../plots/img/vis_recon.png> <../plots/img/vis_scatter2.png>]
-Underfull \hbox (badness 2213) in paragraph at lines 41--46
-\OT1/ptm/m/n/10 Winther.  How to Train Deep Vari-a-
+
+Underfull \hbox (badness 1173) in paragraph at lines 31--35
+\OT1/ptm/m/n/10 breaking, and model prun-ing in vari-a-tional
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 41--46
+\OT1/ptm/m/n/10 Maal^^\e, S^^\ren Kaae S^^\nderby, and Ole
  []
 
 )
@@ -1123,24 +1143,20 @@ Package caption Warning: Unused \captionsetup[subfigure] on input line 122.
 See the caption package documentation for explanation.
 
 [10 <../plots/img/vis_latent2_1.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 294.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 294.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 294.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 294.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
-(rerunfilecheck)             Checksum: FE40B43328232163B0ECC074F76A4CDB;1499.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
+(rerunfilecheck)             Checksum: 589D10754C92B24BFFCDA8A3FFECDBAD;1497.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 294.
  ) 
 Here is how much of TeX's memory you used:
- 28301 strings out of 494497
- 672802 string characters out of 6172400
- 1058471 words of memory out of 5000000
- 31130 multiletter control sequences out of 15000+600000
+ 28303 strings out of 494497
+ 672830 string characters out of 6172400
+ 1058596 words of memory out of 5000000
+ 31132 multiletter control sequences out of 15000+600000
  26064 words of font info for 60 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  59i,24n,94p,34004b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1163,10 +1179,10 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 7968463 bytes).
+Output written on writeup.pdf (10 pages, 7969640 bytes).
 PDF statistics:
- 309 PDF objects out of 1000 (max. 8388607)
- 258 compressed objects within 3 object streams
+ 311 PDF objects out of 1000 (max. 8388607)
+ 260 compressed objects within 3 object streams
  56 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
