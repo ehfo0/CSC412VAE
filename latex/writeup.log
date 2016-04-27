@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 20:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 21:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -746,54 +746,81 @@ Package caption Info: hyperref package is loaded.
 \c@subfigure=\count146
 \c@subtable=\count147
 )
-(./writeup.aux)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/todonotes/todonotes.sty
+Package: todonotes 2012/07/25 .dtx Todonotes source and documentation.
+Package: todonotes 2012/07/25
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.0 (rcs-revision 1.7)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count148
+\calc@Bcount=\count149
+\calc@Adimen=\dimen198
+\calc@Bdimen=\dimen199
+\calc@Askip=\skip47
+\calc@Bskip=\skip48
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count150
+\calc@Cskip=\skip49
+)
+\c@@todonotes@numberoftodonotes=\count151
+) (./writeup.aux)
 \openout1 = `writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 49.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 50.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 \AtBeginShipoutBox=\box44
+
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count148
-\scratchdimen=\dimen198
+\scratchcounter=\count152
+\scratchdimen=\dimen200
 \scratchbox=\box45
-\nofMPsegments=\count149
-\nofMParguments=\count150
+\nofMPsegments=\count153
+\nofMParguments=\count154
 \everyMPshowfont=\toks38
-\MPscratchCnt=\count151
-\MPscratchDim=\dimen199
-\MPnumerator=\count152
-\makeMPintoPDFobject=\count153
+\MPscratchCnt=\count155
+\MPscratchDim=\dimen201
+\MPnumerator=\count156
+\makeMPintoPDFobject=\count157
 \everyMPtoPDFconversion=\toks39
 )
-Package hyperref Info: Link coloring OFF on input line 49.
+Package hyperref Info: Link coloring OFF on input line 50.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count154
+\c@section@level=\count158
 )
-LaTeX Info: Redefining \ref on input line 49.
-LaTeX Info: Redefining \pageref on input line 49.
-LaTeX Info: Redefining \nameref on input line 49.
+LaTeX Info: Redefining \ref on input line 50.
+LaTeX Info: Redefining \pageref on input line 50.
+LaTeX Info: Redefining \nameref on input line 50.
 
 (./writeup.out) (./writeup.out)
 \@outlinefile=\write4
@@ -819,47 +846,219 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.12} into 
 your preamble.
- on input line 49.
+ on input line 50.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
-LaTeX Font Info:    Try loading font information for U+msa on input line 53.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
+LaTeX Font Info:    Try loading font information for U+msa on input line 54.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 53.
+LaTeX Font Info:    Try loading font information for U+msb on input line 54.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 53.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 54.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 61.
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--76
+Overfull \hbox (24.5302pt too wide) in paragraph at lines 61--61
+[][][][]\OT1/ptm/m/n/10 Matt, 
+ []
+
+
+Overfull \hbox (17.59026pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 this 
+ []
+
+
+Overfull \hbox (9.81036pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 is 
+ []
+
+
+Overfull \hbox (20.11055pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 how 
+ []
+
+
+Overfull \hbox (23.59024pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 we'll 
+ []
+
+
+Overfull \hbox (23.89044pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 leave 
+ []
+
+
+Overfull \hbox (23.69037pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 com- 
+ []
+
+
+Overfull \hbox (27.0302pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 ments  
+ []
+
+
+Overfull \hbox (24.5302pt too wide) in paragraph at lines 61--61
+[][][][]\OT1/ptm/m/n/10 Matt, 
+ []
+
+
+Overfull \hbox (17.59026pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 this 
+ []
+
+
+Overfull \hbox (9.81036pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 is 
+ []
+
+
+Overfull \hbox (20.11055pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 how 
+ []
+
+
+Overfull \hbox (23.59024pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 we'll 
+ []
+
+
+Overfull \hbox (23.89044pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 leave 
+ []
+
+
+Overfull \hbox (23.69037pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 com- 
+ []
+
+
+Overfull \hbox (27.0302pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 ments  
+ []
+
+
+Overfull \hbox (1.60654pt too wide) in paragraph at lines 61--61
+[][][] 
+ []
+
+
+Overfull \hbox (24.5302pt too wide) in paragraph at lines 61--61
+[][][][]\OT1/ptm/m/n/10 Matt, 
+ []
+
+
+Overfull \hbox (17.59026pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 this 
+ []
+
+
+Overfull \hbox (9.81036pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 is 
+ []
+
+
+Overfull \hbox (20.11055pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 how 
+ []
+
+
+Overfull \hbox (23.59024pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 we'll 
+ []
+
+
+Overfull \hbox (23.89044pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 leave 
+ []
+
+
+Overfull \hbox (23.69037pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 com- 
+ []
+
+
+Overfull \hbox (27.0302pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 ments  
+ []
+
+
+Overfull \hbox (24.5302pt too wide) in paragraph at lines 61--61
+[][][][]\OT1/ptm/m/n/10 Matt, 
+ []
+
+
+Overfull \hbox (17.59026pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 this 
+ []
+
+
+Overfull \hbox (9.81036pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 is 
+ []
+
+
+Overfull \hbox (20.11055pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 how 
+ []
+
+
+Overfull \hbox (23.59024pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 we'll 
+ []
+
+
+Overfull \hbox (23.89044pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 leave 
+ []
+
+
+Overfull \hbox (23.69037pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 com- 
+ []
+
+
+Overfull \hbox (27.0302pt too wide) in paragraph at lines 61--61
+\OT1/ptm/m/n/10 ments  
+ []
+
+
+Overfull \hbox (1.60654pt too wide) in paragraph at lines 61--61
+[][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--77
 
  []
 
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
 
-LaTeX Warning: Citation `Sonderby' on page 2 undefined on input line 102.
+LaTeX Warning: Citation `Sonderby' on page 2 undefined on input line 103.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
 
  []
 
@@ -867,25 +1066,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--114
 Underfull \vbox (badness 1137) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 128--129
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 [3]
 
-LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 170.
+LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 171.
 
 
-LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 178.
+LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 179.
 
 [4]
 
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 185.
+LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 186.
 
 (../plots/img/Comparison of Bernoulli and Gaussian.tex)
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
@@ -897,44 +1096,44 @@ Underfull \vbox (badness 1057) has occurred while \output is active []
  [5]
 [6]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 255.
- <../plots/img/colorbar.png, id=165, 654.445pt x 54.2025pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 256.
+ <../plots/img/colorbar.png, id=166, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 256.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 257.
 (pdftex.def)             Requested size: 327.2217pt x 27.10118pt.
 
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=167, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=168, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 259.
+t line 260.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=168, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=169, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 263.
+nput line 264.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=169, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=170, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 267.
+n input line 268.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=170, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=171, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 271.
+n input line 272.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
 (../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex)
@@ -947,26 +1146,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [7 <../plots/img/colorbar.png> <../plots/img/trial.50.1.0.0.0.0.Berno.png> <..
 /plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Be
 rno+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>] [8]) [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 342.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 985EF57DB8B16B5D893AF012155D1118;1716.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 342.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
  ) 
 Here is how much of TeX's memory you used:
- 30915 strings out of 493089
- 740555 string characters out of 6134842
- 1099193 words of memory out of 5000000
- 33853 multiletter control sequences out of 15000+600000
+ 31311 strings out of 493089
+ 749451 string characters out of 6134842
+ 1109923 words of memory out of 5000000
+ 34234 multiletter control sequences out of 15000+600000
  19791 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,23n,94p,33977b,2314s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,23n,94p,33977b,2329s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -982,10 +1181,10 @@ exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on writeup.pdf (9 pages, 409604 bytes).
+Output written on writeup.pdf (9 pages, 410058 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
+ 255 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
  222 words of extra memory for PDF output out of 10000 (max. 10000000)
 
