@@ -37,4 +37,11 @@ David MacKay.
 Jan Metzen.
 \newblock {Variational Autoencoder in TensorFlow}, 2015.
 
+\bibitem{Sonderby2016}
+Casper~Kaae S{\o}nderby, Tapani Raiko, Lars Maal{\o}e, S{\o}ren~Kaae
+  S{\o}nderby, and Ole Winther.
+\newblock {How to Train Deep Variational Autoencoders and Probabilistic Ladder
+  Networks}.
+\newblock 2016.
+
 \end{thebibliography}

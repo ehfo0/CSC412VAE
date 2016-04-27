@@ -297,29 +297,38 @@ It is clear from the above that, as training converges, importance weighting ten
   \end{subfigure}
 \end{wrapfigure}
 \par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_init,10)$ where $D_init$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
-\section{Latent Space Visualization}
 
+
+
+\section{Latent Space Visualization}
+In this section we demonstrate three techniques for visualizing the latent representation learned by the VAE.
 \subsection{Data Reconstruction}
 %FIGURES NEEDED: reconstruction samples
-\subsection{Data Latent Transformation}
-%FIGURES NEEDED: Data transformation figure
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1}.png}}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter50}.png}}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
+\begin{wrapfigure}{l}{0.5\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
-  \end{subfigure}
-\end{figure}
+    \caption{Reconstruction Visualization}
+    \label{fig:recon}
+\end{wrapfigure}
+
+The first and most apparent technique for visualizing the model learned by our VAEs is to generate images of reconstructed input data. In this visualization we give a single test input to our VAE. The test input is first encoded to a representation in the latent space by the encoder network. This latent representation is then decoded to a reconstructed value in the data space. \\
+We generated examples of reconstruction visualizations for VAEs with 2 and 50 latent dimensions, see Figure \ref{fig:recon}. As we would expect, the 50 dimensional VAE was able to learn better representations for every test input than the 2 dimensional VAE. However, the 2 dimensional VAE performed comparably well on certain input classes, namely digits 1 and 7, but was completely unable to represent other classes, digits 2 and 0. \\
+\par To better understand why our 2 dimensional VAE was unable to learn representations for these classes, we utilize other visualization techniques which illustrate the distribution of the data classes in the latent space.
+
+\subsection{Data Latent Encoding}
+%FIGURES NEEDED: Data transformation figure
+\begin{wrapfigure}{L}{0.5\textwidth}
+  \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
+\end{wrapfigure}
+
+This visualization technique utilizes just the encoder network of our VAE. 
+
+
 \subsection{Latent Hyperplane Lattice Generation}
 %FIGURES NEEDED: Hyperplane lattice for nz=2, two dimensions with high variance, and bad variance example.
+\begin{wrapfigure}{L}{0.5\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1}.png}}
+\end{wrapfigure}
+test
 
 \begin{figure}[h]
   \centering
