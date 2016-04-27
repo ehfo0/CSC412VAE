@@ -4,9 +4,13 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{pgfplots,adjustbox,graphicx}
+\usepackage{tikz,pgfplots,adjustbox,graphicx}
 \usepackage{subcaption}
 
+
+\definecolor{crimson}{rgb}{0.6,0,0}
+\definecolor{red}{HTML}{FF4136}
+\definecolor{green}{HTML}{2ECC40}
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -229,6 +233,7 @@ We were particularly interested in this question of latent space dimensionality.
 \end{figure}
 
 \section{Latent Dimension Activity}
+In the previous section we noticed that the 
 \subsection{Activity Metric}
 \subsection{Effects of Implementation on Activity}
 \subsubsection{Importance Weighting}
@@ -263,7 +268,7 @@ We were particularly interested in this question of latent space dimensionality.
     \caption{IW + Batch Normalization (BN)}
     \end{subfigure}
     \begin{subfigure}{\textwidth}
-    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW}.png}
+    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW}.png}
     \caption{IW + Warm Up (WU)}
     \end{subfigure}
 \end{figure}

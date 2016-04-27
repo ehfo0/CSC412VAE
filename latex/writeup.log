@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  26 APR 2016 20:36
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -262,9 +262,6 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/usr/local/texlive/2015/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-Package: pgfplots 2015/05/02 v1.12.1 Data Visualization (1.12.1)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2015/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
@@ -554,6 +551,9 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.0 (rcs-revision 1.2)
 )))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/local/texlive/2015/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2015/05/02 v1.12.1 Data Visualization (1.12.1)
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
 (/usr/local/texlive/2015/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
 \t@pgfplots@toka=\toks32
@@ -749,21 +749,21 @@ Package caption Info: hyperref package is loaded.
 (./writeup.aux)
 \openout1 = `writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 49.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -782,7 +782,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \makeMPintoPDFobject=\count153
 \everyMPtoPDFconversion=\toks39
 )
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 49.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -791,9 +791,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count154
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
 
 (./writeup.out) (./writeup.out)
 \@outlinefile=\write4
@@ -819,47 +819,47 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.12} into 
 your preamble.
- on input line 45.
+ on input line 49.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
+LaTeX Font Info:    Try loading font information for U+msa on input line 53.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+LaTeX Font Info:    Try loading font information for U+msb on input line 53.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 53.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--72
+Underfull \hbox (badness 10000) in paragraph at lines 73--76
 
  []
 
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 93--94
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 
  []
 
 
-LaTeX Warning: Citation `Sonderby' on page 2 undefined on input line 98.
+LaTeX Warning: Citation `Sonderby' on page 2 undefined on input line 102.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--110
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
 
  []
 
@@ -867,77 +867,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 108--110
 Underfull \vbox (badness 1137) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 [3]
 
-LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 166.
+LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 170.
 
 
-LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 174.
+LaTeX Warning: Citation `Sonderby2016' on page 4 undefined on input line 178.
 
 [4]
 
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 181.
+LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 185.
 
 (../plots/img/Comparison of Bernoulli and Gaussian.tex)
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
 (../plots/img/Comparison of Importance Weighted and Batch Normalized.tex)
 (../plots/img/Comparison of Importance Weighted and Warmed-Up.tex)
 (../plots/img/Comparison of Dimension Values for Cost.tex)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 250.
+Underfull \vbox (badness 1057) has occurred while \output is active []
 
-<../plots/img/colorbar.png, id=154, 654.445pt x 54.2025pt>
+ [5]
+[6]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 255.
+ <../plots/img/colorbar.png, id=165, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 251.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 256.
 (pdftex.def)             Requested size: 327.2217pt x 27.10118pt.
 
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=156, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=167, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 254.
+t line 259.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=157, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=168, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 258.
+nput line 263.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=158, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=169, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 262.
+n input line 267.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png, id=159, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=170, 510.9489pt x 130.086p
 t>
-File: ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png Graphic file (type png)
- <use ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png>
-Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png used o
-n input line 266.
+File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
+ <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
+Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
+n input line 271.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-Underfull \vbox (badness 1057) has occurred while \output is active []
-
- [5]
-[6] (../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex)
+(../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex)
 (../plots/img/Comparison of Importance Weighted and Batch Normalized for Activi
 ty.tex)
 (../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex)
@@ -946,27 +946,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7 <../plots/img/colorbar.png> <../plots/img/trial.50.1.0.0.0.0.Berno.png> <..
 /plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Be
-rno+BN+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW.png>] [8]) [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 337.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 337.
+rno+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>] [8]) [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 342.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 337.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 337.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 985EF57DB8B16B5D893AF012155D1118;1716.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 337.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 342.
  ) 
 Here is how much of TeX's memory you used:
- 30612 strings out of 493089
- 732443 string characters out of 6134842
- 1065195 words of memory out of 5000000
- 33550 multiletter control sequences out of 15000+600000
+ 30915 strings out of 493089
+ 740555 string characters out of 6134842
+ 1099193 words of memory out of 5000000
+ 33853 multiletter control sequences out of 15000+600000
  19791 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,23n,94p,28366b,2314s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,23n,94p,33977b,2314s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -982,7 +982,7 @@ exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dis
 t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
 mes/utmri8a.pfb>
-Output written on writeup.pdf (9 pages, 402121 bytes).
+Output written on writeup.pdf (9 pages, 409604 bytes).
 PDF statistics:
  253 PDF objects out of 1000 (max. 8388607)
  215 compressed objects within 3 object streams
