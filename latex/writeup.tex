@@ -297,78 +297,52 @@ It is clear from the above that, as training converges, importance weighting ten
   \end{subfigure}
 \end{wrapfigure}
 \par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_init,10)$ where $D_init$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
-
-\subsubsection{Importance Weighting}
-%FIGURES NEEDED: Vanilla vs Vanilla + IW latent line plot and smudge plot
-%\input{"../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex"}
-%\subsubsection{Random Dropout}
-%%FIGURES NEEDED: Vanilla+IW+Dropout latent line and smudge plot for all values of keep probability
-%\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
-%\input{"../plots/img/Comparison of Dropout Values for Activity.tex"}
-\subsubsection{Batch Normalization}
-%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN latent line and smudge plot
-%\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized for Activity.tex"}
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}\\
-
-\subsubsection{Warm Up}
-%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU latent line and smudge plot
-%\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex"}
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}\\
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+WU+IW}.png}\\
-
-\subsubsection{Initial Latent Dimension}
-%FIGURES NEEDED: Vanilla+IW across initial latet dimension values latent line plot
-%\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}
-
-
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.5.0.0.1.KP=0.5}.png}\\
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.7.0.0.1.KP=0.7}.png}\\
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.0.9.0.0.1.KP=0.9}.png}\\
-%\includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.KP=1.0}.png}\\
-\begin{figure}
-\captionsetup[subfigure]{justification=centering}
-    \begin{subfigure}{\textwidth}
-    \centering
-    \caption*{\textbf{Dimension Activity Log Scale Legend}}
-    \includegraphics[scale=0.5]{{../plots/img/colorbar}.png}
-    \end{subfigure}\\
-    \begin{subfigure}{\textwidth}
-    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}
-    \caption{Vanilla VAE with Bernoulli Decoder Distribution}
-    \end{subfigure}
-    \begin{subfigure}{\textwidth}
-    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}
-    \caption{Importance Weighted (IW)}
-    \end{subfigure}
-    \begin{subfigure}{\textwidth}
-    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}
-    \caption{IW + Batch Normalization (BN)}
-    \end{subfigure}
-    \begin{subfigure}{\textwidth}
-    \includegraphics[scale=0.75]{{../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW}.png}
-    \caption{IW + Warm Up (WU)}
-    \end{subfigure}
-\end{figure}
-
 \section{Latent Space Visualization}
+
 \subsection{Data Reconstruction}
 %FIGURES NEEDED: reconstruction samples
 \subsection{Data Latent Transformation}
 %FIGURES NEEDED: Data transformation figure
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis2_2d}.png}}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis2_50d.1}.png}}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis2_50d.49}.png}}
+  \end{subfigure}
+\end{figure}
 \subsection{Latent Hyperplane Lattice Generation}
 %FIGURES NEEDED: Hyperplane lattice for nz=2, two dimensions with high variance, and bad variance example.
 
-
+\begin{figure}[h]
+  \centering
+  \textbf{Latent Dimension Activity During Training}\\
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}}
+    \caption{Vanilla VAE with Bernoulli Decoder Distribution}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}}
+    \caption{Importance Weighted (IW)}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}}
+    \caption{IW + Batch Normalization (BN)}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW}.png}}
+    \caption{IW + Warm Up (WU)}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/colorbar}.png}}
+    \caption*{$\log{\left[Cov_{\textbf{x}}\left(\mathbb{E}_{u~q(u|\textbf{x})}[u]\right)\right]}$}
+  \end{subfigure}
+\end{figure}
 
 \bibliographystyle{plain}
 \bibliography{bib}
-
-
-
-
-
-
-
-
 \end{document}
