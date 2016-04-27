@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 19:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 19:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,28 +873,15 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Citation `Sonderby2016' on page 2 undefined on input line 85.
-
-[2] (../plots/img/Comparison of Bernoulli and Gaussian.tex) [3]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+(../plots/img/Comparison of Bernoulli and Gaussian.tex) [3]
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
 Underfull \hbox (badness 4595) in paragraph at lines 145--146
 []\OT1/ptm/m/n/10 By con-sid-er-ing mul-ti-ple im-por-tance
  []
 
 [4] (../plots/img/Comparison of Importance Weighted and Batch Normalized.tex)
-
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 161.
-
-
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 169.
-
 (../plots/img/Comparison of Importance Weighted and Warmed-Up.tex) [5]
-
-LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 179.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 179--180
 []\OT1/ptm/m/n/10 Pruning non-informative di-men-sions
  []
@@ -948,10 +935,7 @@ Underfull \hbox (badness 2012) in paragraph at lines 232--233
 \OT1/ptm/m/n/10 var-ied for mod-els trained with im-por-tance
  []
 
-
-LaTeX Warning: Citation `Sonderby2016' on page 8 undefined on input line 234.
-
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=181, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=187, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
@@ -959,7 +943,7 @@ Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
 t line 239.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=183, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=189, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
@@ -967,7 +951,7 @@ Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
 nput line 244.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=184, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=190, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
@@ -975,7 +959,7 @@ Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
 n input line 249.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=185, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=191, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
@@ -983,7 +967,7 @@ Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
 n input line 254.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/colorbar.png, id=186, 654.445pt x 54.2025pt>
+<../plots/img/colorbar.png, id=192, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
@@ -992,71 +976,180 @@ Package pdftex.def Info: ../plots/img/colorbar.png used on input line 259.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
 
-<../plots/img/vis_latent2_1.png, id=187, 578.16pt x 722.7pt>
-File: ../plots/img/vis_latent2_1.png Graphic file (type png)
-
-<use ../plots/img/vis_latent2_1.png>
-Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 273.
-
-(pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--275
-[][]
- []
-
-<../plots/img/vis_scatter2.png, id=188, 578.16pt x 433.62pt>
-File: ../plots/img/vis_scatter2.png Graphic file (type png)
-
-<use ../plots/img/vis_scatter2.png>
-Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 277.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--279
-[][]
- []
-
-<../plots/img/vis_recon.png, id=189, 867.24pt x 867.24pt>
-File: ../plots/img/vis_recon.png Graphic file (type png)
-
-<use ../plots/img/vis_recon.png>
-Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 281.
-(pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 281--283
-[][]
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.
 1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img
-/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>] (./writeup.bb
-l [9 <../plots/img/vis_latent2_1.png> <../plots/img/vis_scatter2.png> <../plots
-/img/vis_recon.png>])
+/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>]
+<../plots/img/vis_recon.png, id=210, 867.24pt x 867.24pt>
+File: ../plots/img/vis_recon.png Graphic file (type png)
+
+<use ../plots/img/vis_recon.png>
+Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 268.
+(pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+[]\OT1/ptm/m/n/10 The first and most ap-par-ent tech-nique
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 for vi-su-al-iz-ing the model learned by
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 our VAEs is to gen-er-ate im-ages of re-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 con-structed in-put data. In this vi-su-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 al-iza-tion we give a sin-gle test in-put
+ []
+
+
+Underfull \hbox (badness 3965) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 to our VAE. The test in-put is first en-
+ []
+
+
+Underfull \hbox (badness 7981) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 coded to a rep-re-sen-ta-tion in the la-tent
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 space by the en-coder net-work. This
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 la-tent rep-re-sen-ta-tion is then de-coded
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 to a re-con-structed value in the data
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 We gen-er-ated ex-am-ples of re-con-struc-
+ []
+
+
+Underfull \hbox (badness 4168) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 tion vi-su-al-iza-tions for VAEs with 2 and
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 50 la-tent di-men-sions, see Fig-ure []4.1[]. As
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 we would ex-pect, the 50 di-men-sional
+ []
+
+
+Underfull \hbox (badness 5726) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 VAE was able to learn bet-ter rep-re-sen-
+ []
+
+
+Underfull \hbox (badness 6493) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 ta-tions for ev-ery test in-put than the 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 di-men-sional VAE. How-ever, the 2 di-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 men-sional VAE per-formed com-pa-ra-bly
+ []
+
+
+Underfull \hbox (badness 1460) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 well on cer-tain in-put classes, namely dig-
+ []
+
+
+Underfull \hbox (badness 3536) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 its 1 and 7, but was com-pletely un-able
+ []
+
+
+Underfull \hbox (badness 6047) in paragraph at lines 273--275
+\OT1/ptm/m/n/10 to rep-re-sent other classes, dig-its 2 and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+
+ []
+
+<../plots/img/vis_scatter2.png, id=212, 578.16pt x 433.62pt>
+File: ../plots/img/vis_scatter2.png Graphic file (type png)
+
+<use ../plots/img/vis_scatter2.png>
+Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 279.
+(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
+
+<../plots/img/vis_latent2_1.png, id=213, 578.16pt x 722.7pt>
+File: ../plots/img/vis_latent2_1.png Graphic file (type png)
+
+<use ../plots/img/vis_latent2_1.png>
+Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 287.
+
+(pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
+ (./writeup.bbl
+Underfull \hbox (badness 1122) in paragraph at lines 8--11
+[]\OT1/ptm/m/n/10 Yuri Burda, Roger Grosse, and Rus-lan
+ []
+
+[9 <../plots/img/vis_recon.png> <../plots/img/vis_scatter2.png>]
+Underfull \hbox (badness 1931) in paragraph at lines 26--29
+[]\OT1/ptm/m/n/10 Diederik P Kingma and Max Welling.
+ []
+
+
+Underfull \hbox (badness 2213) in paragraph at lines 41--46
+\OT1/ptm/m/n/10 Winther.  How to Train Deep Vari-a-
+ []
+
+)
 
 Package caption Warning: Unused \captionsetup[subfigure] on input line 127.
 See the caption package documentation for explanation.
 
-[10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 291.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 291.
+[10 <../plots/img/vis_latent2_1.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 291.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 291.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
-(rerunfilecheck)             Checksum: 4973D5AC3C40E3F78F663E3B0DA6F461;1505.
+(rerunfilecheck)             Checksum: FE40B43328232163B0ECC074F76A4CDB;1499.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 291.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 293.
  ) 
 Here is how much of TeX's memory you used:
- 28303 strings out of 494497
- 672825 string characters out of 6172400
- 1076012 words of memory out of 5000000
- 31135 multiletter control sequences out of 15000+600000
+ 28300 strings out of 494497
+ 672788 string characters out of 6172400
+ 1075600 words of memory out of 5000000
+ 31129 multiletter control sequences out of 15000+600000
  26064 words of font info for 60 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  59i,24n,94p,34004b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1079,10 +1172,10 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 7960254 bytes).
+Output written on writeup.pdf (10 pages, 7968414 bytes).
 PDF statistics:
- 299 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 309 PDF objects out of 1000 (max. 8388607)
+ 258 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
