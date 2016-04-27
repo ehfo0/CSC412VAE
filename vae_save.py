@@ -420,7 +420,7 @@ class VariationalAutoencoder(object):
 def latent_covar(vae,n_samples=mnist.test.num_examples):
     test_data, _ =mnist.test.next_batch(n_samples)
     z_mean = vae.transform(test_data)
-    return np.var(z_mean,0)
+    return np.var(z_mean,0), np.mean(z_mean,0)
 
 def count_significant(vae,threshold=1e-2,n_samples=mnist.test.num_examples):
     return np.greater(latent_covar(vae,n_samples),threshold).sum()
