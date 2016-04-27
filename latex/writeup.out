@@ -13,11 +13,7 @@
 \BOOKMARK [1][-]{section.3}{Latent Dimension Activity}{}% 13
 \BOOKMARK [2][-]{subsection.3.1}{Activity Metric}{section.3}% 14
 \BOOKMARK [2][-]{subsection.3.2}{Effects of Implementation on Activity}{section.3}% 15
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Importance Weighting}{subsection.3.2}% 16
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Batch Normalization}{subsection.3.2}% 17
-\BOOKMARK [3][-]{subsubsection.3.2.3}{Warm Up}{subsection.3.2}% 18
-\BOOKMARK [3][-]{subsubsection.3.2.4}{Initial Latent Dimension}{subsection.3.2}% 19
-\BOOKMARK [1][-]{section.4}{Latent Space Visualization}{}% 20
-\BOOKMARK [2][-]{subsection.4.1}{Data Reconstruction}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.2}{Data Latent Transformation}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.3}{Latent Hyperplane Lattice Generation}{section.4}% 23
+\BOOKMARK [1][-]{section.4}{Latent Space Visualization}{}% 16
+\BOOKMARK [2][-]{subsection.4.1}{Data Reconstruction}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.2}{Data Latent Transformation}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.3}{Latent Hyperplane Lattice Generation}{section.4}% 19
