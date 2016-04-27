@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import vae_save
 mnist=vae_save.mnist
-
+font=18
 def lattice(mean_dims,indicies,d_i,full_dim):
     nx = ny = 20
     x_values = np.linspace(-3, 3, nx)
@@ -19,7 +19,9 @@ def lattice(mean_dims,indicies,d_i,full_dim):
 
     plt.figure(figsize=(8, 10))        
     Xi, Yi = np.meshgrid(x_values, y_values)
-    plt.imshow(canvas, origin="upper")
+    im=plt.imshow(canvas, origin="upper")
+    im.axes.get_xaxis().set_visible(False)
+    im.axes.get_yaxis().set_visible(False)
     plt.tight_layout()
     plt.savefig('plots/img/vis_latent%s_%s.png' % (full_dim, d_i), dpi=300)
 
@@ -36,26 +38,24 @@ for dim in [2,50]:
             sp.axes.get_yaxis().set_visible(False)
             plt.imshow(x_sample[i].reshape(28, 28), vmin=0, vmax=1)
             if i==0:
-                plt.title("Test input")
-            #plt.colorbar()
+                plt.title("Test input",fontsize=font)
             sp=plt.subplot(5, 3, 3*i + 2)
             sp.axes.get_xaxis().set_visible(False)
             sp.axes.get_yaxis().set_visible(False)
             plt.imshow(x_reconstruct[i].reshape(28, 28), vmin=0, vmax=1)
             if i==0:
-                plt.title("2D Reconstruction")
+                plt.title("2D Reconstruction",fontsize=font)
         elif dim==50:
             sp=plt.subplot(5, 3, 3*i + 3)
             sp.axes.get_xaxis().set_visible(False)
             sp.axes.get_yaxis().set_visible(False)
             plt.imshow(x_reconstruct[i].reshape(28, 28), vmin=0, vmax=1)
             if i==0:
-                plt.title("50D Reconstruction")
-            #plt.colorbar()#plt.colorbar()
+                plt.title("50D Reconstruction",fontsize=font)
     vae.sess.close()
-plt.tight_layout()
+plt.subplots_adjust(wspace=0,hspace=0)
+#plt.tight_layout()
 plt.savefig('plots/img/vis_recon.png',dpi=300)
-exit(0)
 for dim in [2,50]:
     vae=vae_save.load_and_run(dim,1.0,0,0,1,trial_num=0,nan=299)
     covar_dims, mean_dims=vae_save.latent_covar(vae)
@@ -63,7 +63,9 @@ for dim in [2,50]:
     x_sample2, y_sample2 = mnist.test.next_batch(5000)
     z_mu = vae.transform(x_sample2)
     plt.figure(figsize=(8, 6)) 
-    plt.scatter(z_mu[:, 0], z_mu[:, 1], c=np.argmax(y_sample2, 1))
+    scat=plt.scatter(z_mu[:, 1], z_mu[:, 0], c=np.argmax(y_sample2, 1))
+    scat.axes.get_xaxis().set_visible(False)
+    scat.axes.get_yaxis().set_visible(False)
     plt.colorbar()
     plt.savefig('plots/img/vis_scatter%s.png' % dim,dpi=300)
     if dim==2:
