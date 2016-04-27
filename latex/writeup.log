@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 14:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -7305,140 +7305,114 @@ LaTeX Warning: Marginpar on page 6 moved.
 
 LaTeX Warning: Marginpar on page 6 moved.
 
-
-Overfull \hbox (52.31999pt too wide) in paragraph at lines 266--266
-[][][][]\OT1/ptm/m/n/10 Cliffhanger!  
+[6] (../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex)
+(../plots/img/Comparison of Importance Weighted and Batch Normalized for Activi
+ty.tex)
+(../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex)
+(../plots/img/Comparison of Dimension Values for Activity.tex)
+Underfull \hbox (badness 1057) in paragraph at lines 300--301
+[]\OT1/ptm/m/n/10 An in-ter-est-ing re-sult can be seen in
  []
 
 
-Overfull \hbox (52.31999pt too wide) in paragraph at lines 266--266
-[][][][]\OT1/ptm/m/n/10 Cliffhanger!  
+Underfull \hbox (badness 1924) in paragraph at lines 300--301
+\OT1/ptm/m/n/10 Fig-ure []5a[], in which the di-men-sion-al-ity is
  []
 
 
-Overfull \hbox (1.60654pt too wide) in paragraph at lines 266--266
-[][][] 
- []
-
-
-Overfull \hbox (52.31999pt too wide) in paragraph at lines 266--266
-[][][][]\OT1/ptm/m/n/10 Cliffhanger!  
- []
-
-
-Overfull \hbox (52.31999pt too wide) in paragraph at lines 266--266
-[][][][]\OT1/ptm/m/n/10 Cliffhanger!  
- []
-
-
-Overfull \hbox (1.60654pt too wide) in paragraph at lines 266--266
-[][][] 
+Underfull \hbox (badness 2012) in paragraph at lines 300--301
+\OT1/ptm/m/n/10 var-ied for mod-els trained with im-por-tance
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 285.
-<../plots/img/colorbar.png, id=192, 654.445pt x 54.2025pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 334.
+<../plots/img/colorbar.png, id=202, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 286.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 335.
 (pdftex.def)             Requested size: 327.2217pt x 27.10118pt.
 
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=194, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=204, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 289.
+t line 338.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=195, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=205, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 293.
+nput line 342.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=196, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=206, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 297.
+n input line 346.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=197, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=207, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 301.
+n input line 350.
 (pdftex.def)             Requested size: 383.21072pt x 97.56424pt.
 
-(../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex)
-(../plots/img/Comparison of Importance Weighted and Batch Normalized for Activi
-ty.tex)
-(../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex)
-(../plots/img/Comparison of Dimension Values for Activity.tex) (./writeup.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-[7 <../plots/img/colorbar.png> <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../
-plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Ber
-no+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>] [8]) [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 372.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 372.
+ [7]
+(./writeup.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 372.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 372.
+ [8 <../plots/img/colorbar.png> <../plots/img/trial.50.1.0.0.0.0.Berno.png> <..
+/plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Be
+rno+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>]) [9]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 375.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 375.
+ (./writeup.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 375.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 375.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 985EF57DB8B16B5D893AF012155D1118;1716.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 372.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 375.
  ) 
 Here is how much of TeX's memory you used:
- 28567 strings out of 494497
- 678869 string characters out of 6172400
- 1208639 words of memory out of 5000000
- 31381 multiletter control sequences out of 15000+600000
- 19791 words of font info for 43 fonts, out of 8000000 for 9000
+ 28545 strings out of 494497
+ 678331 string characters out of 6172400
+ 1161679 words of memory out of 5000000
+ 31360 multiletter control sequences out of 15000+600000
+ 21936 words of font info for 46 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 59i,23n,94p,33981b,2336s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{figure.caption.32} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.26} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.caption.21} has been referenced but does not
- exist, replaced by a fixed one
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on writeup.pdf (9 pages, 423916 bytes).
+ 59i,24n,94p,34006b,2324s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/times/utmri8a.pfb>
+Output written on writeup.pdf (9 pages, 430962 bytes).
 PDF statistics:
- 297 PDF objects out of 1000 (max. 8388607)
- 259 compressed objects within 3 object streams
- 82 named destinations out of 1000 (max. 500000)
+ 298 PDF objects out of 1000 (max. 8388607)
+ 260 compressed objects within 3 object streams
+ 80 named destinations out of 1000 (max. 500000)
  222 words of extra memory for PDF output out of 10000 (max. 10000000)
 
