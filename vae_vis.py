@@ -26,22 +26,36 @@ def lattice(mean_dims,indicies,d_i,full_dim):
 x_sample = mnist.test.next_batch(100)[0]
 for dim in [2,50]:
     vae=vae_save.load_and_run(dim,1.0,0,0,1,trial_num=0,nan=299)
-    covar_dims, mean_dims=vae_save.latent_covar(vae)
-    indices=np.argsort(covar_dims)
     x_reconstruct = vae.reconstruct(x_sample)
-    plt.figure(figsize=(8, 12))
+    if dim==2:
+        plt.figure(figsize=(12, 12))
     for i in range(5):
-        plt.subplot(5, 2, 2*i + 1)
-        plt.imshow(x_sample[i].reshape(28, 28), vmin=0, vmax=1)
-        plt.title("Test input")
-        plt.colorbar()
-        plt.subplot(5, 2, 2*i + 2)
-        plt.imshow(x_reconstruct[i].reshape(28, 28), vmin=0, vmax=1)
-        plt.title("Reconstruction")
-        plt.colorbar()
-    plt.tight_layout()
-    plt.savefig('plots/img/vis_recon%s.png' % dim,dpi=300)
+        if dim==2:
+            sp=plt.subplot(5, 3, 3*i + 1)
+            sp.axes.get_xaxis().set_visible(False)
+            sp.axes.get_yaxis().set_visible(False)
+            plt.imshow(x_sample[i].reshape(28, 28), vmin=0, vmax=1)
+            if i==0:
+                plt.title("Test input")
+            #plt.colorbar()
+            sp=plt.subplot(5, 3, 3*i + 2)
+            sp.axes.get_xaxis().set_visible(False)
+            sp.axes.get_yaxis().set_visible(False)
+            plt.imshow(x_reconstruct[i].reshape(28, 28), vmin=0, vmax=1)
+            if i==0:
+                plt.title("2D Reconstruction")
+        elif dim==50:
+            sp=plt.subplot(5, 3, 3*i + 3)
+            sp.axes.get_xaxis().set_visible(False)
+            sp.axes.get_yaxis().set_visible(False)
+            plt.imshow(x_reconstruct[i].reshape(28, 28), vmin=0, vmax=1)
+            if i==0:
+                plt.title("50D Reconstruction")
+            #plt.colorbar()#plt.colorbar()
     vae.sess.close()
+plt.tight_layout()
+plt.savefig('plots/img/vis_recon.png',dpi=300)
+exit(0)
 for dim in [2,50]:
     vae=vae_save.load_and_run(dim,1.0,0,0,1,trial_num=0,nan=299)
     covar_dims, mean_dims=vae_save.latent_covar(vae)

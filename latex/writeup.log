@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 16:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 16:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -976,94 +976,84 @@ Package pdftex.def Info: ../plots/img/vis_scatter50.png used on input line 315.
 
 (pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
 
-<../plots/img/vis_recon2.png, id=171, 578.16pt x 867.24pt>
-File: ../plots/img/vis_recon2.png Graphic file (type png)
+<../plots/img/vis_recon.png, id=171, 867.24pt x 867.24pt>
+File: ../plots/img/vis_recon.png Graphic file (type png)
 
-<use ../plots/img/vis_recon2.png>
-Package pdftex.def Info: ../plots/img/vis_recon2.png used on input line 318.
-(pdftex.def)             Requested size: 578.15858pt x 867.2379pt.
-
-<../plots/img/vis_recon50.png, id=172, 578.16pt x 867.24pt>
-File: ../plots/img/vis_recon50.png Graphic file (type png)
-
-<use ../plots/img/vis_recon50.png>
-Package pdftex.def Info: ../plots/img/vis_recon50.png used on input line 321.
-(pdftex.def)             Requested size: 578.15858pt x 867.2379pt.
-
-
-LaTeX Warning: Float too large for page by 111.7507pt on input line 323.
+<use ../plots/img/vis_recon.png>
+Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 318.
+(pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=173, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=172, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 331.
+t line 328.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=174, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=173, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 335.
+nput line 332.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=175, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=174, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 339.
+n input line 336.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=176, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=175, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 343.
+n input line 340.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/colorbar.png, id=177, 654.445pt x 54.2025pt>
+<../plots/img/colorbar.png, id=176, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 347.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 344.
 (pdftex.def)             Requested size: 654.4434pt x 54.20236pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 348.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 345.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 (./writeup.bbl) [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 354.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 351.
  [9 <../plots/img/vis_latent2_1.png> <../plots/img/vis_scatter2.png> <../plots/
-img/vis_scatter50.png> <../plots/img/vis_recon2.png> <../plots/img/vis_recon50.
-png>] [10 <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../plots/img/trial.50.1.
-0.0.0.1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png> <../plo
-ts/img/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 354.
+img/vis_scatter50.png> <../plots/img/vis_recon.png> <../plots/img/trial.50.1.0.
+0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/t
+rial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW
+.png> <../plots/img/colorbar.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 351.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 354.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 354.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 351.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 351.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: 05FBD344781B5CFD7D2E05F2321F95C2;1406.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 354.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 351.
  ) 
 Here is how much of TeX's memory you used:
- 28294 strings out of 494497
- 672836 string characters out of 6172400
+ 28288 strings out of 494497
+ 672678 string characters out of 6172400
  1074809 words of memory out of 5000000
- 31125 multiletter control sequences out of 15000+600000
+ 31121 multiletter control sequences out of 15000+600000
  26064 words of font info for 60 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  59i,24n,94p,34006b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1086,10 +1076,10 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 8697165 bytes).
+Output written on writeup.pdf (9 pages, 8637564 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 234 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 231 compressed objects within 3 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 
