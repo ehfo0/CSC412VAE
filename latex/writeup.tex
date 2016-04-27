@@ -13,6 +13,7 @@
 \definecolor{red}{HTML}{FF4136}
 \definecolor{green}{HTML}{2ECC40}
 \setlength{\parindent}{1cm}
+\numberwithin{figure}{section}
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
 
 
@@ -75,20 +76,6 @@ Variational Auto Encoders (VAEs) were introduced by Kingma \& Welling 2013 as ge
 \par Finally, one last detail to discuss in the process of training a VAE is the reparametrization trick. Since the reconstruction error term is estimated by sampling $z\sim q_\phi(z|x)$, there is a problem with using gradient training methods through the sampling process. To address this, Kingma \& Welling describe an alternative method for generating the samples, simply to let $z=g_\phi(x,\epsilon)$ be a deterministic function of $\phi$ and $\epsilon$ be some independent noise.
 \par For example, in our implementation which we will soon describe in detail, we assume that the true posterior distribution can be approximated by a multivariate Gaussian with diagonal covariance. Therefore we let $q_\phi(z|x)=\mathcal{N}(z;\mu,\sigma^2 I)$. So the outputs of our encoder network are the $\mu$ and $\sigma$ of our approximate posterior. Now in order to train with gradient methods, we reparameterize as described, letting $z=\mu + \sigma\epsilon$ where $\epsilon \sim \mathcal{N}(0,1)$.
 
-%Variational auto-encoders (VAEs), as defined by Kingma \& Welling, 2013 [1], are probabilistic implementations of traditional auto-encoders in which neurons in a latent layer are treated not as fixed values but as probability distributions. This is a major boon to semi-supervised learning (Kingma et al., 2014 [2]) as it allows for non-deterministic generation of data with labels to be trained on. During training, the VAE builds a recognition network represented by the function $q(\textbf{z}|\textbf{x};\theta)$ to predict the nodes of a latent space vector $\textbf{z}$ composed of randomly distributed variables, given a data vector $\textbf{x}$ and parameters $\theta$, as well as a generative network $p(\textbf{x}|\textbf{z};\theta)$ to produce the latter given the former. This is done by maximizing the lower bound on the likelihood function given by:
-
-%In this equation the expected value term measures the likelihood of the generative network by measuring the log likelihood of a reconstruction of the data, while the KL divergence term measures the likelihood of the recognition network by comparing the recognized posterior probability to the real posterior. The loss function, $-L(\textbf{x}^{(i)})$, is minimized by way of gradient descent, which can be made more computationally efficient by the use of the stochastic Adam algorithm, researched by Kingma and Ba, 2015 [3].
-%In an intuitive sense, the latent space distribution $q(\textbf{z}|\textbf{x};\theta)$ is a generic representation of the class of the data vector $\textbf{x}$. When the distribution of $\textbf{z}$ is taken to be Gaussian, as it will be in this experiment, the means of the distribution $E_{q}\left[\textbf{z}\right]$ intuitively represent a prototypical element of the class seen in the label. Based on this idea, Burda, Grosse, \& Salakhutdinov, 2016 [4] considered the "activity" of a particular node as:
-%\begin{align}
-%  Cov_{\textbf{x}}\left(\mathbb{E}_{u~q(u|\textbf{x})}[u]\right)>\epsilon
-%\end{align}
-%In this equation, $u$ is a single dimension of the full latent vector $\textbf{z}$ and $\epsilon$ is a threshold above which the covariance function indicates substantial activity. This measurement, which reflects the variance of the distribution means in a particular dimension, is a measurement of how pronounced the change in distribution is across different classes in the data, where a higher propensity for change represents a high significance in both predicting and generating (that is, characterizing in the latent space) data of a particular class. The research cited suggests that in general most dimensions of a high dimensional latent space are "pruned out" during training. That is, they are not used to store any significant information about the data, and thus are in a sense wasteful. One of the goals of this experiment is to determine whether this spatial inefficiency in the latent space is simply an inconsequential byproduct of the training process or whether it has a significant impact on the effectiveness of the VAE.
-%A body of research is emerging, such as Johnson, et al. 2016 [5], Burda, Grosse, \& Salakhutdinov, 2016 [4], and Sønderby et al., 2016 [6] to test various additions and modifications to the original definition of VAEs in order to improve the effectiveness of the networks themselves as well as the process of training them. Sønderby et al., 2016 [6] attempted to better utilize the full dimensionality of the latent space by modifying the training process. In the experiment, two features are added to the VAE with the express purpose of preventing nodes with small contributions from being quickly disregarded. The first is batch normalization (proposed by Ioffe \& Szegedy, 2015 [7]), wherein the weights of nodes in the deterministic layers of the VAE are normalized by their first moment. This prevents weights of different nodes in the same layer from becoming strongly divergent, with certain nodes contributing a much larger share of information to successive layers than others due to their increased weights. The second is called warmup, in which a scaling parameter is added to the negative of the likelihood function in Equation (1), producing the modified loss function:
-%\begin{align}
-%  -\L(\textbf{x}^{(i)})=\mathbb{E}_{q(\textbf{z}|\textbf{x}^{(i)};\theta)}\left[\log{p(\textbf{x}^{(i)}|\textbf{z};\theta)}\right]-\beta D_{KL}\left(q(\textbf{z}|\textbf{x}^{(i)};\theta)||p(\textbf{z})\right)
-%\end{align}
-%The value of $\beta$ is initialized to zero, and scaled up linearly over the training epochs so that the loss due to the generative network, which is strongly dependent on the state of the latent space, is not a strong factor in early training stages, and thus nodes in the latent space that have little relevance early in the training process are not prevented from having their weights increased later in the process by virtue of their irrelevance. Rather, what would otherwise be a large loss in the generative network is tolerated early on, giving time for more latent space dimensions to become active over different data vectors. The experiment discovered that these two features had a strong effect on the number of active latent space dimensions, thus increasing the spatial efficiency of the stochastic layer.
-%With these examples as precedent, we will proceed first with several attempts to increase the spatial efficiency (equivalently, the number of active dimensions) of the latent space using an array of features and modifications added to the canonical implementation of VAEs by Kingma \& Welling, 2013 [1]. We will then conduct an experiment to measure the effect that a change in the value of our activity metric has on the overall performance of the VAE.\\
 \section{Implementing Variational Autoencoders}
 %In this section we will detail methods for VAE implementation and their effect on the learning rate.\\ \todo{Is this necessary?}
 \subsection{Network Architecture}
@@ -137,24 +124,21 @@ Again, here the Bernoulli decoder distribution parameter $\theta$ is represented
 
 \subsubsection{Comparing Decoder Distributions}
 \begin{wrapfigure}{l}{0.5\textwidth}
-\captionsetup{justification=centering}
-  %\captionsetup[subfigure]{justification=centering}
-  %\centering
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
-    \caption{Bernoulli v.s Gaussian decoder distributions}
-    \label{fig:bergau}
-  \end{wrapfigure}
+  \captionsetup[subfigure]{justification=centering}
+  \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
+  \caption{Bernoulli v.s Gaussian decoder distributions}
+  \label{fig:bergau}
+\end{wrapfigure}
 Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and thus we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}. As expected, the Bernoulli distribution was able to learn a much tighter lower bound on the log-likelihood. It is important to note that VAE with the Gaussian decoder has converged to its lower bound, suggesting that even with longer training it would not learn a better model than the VAE with Bernoulli decoder distribution. Therefore, when implementing VAEs it is important to choose a decoder distribution that is representative of your data type. \\
 Note that all further methods were implemented on VAEs with Bernoulli decoder distributions.
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
-%\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}
-  \begin{wrapfigure}{l}{0.5\textwidth}
-    \captionsetup{justification=centering}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
-    \caption{Variational v.s. Importance Weighted (IW)}
-    \label{fig:variw}
+\begin{wrapfigure}{l}{0.5\textwidth}
+  \captionsetup[subfigure]{justification=centering}
+  \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
+  \caption{Variational v.s. Importance Weighted (IW)}
+  \label{fig:variw}
 \end{wrapfigure}
 In their 2015 publication \textit{Importance Weighted Autoencoders}, Burda, Grosse, and Salakhutdinov observed that Kingma \& Welling's $\L(x)$ lower bound on the log-likelihood from Eq.\ref{eq:VAEOBJECTIVE} made strong assumptions about the posterior inference, leading to overly simplified representations. They proposed an improvement called Importance Weighted Auto Encoders (IWAE), a generative model using the VAE network architecture with a few key improvements to model generalizability.
 \par The critical feature of IWAE is that the encoder network uses multiple importance weighted samples to approximate the posterior, where the original VAE uses a single sample. This allows IWAE to approximate complex posteriors which are not available under the stronger VAE posterior assumptions.
@@ -166,14 +150,8 @@ In their 2015 publication \textit{Importance Weighted Autoencoders}, Burda, Gros
 The term inside the sum is the normalized importance weights for the joint distribution. Note in particular that the case $K=1$ corresponds exactly to Kingma \& Welling's $\L(x)$ from Eq.\ref{eq:VAEOBJECTIVE}. Burda, Grosse, and Salakhutdinov show that this importance weighted lower bound is strictly tighter than the vanilla lower bound. In particular, that $\log p(x) \geq \L_{K+1}(x)>\L_K(x)$ Our implementation of IWAE with this lower bound supports their findings. We observed that with $K=5$ samples IWAE significantly improves the learned log-likelihood bound during training. The results of this experiment can be found in Figure \ref{fig:variw}. \\
 Since importance weighting so significantly improved the performance of our Auto Encoder, all further methods were implemented on VAEs with importance weighting.
 
-%\subsection{Random Dropout}
-%FIGURES NEEDED: Vanilla+IW+Dropout cost plot for all values of keep probability, average across trials for smoothness.
-%\input{"../plots/img/Comparison of Dropout Values for Cost.tex"}
-
-
 \subsection{Batch Normalization}
 %FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
-%\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}
 \begin{wrapfigure}{l}{0.5\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
     \caption{Effect of Batch Normalization (BN)}
@@ -197,8 +175,6 @@ where $\mu_B$ and $\sigma_B$ are the mean and standard deviation of the layer's 
     \caption{Effect of Warm-Up}
     \label{fig:wucost}
 \end{wrapfigure}
-%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+WU cost plot
-%\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}
 Recall that the log-likelihood lower bound in Eq.\ref{eq:VAEOBJECTIVE} contains a reconstruction term and a variational regularization term. Further, notice that without that variational regularization term the lower bound becomes that of a standard deterministic autoencoder. It has been observed that the variational regularization term causes some latent dimensions to become inactive or `pruned' during training \cite{MacKay2001, Burda2016}. In the later sections of this report we consider the activity of the latent dimensions, and particularly how training prunes or preserves latent dimensions.
 \par Pruning non-informative dimensions later in training could be considered advantageous for automatic relevance determination. However, if latent dimensions are pruned too early in training they will not have a chance to learn informative representations. Once the dimensions become inactive in training, they are unlikely be reactivated. This problem of early latent dimension pruning is particularly troublesome for deep VAEs, because deep latent layers depend on the shallow latent dimensions in the network. If shallow latent dimensions are pruned early,  deep latent layers will not be able to learn useful representations \cite{Sonderby2016}.
 \par To avoid the problem of early pruning due to the variational regularization, we `warm up' our VAE. Warm-up is achieved by initializing the learning process with the objective of a standard deterministic autoencoder, and then linearly introducing the variational regularization. This way the latent dimensions have a chance to learn useful representations as in a deterministic autoencoder before being possibly pruned by variational regularization.\\ We introduce a warm-up parameter $\beta$ to our objective function which increases linearly from 0 to 1 during the first $N_T$ epochs of training:
@@ -212,54 +188,13 @@ Again, note that this causes the first epoch to initialize a standard determinis
 
 \subsection{Latent Space Dimensionality}
 \begin{wrapfigure}{l}{0.5\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}}
-    \caption{Latent Dimensionality}
-    \label{fig:latdimcost}
+  \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}}
+  \caption{Latent Dimensionality}
+  \label{fig:latdimcost}
 \end{wrapfigure}
-%FIGURES NEEDED: Vanilla+IW across initial latet dimension values cost plot
-%\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}
 Finally, we were interested in determining how the choice of latent space dimensionality affected the training of our model. As described previously, the number of latent dimensions, $n_z$ is given by the number of nodes in the stochastic layer of the model.
 \par To experiment with this parameter, we trained multiple Importance Weighted VAEs with dimensionality ${n_z \in \{2,5,10,20,50,100\}}$. See the effect of dimensionality on training in Figure \ref{fig:latdimcost}. Our experiments show that models with 2 or 5 latent dimensions were not trained as successfully as models with higher latent dimensions. Further, it is interesting to note that all models with $n_z\geq10$ converged to the same log-likelihood bound. This suggests to us that the additional latent dimensionality was not useful for learning latent representations of the MNIST data. In fact, $n_z=10$ converged slightly faster than higher latent dimensional models, further suggesting that the additional dimensions were superfluous to training.
-% \begin{wrapfigure}{l}{0.5\textwidth}
-%   \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}}
-%     \caption{Latent Dimensionality}
-%     \label{fig:latdimcost}
-%   \end{subfigure}
-% \end{wrapfigure}
-\par We were particularly interested in this question of latent space dimensionality. It is especially suggestive that models with $n_z\geq10$ perform identically, given that there are 10 classes of digits in MNIST. This motivates our inquiry for the next section where we explore usefulness of latent dimensions by describing their activity. 
-
-% \begin{figure}
-% \captionsetup[subfigure]{justification=centering}
-%     \centering
-%     \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
-%     \caption{Bernoulli v.s Gaussian decoder distributions}
-%     \label{fig:bergau}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted.tex"}}
-%     \caption{Variational v.s. Importance Weighted (IW)}
-%     \label{fig:variw}
-%     \end{subfigure}\\[0.3in]
-%     \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
-%     \caption{Effect of Batch Normalization (BN)}
-%     \label{fig:bncost}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}}
-%     \caption{Effect of Warm-Up}
-%     \label{fig:wucost}
-%     \end{subfigure}\\[0.3in]
-%     \begin{subfigure}[b]{0.45\textwidth}
-%     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Cost.tex"}}
-%     \caption{Latent Dimensionality}
-%     \label{fig:latdimcost}
-%     \end{subfigure}
-% \end{figure}
+\par We were particularly interested in this question of latent space dimensionality. It is especially suggestive that models with $n_z\geq10$ perform identically, given that there are 10 classes of digits in MNIST. This motivates our inquiry for the next section where we explore usefulness of latent dimensions by describing their activity.
 
 \section{Latent Dimension Activity}
 \subsection{Activity Metric}
@@ -268,7 +203,7 @@ In the previous sections we discussed the concept of activity. Here we define it
   Cov_{\textbf{x}}\left(\mathbb{E}_{u~q(u|\textbf{x})}[u]\right)>\epsilon
   \label{eq:ACTIVITYMET}
 \end{align}
-\par Where $u$ represents a single dimension in the latent space, $q$ is the generative distribution of the encoder network $q_\phi$, and $\epsilon$ is a threshold value. Any dimension whose activity (represented by the left-hand side of the equation) exceeds $\epsilon$ is defined as ``active`` for the purposes of our experiment. The effect of the additional features described above averaged over multiple trials can be seen in the plots below.
+\par Where $u$ represents a single dimension in the latent space, $q$ is the generative distribution of the encoder network $q_\phi$, and $\epsilon$ is a threshold value. Any dimension whose activity (represented by the left-hand side of the equation) exceeds $\epsilon$ is defined as ``active`` for the purposes of our experiment. In the experiment from \cite{Burda2016}, an activation of $\epsilon=10^{-2}$ was used, but for this experiment a higher threshold of $\epsilon=10^{-1}$ proved to be more useful as many dimensions surpassed the lower threshold with strong random variation. The effect of the additional features described above averaged over multiple trials can be seen in the plots below.
 \begin{figure}[h]
   \centering
   \begin{subfigure}[t]{0.3\textwidth}
@@ -290,13 +225,42 @@ In the previous sections we discussed the concept of activity. Here we define it
 \subsection{Effects of Implementation on Activity}
 It is clear from the above that, as training converges, importance weighting tends to reduce the number of active dimensions, while batch normalization increases it. Warmup was not seen to affect the final dimensionality count, but did accellerate its convergence. The dimension-reducing effect of importance weighting is likely a result of its more accurate loss function, which reduces the capacity for error in the network and forces a more specific lower entropy latent representation of the data. The dimension-increasing effects of batch normalization are likely a result of its tendency to force a distribution on the output of the deterministic layers. This introduces noise in the form of an additional influence on the data that is passed to the latent layer, which it must then compensate for. The effect of warmup is likely a result of the distinct loss function, which punishes frivilous and incorrect information in the latent layer disproportionately in the early training stages.
 \begin{wrapfigure}{l}{0.5\textwidth}
-  \begin{subfigure}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}}
-    \caption{Effect of Latent Dimensionality}
-    \label{fig:latdimlat}
-  \end{subfigure}
+  \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}}
+  \caption{Effect of Latent Dimensionality}
+  \label{fig:latdimlat}
 \end{wrapfigure}
 \par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_init,10)$ where $D_init$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
+\subsection{Visualizing Latent Space Activity during Training}
+In their research S{\o}nderby et al. \cite{Sonderby2016} put forward a shaded rectangle plot for latent space activation that we have adapted below in Figures \ref{fig:shadevanil} to \ref{fig:shadewu}. In these plots, the $x$-axis represents the number of training epochs that have passed, the $y$-axis represents the index of a dimension, and the shade of a pixel at a particular $x$-$y$ coordinate represents the log of the activation defined in \ref{eq:ACTIVITYMET} of the $y$th dimension after the $x$th epoch. The log-activation is calculated by sampling the variance of the dimensional mean over a random subset of the data. In this experiment, the dimensions are sorted based on their activation after the first epoch, which means that, in general, more active (and therefore darker) dimensions are near the bottom of the chart, with less active or inactive dimensions near the top. These shade plots provide a more holistic view of the activity than simply plotting the number of dimensions whose activity exceeds the threshold. For examples, in Figures \ref{fig:shadeiw}, \ref{fig:shadebn}, and \ref{fig:shadewu} it is clear that the dimensions labelled as inactive by the threshold measurement are making a nonzero contribution to the output of the latent layer, which may be useful in models with multiple latent stochastic layers, and based on the cost functions plotted in Figures \ref{fig:variw}, \ref{fig:bncost}, and \ref{fig:wucost} is certainly useful in improving the accuracy of the model.
+\begin{figure}[h]
+  \centering
+  \textbf{Latent Dimension Activity During Training}\\
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}}
+    \caption{Vanilla VAE with Bernoulli Decoder Distribution}
+    \label{fig:shadevanil}    
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}}
+    \caption{Importance Weighted (IW)}
+    \label{fig:shadeiw}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}}
+    \caption{IW + Batch Normalization (BN)}
+    \label{fig:shadebn}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW}.png}}
+    \caption{IW + Warm Up (WU)}
+    \label{fig:shadewu}
+  \end{subfigure}
+  \begin{subfigure}{0.8\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/colorbar}.png}}
+    \caption*{$\log{\left[Cov_{\textbf{x}}\left(\mathbb{E}_{u~q(u|\textbf{x})}[u]\right)\right]}$}
+    \label{fig:shadebar}
+  \end{subfigure}
+\end{figure}
 \section{Latent Space Visualization}
 
 \subsection{Data Reconstruction}
@@ -307,44 +271,20 @@ It is clear from the above that, as training converges, importance weighting ten
   \centering
   \begin{subfigure}[t]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1}.png}}
+    \label{fig:vislat}
   \end{subfigure}
   \begin{subfigure}[t]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter50}.png}}
+    \label{fig:visscat}
   \end{subfigure}
   \begin{subfigure}[t]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
+    \label{fig:visrecon}
   \end{subfigure}
+  \label{fig:vis}
 \end{figure}
 \subsection{Latent Hyperplane Lattice Generation}
 %FIGURES NEEDED: Hyperplane lattice for nz=2, two dimensions with high variance, and bad variance example.
-
-\begin{figure}[h]
-  \centering
-  \textbf{Latent Dimension Activity During Training}\\
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.0.Berno}.png}}
-    \caption{Vanilla VAE with Bernoulli Decoder Distribution}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.0.1.Berno+IW}.png}}
-    \caption{Importance Weighted (IW)}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW}.png}}
-    \caption{IW + Batch Normalization (BN)}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW}.png}}
-    \caption{IW + Warm Up (WU)}
-  \end{subfigure}
-  \begin{subfigure}{\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/colorbar}.png}}
-    \caption*{$\log{\left[Cov_{\textbf{x}}\left(\mathbb{E}_{u~q(u|\textbf{x})}[u]\right)\right]}$}
-  \end{subfigure}
-\end{figure}
 
 \bibliographystyle{plain}
 \bibliography{bib}

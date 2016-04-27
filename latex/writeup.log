@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -773,21 +773,21 @@ Package: wrapfig 2003/01/31  v 3.6
 ) (./writeup.aux)
 \openout1 = `writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -808,7 +808,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \makeMPintoPDFobject=\count159
 \everyMPtoPDFconversion=\toks42
 )
-Package hyperref Info: Link coloring OFF on input line 51.
+Package hyperref Info: Link coloring OFF on input line 52.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -817,9 +817,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count160
 )
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 
 (./writeup.out) (./writeup.out)
 \@outlinefile=\write4
@@ -845,92 +845,87 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
 your preamble.
- on input line 51.
+ on input line 52.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
-LaTeX Font Info:    Try loading font information for U+msa on input line 54.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Try loading font information for U+msa on input line 55.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 54.
+LaTeX Font Info:    Try loading font information for U+msb on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 54.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 55.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `Sonderby2016' on page 2 undefined on input line 98.
+LaTeX Warning: Citation `Sonderby2016' on page 2 undefined on input line 85.
 
 [2] (../plots/img/Comparison of Bernoulli and Gaussian.tex) [3]
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
-Underfull \hbox (badness 4595) in paragraph at lines 161--162
+Underfull \hbox (badness 4595) in paragraph at lines 145--146
 []\OT1/ptm/m/n/10 By con-sid-er-ing mul-ti-ple im-por-tance
  []
 
 [4] (../plots/img/Comparison of Importance Weighted and Batch Normalized.tex)
 
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 183.
+LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 161.
 
 
-LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 191.
+LaTeX Warning: Citation `Sonderby2016' on page 5 undefined on input line 169.
 
 (../plots/img/Comparison of Importance Weighted and Warmed-Up.tex) [5]
 
-LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 203.
+LaTeX Warning: Citation `Sonderby2016' on page 6 undefined on input line 179.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 []\OT1/ptm/m/n/10 Pruning non-informative di-men-sions
  []
 
 (../plots/img/Comparison of Dimension Values for Cost.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 222--230
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
 []\OT1/ptm/m/n/10 To ex-per-i-ment with this pa-ram-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--230
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
 \OT1/ptm/m/n/10 e-ter, we trained mul-ti-ple Im-por-tance
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--230
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
 \OT1/ptm/m/n/10 Weighted VAEs with di-men-sion-al-ity
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 222--230
+Underfull \hbox (badness 1603) in paragraph at lines 196--197
 []$\OT1/ptm/m/n/10 . See the ef-fect
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 222--230
-\OT1/ptm/m/n/10 of di-men-sion-al-ity on train-ing in Fig-ure []5[].
- []
-
-
-Underfull \hbox (badness 1442) in paragraph at lines 222--230
+Underfull \hbox (badness 1442) in paragraph at lines 196--197
 \OT1/ptm/m/n/10 Our ex-per-i-ments show that mod-els with 2
  []
 
 
-Underfull \hbox (badness 3514) in paragraph at lines 222--230
+Underfull \hbox (badness 3514) in paragraph at lines 196--197
 \OT1/ptm/m/n/10 suc-cess-fully as mod-els with higher la-tent
  []
 
@@ -939,124 +934,132 @@ Underfull \hbox (badness 3514) in paragraph at lines 222--230
 ty.tex)
 (../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex)
 (../plots/img/Comparison of Dimension Values for Activity.tex) [7]
-Underfull \hbox (badness 1057) in paragraph at lines 299--300
+Underfull \hbox (badness 1057) in paragraph at lines 232--233
 []\OT1/ptm/m/n/10 An in-ter-est-ing re-sult can be seen in
  []
 
 
-Underfull \hbox (badness 1924) in paragraph at lines 299--300
-\OT1/ptm/m/n/10 Fig-ure []7a[], in which the di-men-sion-al-ity is
+Underfull \hbox (badness 1303) in paragraph at lines 232--233
+\OT1/ptm/m/n/10 Fig-ure []3.2[], in which the di-men-sion-al-ity is
  []
 
 
-Underfull \hbox (badness 2012) in paragraph at lines 299--300
+Underfull \hbox (badness 2012) in paragraph at lines 232--233
 \OT1/ptm/m/n/10 var-ied for mod-els trained with im-por-tance
  []
 
-<../plots/img/vis_latent2_1.png, id=167, 578.16pt x 722.7pt>
-File: ../plots/img/vis_latent2_1.png Graphic file (type png)
 
-<use ../plots/img/vis_latent2_1.png>
-Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 309.
+LaTeX Warning: Citation `Sonderby2016' on page 8 undefined on input line 234.
 
-(pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
-
-<../plots/img/vis_scatter2.png, id=169, 578.16pt x 433.62pt>
-File: ../plots/img/vis_scatter2.png Graphic file (type png)
-
-<use ../plots/img/vis_scatter2.png>
-Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 312.
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-
-<../plots/img/vis_scatter50.png, id=170, 578.16pt x 433.62pt>
-File: ../plots/img/vis_scatter50.png Graphic file (type png)
-
-<use ../plots/img/vis_scatter50.png>
-Package pdftex.def Info: ../plots/img/vis_scatter50.png used on input line 315.
-
-(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
-
-<../plots/img/vis_recon.png, id=171, 867.24pt x 867.24pt>
-File: ../plots/img/vis_recon.png Graphic file (type png)
-
-<use ../plots/img/vis_recon.png>
-Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 318.
-(pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=172, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=181, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 328.
+t line 239.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=173, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=183, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 332.
+nput line 244.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=174, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=184, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 336.
+n input line 249.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=175, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=185, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 340.
+n input line 254.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/colorbar.png, id=176, 654.445pt x 54.2025pt>
+<../plots/img/colorbar.png, id=186, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 344.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 259.
 (pdftex.def)             Requested size: 654.4434pt x 54.20236pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 345.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
+
+<../plots/img/vis_latent2_1.png, id=187, 578.16pt x 722.7pt>
+File: ../plots/img/vis_latent2_1.png Graphic file (type png)
+
+<use ../plots/img/vis_latent2_1.png>
+Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 273.
+
+(pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--275
+[][]
+ []
+
+<../plots/img/vis_scatter2.png, id=188, 578.16pt x 433.62pt>
+File: ../plots/img/vis_scatter2.png Graphic file (type png)
+
+<use ../plots/img/vis_scatter2.png>
+Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 277.
+(pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--279
+[][]
+ []
+
+<../plots/img/vis_recon.png, id=189, 867.24pt x 867.24pt>
+File: ../plots/img/vis_recon.png Graphic file (type png)
+
+<use ../plots/img/vis_recon.png>
+Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 281.
+(pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
+[][]
+ []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(./writeup.bbl) [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 351.
- [9 <../plots/img/vis_latent2_1.png> <../plots/img/vis_scatter2.png> <../plots/
-img/vis_scatter50.png> <../plots/img/vis_recon.png> <../plots/img/trial.50.1.0.
-0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.1.Berno+IW.png> <../plots/img/t
-rial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW
-.png> <../plots/img/colorbar.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 351.
+ [8 <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.
+1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img
+/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>] (./writeup.bb
+l [9 <../plots/img/vis_latent2_1.png> <../plots/img/vis_scatter2.png> <../plots
+/img/vis_recon.png>])
+
+Package caption Warning: Unused \captionsetup[subfigure] on input line 127.
+See the caption package documentation for explanation.
+
+[10]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 291.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 291.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 351.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 351.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 291.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 291.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
-(rerunfilecheck)             Checksum: 05FBD344781B5CFD7D2E05F2321F95C2;1406.
+(rerunfilecheck)             Checksum: 4973D5AC3C40E3F78F663E3B0DA6F461;1505.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 351.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 291.
  ) 
 Here is how much of TeX's memory you used:
- 28288 strings out of 494497
- 672678 string characters out of 6172400
- 1074809 words of memory out of 5000000
- 31121 multiletter control sequences out of 15000+600000
+ 28303 strings out of 494497
+ 672825 string characters out of 6172400
+ 1076012 words of memory out of 5000000
+ 31135 multiletter control sequences out of 15000+600000
  26064 words of font info for 60 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 59i,24n,94p,34006b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,24n,94p,34004b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-
@@ -1076,10 +1079,10 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (9 pages, 8637564 bytes).
+Output written on writeup.pdf (10 pages, 7960254 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 
