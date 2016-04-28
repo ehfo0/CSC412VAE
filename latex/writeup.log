@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 20:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1098,20 +1098,20 @@ Package caption Warning: Unused \captionsetup[subfigure] on input line 128.
 See the caption package documentation for explanation.
 
 [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 299.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 299.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 299.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 299.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: A0081C0AC9323CF8B3EC6696208A95F3;1609.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 299.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
  ) 
 Here is how much of TeX's memory you used:
- 28310 strings out of 494497
- 672905 string characters out of 6172400
- 1060470 words of memory out of 5000000
- 31138 multiletter control sequences out of 15000+600000
+ 28308 strings out of 494497
+ 672874 string characters out of 6172400
+ 1060349 words of memory out of 5000000
+ 31136 multiletter control sequences out of 15000+600000
  27142 words of font info for 61 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  59i,24n,94p,34004b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1134,7 +1134,7 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 7971543 bytes).
+Output written on writeup.pdf (10 pages, 7971529 bytes).
 PDF statistics:
  318 PDF objects out of 1000 (max. 8388607)
  267 compressed objects within 3 object streams
