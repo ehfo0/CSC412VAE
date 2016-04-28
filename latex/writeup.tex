@@ -270,12 +270,12 @@ This visualization technique utilizes only the encoder network of our VAE. To un
 \begin{figure}
   \centering
   \begin{minipage}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon-lowres}.jpg}}
     \caption{Reconstruction Visualization}
     \label{fig:recon}
   \end{minipage}
   \begin{minipage}[b]{0.45\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2-lowres}.jpg}}
     \caption{Data Encoding Visualization} 
     \label{fig:latenc}
   \end{minipage}
@@ -283,7 +283,7 @@ This visualization technique utilizes only the encoder network of our VAE. To un
 \subsection{Latent Manifold Lattice Generation}
 The final visualization technique utilizes just the decoder network of our VAE. To visualize our learned manifold we choose latent codes on a lattice of a hyperplane of our latent space. Then we decode the values on our lattice and visualize the lattice in data space. See an example of this visualization in Figure \ref{fig:latlattice}. Notice that this manifold exactly corresponds to the encoding of our data classes into latent space, e.g. 6s at the top and 1s in the lower right. This is an extremely valuable visualization method because it illustrates how model transitions between data classes. Further, it accessibly demonstrates instances of problematic representation, such as the transition from 7s to 9s to 4s. This visualization technique demonstrates clearly how the latent space encodes representations of our data.
 \begin{wrapfigure}[22]{l}{0.5\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1}.png}}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1-lowres}.jpg}}
     \caption{Latent Manifold Visualization}
     \label{fig:latlattice}
 \end{wrapfigure}
