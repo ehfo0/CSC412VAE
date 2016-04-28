@@ -88,7 +88,7 @@ All parameters in the MLP were initialized with the Xavier-Glorot method outline
 
 
 \subsection{Decoder Distribution}
-%FIGURES NEEDED: Gaussian vs Bernoulli Cost Plot
+
 As mentioned previously, the probabilistic decoder network takes a latent representation $z$ and produces a distribution over possible data values, ${p_\theta(x\mid z)}$. In our initial description of the network architecture we specified that output of the encoder MLP is Gaussian, but we made no specification to the decoder output distribution.
 \par Two choices for decoder distributions, Gaussian and Bernoulli, were outlined in \textit{Auto-Encoding Variational Bayes}, where the authors suggest that the choice of preferred decoder distribution depends on the type of data \cite{Kingma2013}. 
 
@@ -118,14 +118,13 @@ For binary data, Kingma \& Welling suggest letting ${p_\theta(x\mid z)}$ be a mu
 Again, here the Bernoulli decoder distribution parameter $\theta$ is represented by the learned MLP weights and biases $\theta = \{W_1,W_2,W_\mu,b_1,b_2,b_\mu\}$.
 
 \subsubsection{Comparing Decoder Distributions}
+Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and thus we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}. As expected, the Bernoulli distribution was able to learn a much tighter lower bound on the log-likelihood. It is important to note that VAE with the Gaussian decoder has converged to its lower bound, suggesting that even with longer training it would not learn a better model than the VAE with Bernoulli decoder distribution. Therefore, when implementing VAEs it is important to choose a decoder distribution that is representative of your data type. Note that all further methods were implemented on VAEs with Bernoulli decoder distributions.
 \begin{wrapfigure}{l}{0.5\textwidth}
   \captionsetup[subfigure]{justification=centering}
   \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Bernoulli and Gaussian.tex"}}
   \caption{Bernoulli v.s Gaussian decoder distributions}
   \label{fig:bergau}
 \end{wrapfigure}
-Our findings support the recommendation by Kingma \& Welling that Bernoulli decoder distribution performs better on binary data than a Gaussian decoder. The one-hot MNIST data used to train our VAE is binary, and thus we expected that the Bernoulli decoder would out-preform the Gaussian decoder. The results of this experiment can be found in Figure \ref{fig:bergau}. As expected, the Bernoulli distribution was able to learn a much tighter lower bound on the log-likelihood. It is important to note that VAE with the Gaussian decoder has converged to its lower bound, suggesting that even with longer training it would not learn a better model than the VAE with Bernoulli decoder distribution. Therefore, when implementing VAEs it is important to choose a decoder distribution that is representative of your data type. \\
-Note that all further methods were implemented on VAEs with Bernoulli decoder distributions.
 
 \subsection{Importance Weighting}
 %FIGURES NEEDED: Vanilla vs Vanilla + IW cost plot
@@ -146,14 +145,12 @@ The term inside the sum is the normalized importance weights for the joint distr
 Since importance weighting so significantly improved the performance of our Auto Encoder, all further methods were implemented on VAEs with importance weighting.
 
 \subsection{Batch Normalization}
-%FIGURES NEEDED: Vanilla+IW vs Vanilla+IW+BN cost plot
+Batch normalization is a recent method developed to improve stability and convergence speed in deep networks \cite{Ioffe2015}. In the recent paper \textit{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks} by S\o nderby et al. 2016, the authors show that batch normalization is an important method for learning deep VAEs \cite{Sonderby2016}. That is, deep generative models with several latent layers. Though we are only considering a shallow model with a single latent layer, we were interested to see how batch normalization affected training as well as latent space activity (discussed in sections to follow).
 \begin{wrapfigure}{l}{0.5\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized.tex"}}
     \caption{Effect of Batch Normalization (BN)}
     \label{fig:bncost}
 \end{wrapfigure}
-
-Batch normalization is a recent method developed to improve stability and convergence speed in deep networks \cite{Ioffe2015}. In the recent paper \textit{How to Train Deep Variational Autoencoders and Probabilistic Ladder Networks} by S\o nderby et al. 2016, the authors show that batch normalization is an important method for learning deep VAEs \cite{Sonderby2016}. That is, deep generative models with several latent layers. Though we are only considering a shallow model with a single latent layer, we were interested to see how batch normalization affected training as well as latent space activity (discussed in sections to follow).
 \par Batch normalization was developed to improve learning stability during deep network training. As parameters change during learning the layer output distributions change for each hidden layer, requiring later layers to adjust parameters in response to these distribution changes. The problem that batch normalization attempts to address is that changes in early layer output distributions can cause noisy changes to later layers. 
 \par Batch normalization functions by normalizing the inputs of the activation function for each layer so that the inputs across each training batch have a mean of 0 and a variance of 1. However, batch normalization restricts the representation of each layer by assuming this normal distribution. To alleviate some of this restriction, batch normalization introduces learnable parameters to scale the variance of the normal distribution, $\gamma$ and shift the mean, $\beta$. Therefore, we transform each activation function input, $x_i$, with the batch normalization given by:
 
@@ -161,15 +158,15 @@ Batch normalization is a recent method developed to improve stability and conver
     \text{BN}(x_i)=\gamma\left(\frac{x_i-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}\right)+\beta\\
 \end{align*} 
 where $\mu_B$ and $\sigma_B$ are the mean and standard deviation of the layer's activation function input across the batch, $\epsilon$ is a small constant addition to the variance to avoid division by 0, and $\gamma$ and $\beta$ are learnable scale and shift parameters. Note in particular that when learning with batch normalization, the learned shift parameter $\beta$ for each layer replaces the need for bias terms added to that layer's activation inputs.
-\par To train our model we add batch normalization before the activation for all layers in our auto-encoder except the output layers, as described in \cite{Sonderby2016}. See the result of training with batch normalization in Figure \ref{fig:bncost}. Our experiments resulted in VAEs trained with batch normalization performing poorer than VAEs without batch normalization. While the literature suggests that batch normalization significantly improves training for deep networks, we found no improvements to our shallow VAEs. We suggest that the reason for this result is that the benefit of batch normalization is to stabilize the propagation of signal throughout the layers of a deep network. However, to achieve this stabilization, batch normalization imposes assumptions on the distribution of activation inputs for each layer. We suggest that batch normalization reduced performance on our VAEs because they were too shallow to receive any benefit from signal stabilization, and were made less effective by the normalization assumption.
-
-
-\subsection{Warm Up}
 \begin{wrapfigure}{l}{0.5\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up.tex"}}
     \caption{Effect of Warm-Up}
     \label{fig:wucost}
 \end{wrapfigure}
+\par To train our model we add batch normalization before the activation for all layers in our auto-encoder except the output layers, as described in \cite{Sonderby2016}. See the result of training with batch normalization in Figure \ref{fig:bncost}. Our experiments resulted in VAEs trained with batch normalization performing poorer than VAEs without batch normalization. While the literature suggests that batch normalization significantly improves training for deep networks, we found no improvements to our shallow VAEs. We suggest that the reason for this result is that the benefit of batch normalization is to stabilize the propagation of signal throughout the layers of a deep network. However, to achieve this stabilization, batch normalization imposes assumptions on the distribution of activation inputs for each layer. We suggest that batch normalization reduced performance on our VAEs because they were too shallow to receive any benefit from signal stabilization, and were made less effective by the normalization assumption.
+
+
+\subsection{Warm Up}
 Recall that the log-likelihood lower bound in Eq.\ref{eq:VAEOBJECTIVE} contains a reconstruction term and a variational regularization term. Further, notice that without that variational regularization term the lower bound becomes that of a standard deterministic autoencoder. It has been observed that the variational regularization term causes some latent dimensions to become inactive or `pruned' during training \cite{MacKay2001, Burda2016}. In the later sections of this report we consider the activity of the latent dimensions, and particularly how training prunes or preserves latent dimensions.
 \par Pruning non-informative dimensions later in training could be considered advantageous for automatic relevance determination. However, if latent dimensions are pruned too early in training they will not have a chance to learn informative representations. Once the dimensions become inactive in training, they are unlikely be reactivated. This problem of early latent dimension pruning is particularly troublesome for deep VAEs, because deep latent layers depend on the shallow latent dimensions in the network. If shallow latent dimensions are pruned early,  deep latent layers will not be able to learn useful representations \cite{Sonderby2016}.
 \par To avoid the problem of early pruning due to the variational regularization, we `warm up' our VAE. Warm-up is achieved by initializing the learning process with the objective of a standard deterministic autoencoder, and then linearly introducing the variational regularization. This way the latent dimensions have a chance to learn useful representations as in a deterministic autoencoder before being possibly pruned by variational regularization.\\ We introduce a warm-up parameter $\beta$ to our objective function which increases linearly from 0 to 1 during the first $N_T$ epochs of training:
@@ -219,12 +216,12 @@ In the previous sections we discussed the concept of activity. Here we define it
 \end{figure}
 \subsection{Effects of Implementation on Activity}
 It is clear from the above that, as training converges, importance weighting tends to reduce the number of active dimensions, while batch normalization increases it. Warmup was not seen to affect the final dimensionality count, but did accelerate its convergence. The dimension-reducing effect of importance weighting is likely a result of its more accurate loss function, which reduces the capacity for error in the network and forces a more specific lower entropy latent representation of the data. The dimension-increasing effects of batch normalization are likely a result of its tendency to force a distribution on the output of the deterministic layers. This introduces noise in the form of an additional influence on the data that is passed to the latent layer, which it must then compensate for. The effect of warmup is likely a result of the distinct loss function, which punishes frivolous and incorrect information in the latent layer disproportionately in the early training stages.
+\par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_{init},10)$ where $D_{init}$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
 \begin{wrapfigure}{l}{0.5\textwidth}
   \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Dimension Values for Activity.tex"}}
   \caption{Effect of Latent Dimensionality}
   \label{fig:latdimlat}
 \end{wrapfigure}
-\par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_{init},10)$ where $D_{init}$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
 \subsection{Visualizing Latent Space Activity during Training}
 In their research S{\o}nderby et al. \cite{Sonderby2016} put forward a shaded rectangle plot for latent space activation that we have adapted below in Figures \ref{fig:shadevanil} to \ref{fig:shadewu}. In these plots, the $x$-axis represents the number of training epochs that have passed, the $y$-axis represents the index of a dimension, and the shade of a pixel at a particular $x$-$y$ coordinate represents the log of the activation defined in \ref{eq:ACTIVITYMET} of the $y$th dimension after the $x$th epoch. The log-activation is calculated by sampling the variance of the dimensional mean over a random subset of the data. In this experiment, the dimensions are sorted based on their activation after the first epoch, which means that, in general, more active (and therefore darker) dimensions are near the bottom of the chart, with less active or inactive dimensions near the top. These shade plots provide a more holistic view of the activity than simply plotting the number of dimensions whose activity exceeds the threshold. For examples, in Figures \ref{fig:shadeiw}, \ref{fig:shadebn}, and \ref{fig:shadewu} it is clear that the dimensions labelled as inactive by the threshold measurement are making a nonzero contribution to the output of the latent layer, which may be useful in models with multiple latent stochastic layers, and based on the cost functions plotted in Figures \ref{fig:variw}, \ref{fig:bncost}, and \ref{fig:wucost} is certainly useful in improving the accuracy of the model.
 \begin{figure}[h]
@@ -258,35 +255,34 @@ In their research S{\o}nderby et al. \cite{Sonderby2016} put forward a shaded re
   \label{fig:shadeall}
 \end{figure}
 \section{Latent Space Visualization}
-In this section we demonstrate three techniques for visualizing the latent representation learned by the VAE.
 \subsection{Data Reconstruction}
-\begin{wrapfigure}{l}{0.5\textwidth}
-    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
-    \caption{Reconstruction Visualization}
-    \label{fig:recon}
-\end{wrapfigure}
-
-The first and most apparent technique for visualizing the model learned by our VAEs is to generate images of reconstructed input data. In this visualization we give a single test input to our VAE. The test input is first encoded to a representation in the latent space by the encoder network. This latent representation is then decoded to a reconstructed value in the data space. \\
-We generated examples of reconstruction visualizations for VAEs with 2 and 50 latent dimensions, see Figure \ref{fig:recon}. As we would expect, the 50 dimensional VAE was able to learn better representations for every test input than the 2 dimensional VAE. However, the 2 dimensional VAE performed comparably well on certain input classes, namely digits 1 and 7, but was completely unable to represent other classes, digits 2 and 0. \\
-\par To better understand why our 2 dimensional VAE was unable to learn representations for these classes, we utilize other visualization techniques which illustrate the distribution of the data classes in the latent space.
-
+The first and most apparent technique for visualizing the model learned by our VAEs is to generate images of reconstructed input data. In this visualization we give a single test input to our VAE. The test input is first encoded to a representation in the latent space by the encoder network, then decoded to a reconstructed value in the data space. We generated examples of reconstruction visualizations for VAEs with 2 and 50 latent dimensions, see Figure \ref{fig:recon}. As expected, the 50 dimensional VAE was able to learn better representations of every test input than the 2 dimensional VAE. The 2 dimensional VAE performed comparably well on certain input classes, namely digits 1 and 7, but was completely unable to represent other classes, digits 2 and 0. To better understand why our 2 dimensional VAE was unable to learn representations for these classes, we utilize other visualization techniques which illustrate the distribution of the data classes in the latent space.
 \subsection{Data Latent Encoding}
-\begin{wrapfigure}{L}{0.5\textwidth}
-  \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
-  \caption{Data Encoding Visualization} 
-  \label{fig:latenc}
-\end{wrapfigure}
-
-This visualization technique utilizes just the encoder network of our VAE. To understand how our data classes are encoded into the latent distribution, we input a subset of our data and plot their code values in latent space. For an example of this visualization with our 2 dimensional VAE, see Figure \ref{fig:latenc}. This visualization method clearly demonstrates which classes the VAE successfully modelled, and which classes were poorly represented. From our previous visualization, we observed that digits 1 and 7 were clearly reconstructed, and the data encoding visualization demonstrates why. Data classes which are clearly distinguished in latent space from other classes were better constructed by our VAE. Notice that the classes for digits 2 and 3 are not distinguished in the latent encoding, this corresponds to the incorrect reconstruction we observed previously.\\
-
-
-\subsection{Latent Manifold Lattice Generation}
-\begin{wrapfigure}{L}{0.5\textwidth}
+\begin{wrapfigure}{l}{0.5\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_latent2_1}.png}}
     \caption{Latent Manifold Visualization}
     \label{fig:latlattice}
 \end{wrapfigure}
+This visualization technique utilizes only the encoder network of our VAE. To understand how our data classes are encoded into the latent distribution, we input a subset of our data and plot their code values in latent space. For an example of this visualization with our 2 dimensional VAE, see Figure \ref{fig:latenc}. This visualization method clearly demonstrates which classes the VAE successfully modelled, and which classes were poorly represented. From our previous visualization, we observed that digits 1 and 7 were clearly reconstructed, and the data encoding visualization demonstrates why. Data classes which are clearly distinguished in latent space from other classes were better constructed by our VAE. Notice that the classes for digits 2 and 3 are not distinguished in the latent encoding, this corresponds to the incorrect reconstruction we observed previously.
+\begin{figure}{h}
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
+    \caption{Reconstruction Visualization}
+    \label{fig:recon}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.45\textwidth}
+    \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
+    \caption{Data Encoding Visualization} 
+    \label{fig:latenc}
+  \end{subfigure}
+\end{figure}
+\subsection{Latent Manifold Lattice Generation}
 The final visualization technique utilizes just the decoder network of our VAE. To visualize our learned manifold we choose latent parameters on a lattice of a hyperplane of our latent space. Then we decode the values on our lattice and visualize the lattice in data space. See an example of this visualization in Figure \ref{fig:latlattice}. Notice that this manifold exactly corresponds to the encoding of our data classes into latent space, e.g. 6s at the top and 1s in the lower right. This is an extremely valuable visualization method because it illustrates how model transitions between data classes. Further, it accessibly demonstrates instances of problematic representation, such as the transition from 7s to 9s to 4s. This visualization technique demonstrates clearly how the latent space encodes representations of our data.
+\section{Conclusion}
+It is clear from this experiment that techniques designed for improving the accuracy of an autoencoder are also consequential to the distribution of information within its latent space. While the training process led to both a lower number of active dimensions and (by its definition) a lower loss function, plots of the whole latent space revealed that the activity was not being fully concentrated in the most active dimensions. As a result, further training on VAEs with multiple latent dimensions would likely be affected, since more inputs would be available to learn from. Visualizations of several kinds also allow us to understand the 2-dimensional latent space, and what data is represented in each dimension. Though a similar exercise with 50 dimensions is impractical, it provides a convenient way to categorize different settings of the simple latent space parameters into their more complex representations in data space.
+\subsection{Further Research}
+The tendency of the number of active dimensions to converge to 10, as shown in Figure \ref{fig:latdimlat} warrants further research. It is an unlikely coincidence that the number of classes in the MNIST data set is exactly 10, and varying the number of class labels by adding or removing digits could test whether or not there exists an optimal number of dimensions for the representation of a particular data set in a Gaussian latent space, whether or not it is tied to the number of possible classes, and whether the result can be generalized to more complex data sets
 
 \bibliographystyle{plain}
 \bibliography{bib}
