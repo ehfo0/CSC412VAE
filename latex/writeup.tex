@@ -202,24 +202,26 @@ In the previous sections we discussed the concept of activity. Here we define it
 \end{align}
 \par Where $u$ represents a single dimension in the latent space, $q$ is the generative distribution of the encoder network $q_\phi$, and $\epsilon$ is a threshold value. Any dimension whose activity (represented by the left-hand side of the equation) exceeds $\epsilon$ is defined as ``active`` for the purposes of our experiment. In the experiment from \cite{Burda2016}, an activation of $\epsilon=10^{-2}$ was used, but for this experiment a higher threshold of $\epsilon=10^{-1}$ proved to be more useful as many dimensions surpassed the lower threshold with strong random variation. The effect of the additional features described above averaged over multiple trials can be seen in the plots below.
 \begin{figure}[h]
+\captionsetup[subfigure]{justification=centering}
   \centering
   \begin{subfigure}[t]{0.3\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Vanilla and Importance Weighted Activity.tex"}}
-    \caption{Effect of Importance Weighting (IW)}
+    \caption{Importance Weighting (IW)}
     \label{fig:iwlat}
   \end{subfigure}
   \begin{subfigure}[t]{0.3\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Batch Normalized for Activity.tex"}}
-    \caption{Effect of Batch Normalization (BN)}
+    \caption{Batch Normalization (BN)}
     \label{fig:bnlat}
   \end{subfigure}
   \begin{subfigure}[t]{0.3\textwidth}
     \resizebox{\linewidth}{!}{\input{"../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex"}}
-    \caption{Effect of Warm-Up}
+    \caption{Warm-Up}
     \label{fig:wulat}
   \end{subfigure}
+  \caption{Effect of Methods on Latent Dimension Activity}
 \end{figure}
-\subsection{Effects of Implementation on Activity}
+\subsection{Effects of Methods on Activity}
 It is clear from the above that, as training converges, importance weighting tends to reduce the number of active dimensions, while batch normalization increases it. Warmup was not seen to affect the final dimensionality count, but did accelerate its convergence. The dimension-reducing effect of importance weighting is likely a result of its more accurate loss function, which reduces the capacity for error in the network and forces a more specific lower entropy latent representation of the data. The dimension-increasing effects of batch normalization are likely a result of its tendency to force a distribution on the output of the deterministic layers. This introduces noise in the form of an additional influence on the data that is passed to the latent layer, which it must then compensate for. The effect of warmup is likely a result of the distinct loss function, which punishes frivolous and incorrect information in the latent layer disproportionately in the early training stages.
 \par An interesting result can be seen in Figure \ref{fig:latdimlat}, in which the dimensionality is varied for models trained with importance weighting and neither batch normalization or warmup. As the dimensionality of the model increases, the number of active dimensions as the training converges tends to be constant at $min(D_{init},10)$ where $D_{init}$ is the number of dimensions being trained (the ``initial`` dimensionality of the latent space before pruning). This suggests that a fixed number of dimensions in the latent space may be ideal for representing a particular data set. In this case, 10. This is consistent with the results in Figure \ref{fig:latdimcost}, which indicated that an increase in the dimensionality beyond 10 had little effect on the loss function of the trained model.
 \begin{wrapfigure}{l}{0.5\textwidth}
