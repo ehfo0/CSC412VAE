@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 APR 2016 20:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  27 APR 2016 20:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1124,10 +1124,10 @@ Package rerunfilecheck Info: File `writeup.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 299.
  ) 
 Here is how much of TeX's memory you used:
- 31739 strings out of 493089
- 759151 string characters out of 6134842
- 1037119 words of memory out of 5000000
- 34635 multiletter control sequences out of 15000+600000
+ 31737 strings out of 493089
+ 759120 string characters out of 6134842
+ 1036998 words of memory out of 5000000
+ 34633 multiletter control sequences out of 15000+600000
  27142 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,24n,94p,34000b,2319s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1152,7 +1152,7 @@ ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist
 ype1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on writeup.pdf (10 pages, 7964332 bytes).
+Output written on writeup.pdf (10 pages, 7964292 bytes).
 PDF statistics:
  318 PDF objects out of 1000 (max. 8388607)
  267 compressed objects within 3 object streams

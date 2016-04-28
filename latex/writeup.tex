@@ -269,18 +269,18 @@ The first and most apparent technique for visualizing the model learned by our V
     \label{fig:latlattice}
 \end{wrapfigure}
 This visualization technique utilizes only the encoder network of our VAE. To understand how our data classes are encoded into the latent distribution, we input a subset of our data and plot their code values in latent space. For an example of this visualization with our 2 dimensional VAE, see Figure \ref{fig:latenc}. This visualization method clearly demonstrates which classes the VAE successfully modelled, and which classes were poorly represented. From our previous visualization, we observed that digits 1 and 7 were clearly reconstructed, and the data encoding visualization demonstrates why. Data classes which are clearly distinguished in latent space from other classes were better constructed by our VAE. Notice that the classes for digits 2 and 3 are not distinguished in the latent encoding, this corresponds to the incorrect reconstruction we observed previously.
-\begin{figure}{h}
+\begin{figure}
   \centering
-  \begin{subfigure}[t]{0.45\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_recon}.png}}
     \caption{Reconstruction Visualization}
     \label{fig:recon}
-  \end{subfigure}
-  \begin{subfigure}[t]{0.45\textwidth}
+  \end{minipage}
+  \begin{minipage}[b]{0.45\textwidth}
     \resizebox{\linewidth}{!}{\includegraphics[scale=1]{{../plots/img/vis_scatter2}.png}}
     \caption{Data Encoding Visualization} 
     \label{fig:latenc}
-  \end{subfigure}
+  \end{minipage}
 \end{figure}
 \subsection{Latent Manifold Lattice Generation}
 The final visualization technique utilizes just the decoder network of our VAE. To visualize our learned manifold we choose latent parameters on a lattice of a hyperplane of our latent space. Then we decode the values on our lattice and visualize the lattice in data space. See an example of this visualization in Figure \ref{fig:latlattice}. Notice that this manifold exactly corresponds to the encoding of our data classes into latent space, e.g. 6s at the top and 1s in the lower right. This is an extremely valuable visualization method because it illustrates how model transitions between data classes. Further, it accessibly demonstrates instances of problematic representation, such as the transition from 7s to 9s to 4s. This visualization technique demonstrates clearly how the latent space encodes representations of our data.
