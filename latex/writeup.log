@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 20:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 21:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -878,112 +878,45 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
 (../plots/img/Comparison of Bernoulli and Gaussian.tex) [3]
-
-Package wrapfig Warning: Collision between wrapping environments on input line 
-136.
-
 (../plots/img/Comparison of Vanilla and Importance Weighted.tex)
 
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 14
-2.
-
-
-Package wrapfig Warning: Stationary wrapfigure forced to float on input line 14
-3.
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 144--145
-[][]\OT1/ptm/m/n/10 By con-sid-er-ing mul-ti-ple im-por-tance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-[]\OT1/ptm/m/n/10 Given $\OML/cmm/m/it/10 K$ \OT1/ptm/m/n/10 in-de-pen-dent sam
--ples
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 z[]; [] ; z[]\OMS/cmsy/m/n/10 g$ \OT1/ptm/m/
-n/10 from the en-coder dis-tri-bu-
- []
-
-
-Underfull \hbox (badness 2302) in paragraph at lines 145--146
-\OT1/ptm/m/n/10 bound given by the $\OML/cmm/m/it/10 K$\OT1/ptm/m/n/10 -sample 
-im-por-tance
- []
-
-
-Overfull \hbox (18.56953pt too wide) detected at line 148
-[]\OMS/cmsy/m/n/10 L[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = \U
-/msb/m/n/10 E[] []
- []
+Package wrapfig Warning: Collision between wrapping environments on input line 
+151.
 
 (../plots/img/Comparison of Importance Weighted and Batch Normalized.tex)
-Underfull \hbox (badness 2393) in paragraph at lines 153--158
-\OT1/ptm/m/n/10 Batch nor-mal-iza-tion is a re-cent method de-vel-oped to im-pr
-ove sta-bil-ity and con-ver-gence
- []
+[4]
 
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 15
+5.
 
-Underfull \hbox (badness 1852) in paragraph at lines 153--158
-\OT1/ptm/m/it/10 coders and Prob-a-bilis-tic Lad-der Net-works \OT1/ptm/m/n/10 
-by S^^\nderby et al. 2016, the au-thors show
- []
-
-
-Underfull \hbox (badness 1810) in paragraph at lines 153--158
-\OT1/ptm/m/n/10 that batch nor-mal-iza-tion is an im-por-tant method for learn-
-ing deep VAEs [[]]. That is,
- []
-
-
-Underfull \hbox (badness 2293) in paragraph at lines 153--158
-\OT1/ptm/m/n/10 deep gen-er-a-tive mod-els with sev-eral la-tent lay-ers. Thoug
-h we are only con-sid-er-ing a
- []
-
-
-Underfull \hbox (badness 1735) in paragraph at lines 153--158
-\OT1/ptm/m/n/10 shal-low model with a sin-gle la-tent layer, we were in-ter-est
-ed to see how batch nor-mal-
- []
-
-
-Underfull \hbox (badness 1270) in paragraph at lines 153--158
-\OT1/ptm/m/n/10 iza-tion af-fected train-ing as well as la-tent space ac-tiv-it
-y (dis-cussed in sec-tions to fol-low).
- []
-
-[4] (../plots/img/Comparison of Importance Weighted and Warmed-Up.tex)
-Underfull \hbox (badness 2269) in paragraph at lines 164--170
+(../plots/img/Comparison of Importance Weighted and Warmed-Up.tex)
+Underfull \hbox (badness 2269) in paragraph at lines 161--167
 \OT1/ptm/m/n/10 where $\OML/cmm/m/it/10 ^^V[]$ \OT1/ptm/m/n/10 and $\OML/cmm/m/
 it/10 ^^[[]$ \OT1/ptm/m/n/10 are the mean and stan-dard de-vi-a-tion of the lay
 er's ac-ti-va-tion func-
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 164--170
+Underfull \hbox (badness 1701) in paragraph at lines 161--167
 \OT1/ptm/m/n/10 tion in-put across the batch, $\OML/cmm/m/it/10 ^^O$ \OT1/ptm/m
 /n/10 is a small con-stant ad-di-tion to the vari-ance to avoid di-
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 164--170
+Underfull \hbox (badness 3679) in paragraph at lines 161--167
 \OT1/ptm/m/n/10 vi-sion by 0, and $\OML/cmm/m/it/10 ^^M$ \OT1/ptm/m/n/10 and $\
 OML/cmm/m/it/10 ^^L$ \OT1/ptm/m/n/10 are learn-able scale and shift pa-ram-e-te
 rs. Note in par-
  []
 
 
-Underfull \hbox (badness 3098) in paragraph at lines 164--170
+Underfull \hbox (badness 3098) in paragraph at lines 161--167
 \OT1/ptm/m/n/10 tic-u-lar that when learn-ing with batch nor-mal-iza-tion, the 
 learned shift pa-ram-e-ter $\OML/cmm/m/it/10 ^^L$ \OT1/ptm/m/n/10 for
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 164--170
+Underfull \hbox (badness 5374) in paragraph at lines 161--167
 \OT1/ptm/m/n/10 each layer re-places the need for bias terms added to that laye
 r's ac-ti-va-tion in-puts.
  []
@@ -993,32 +926,32 @@ Underfull \vbox (badness 1436) has occurred while \output is active []
 
  [5]
 (../plots/img/Comparison of Dimension Values for Cost.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 []\OT1/ptm/m/n/10 To ex-per-i-ment with this pa-ram-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 \OT1/ptm/m/n/10 e-ter, we trained mul-ti-ple Im-por-tance
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 \OT1/ptm/m/n/10 Weighted VAEs with di-men-sion-al-ity
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 193--194
+Underfull \hbox (badness 1603) in paragraph at lines 190--191
 []$\OT1/ptm/m/n/10 . See the ef-fect
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 193--194
+Underfull \hbox (badness 1442) in paragraph at lines 190--191
 \OT1/ptm/m/n/10 Our ex-per-i-ments show that mod-els with 2
  []
 
 
-Underfull \hbox (badness 3514) in paragraph at lines 193--194
+Underfull \hbox (badness 3514) in paragraph at lines 190--191
 \OT1/ptm/m/n/10 suc-cess-fully as mod-els with higher la-tent
  []
 
@@ -1032,7 +965,7 @@ File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 236.
+t line 233.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
 <../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=198, 510.9489pt x 130.086pt>
@@ -1040,7 +973,7 @@ File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 241.
+nput line 238.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
 <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=199, 510.9489pt x 130.086p
@@ -1048,7 +981,7 @@ t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 246.
+n input line 243.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
 <../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=200, 510.9489pt x 130.086p
@@ -1056,17 +989,17 @@ t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 251.
+n input line 248.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
 <../plots/img/colorbar.png, id=201, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 256.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 253.
 (pdftex.def)             Requested size: 654.4434pt x 54.20236pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 257.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 254.
  [8 <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.
 1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img
 /trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>] <../plots/img
@@ -1074,7 +1007,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 File: ../plots/img/vis_latent2_1.png Graphic file (type png)
 
 <use ../plots/img/vis_latent2_1.png>
-Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 267.
+Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 264.
 
 (pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
 
@@ -1082,14 +1015,14 @@ Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 267.
 File: ../plots/img/vis_recon.png Graphic file (type png)
 
 <use ../plots/img/vis_recon.png>
-Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 275.
+Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 272.
 (pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
 
 <../plots/img/vis_scatter2.png, id=222, 578.16pt x 433.62pt>
 File: ../plots/img/vis_scatter2.png Graphic file (type png)
 
 <use ../plots/img/vis_scatter2.png>
-Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 280.
+Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 277.
 (pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
  [9 <../plots/img/vis_recon.png> <../plots/img/vis_scatter2.png> <../plots/img/
 vis_latent2_1.png>] (./writeup.bbl)
@@ -1098,14 +1031,14 @@ Package caption Warning: Unused \captionsetup[subfigure] on input line 128.
 See the caption package documentation for explanation.
 
 [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 292.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 292.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 292.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 292.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
 (rerunfilecheck)             Checksum: A0081C0AC9323CF8B3EC6696208A95F3;1609.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 292.
  ) 
 Here is how much of TeX's memory you used:
  28308 strings out of 494497
@@ -1134,7 +1067,7 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 7971529 bytes).
+Output written on writeup.pdf (10 pages, 7971574 bytes).
 PDF statistics:
  318 PDF objects out of 1000 (max. 8388607)
  267 compressed objects within 3 object streams
