@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.22)  27 APR 2016 21:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -959,95 +959,100 @@ Underfull \hbox (badness 3514) in paragraph at lines 190--191
 (../plots/img/Comparison of Importance Weighted and Batch Normalized for Activi
 ty.tex)
 (../plots/img/Comparison of Importance Weighted and Warmed-Up for Activity.tex)
-(../plots/img/Comparison of Dimension Values for Activity.tex) [7]
-<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=196, 510.9489pt x 130.086pt>
+[7] (../plots/img/Comparison of Dimension Values for Activity.tex)
+
+Package wrapfig Warning: Stationary wrapfigure forced to float on input line 23
+3.
+
+<../plots/img/trial.50.1.0.0.0.0.Berno.png, id=194, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.0.Berno.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.0.Berno.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.0.Berno.png used on inpu
-t line 233.
+t line 238.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=198, 510.9489pt x 130.086pt>
+<../plots/img/trial.50.1.0.0.0.1.Berno+IW.png, id=196, 510.9489pt x 130.086pt>
 File: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png Graphic file (type png)
 
 <use ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.0.1.Berno+IW.png used on i
-nput line 238.
+nput line 243.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=199, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png, id=197, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png used o
-n input line 243.
+n input line 248.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=200, 510.9489pt x 130.086p
+<../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png, id=198, 510.9489pt x 130.086p
 t>
 File: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png Graphic file (type png)
  <use ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png>
 Package pdftex.def Info: ../plots/img/trial.50.1.0.0.1.1.Berno+WU+IW.png used o
-n input line 248.
+n input line 253.
 (pdftex.def)             Requested size: 510.94765pt x 130.08566pt.
 
-<../plots/img/colorbar.png, id=201, 654.445pt x 54.2025pt>
+<../plots/img/colorbar.png, id=199, 654.445pt x 54.2025pt>
 File: ../plots/img/colorbar.png Graphic file (type png)
 
 <use ../plots/img/colorbar.png>
-Package pdftex.def Info: ../plots/img/colorbar.png used on input line 253.
+Package pdftex.def Info: ../plots/img/colorbar.png used on input line 258.
 (pdftex.def)             Requested size: 654.4434pt x 54.20236pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 254.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 259.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [8 <../plots/img/trial.50.1.0.0.0.0.Berno.png> <../plots/img/trial.50.1.0.0.0.
 1.Berno+IW.png> <../plots/img/trial.50.1.0.1.0.1.Berno+BN+IW.png> <../plots/img
-/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>] <../plots/img
-/vis_latent2_1.png, id=219, 578.16pt x 722.7pt>
+/trial.50.1.0.0.1.1.Berno+WU+IW.png> <../plots/img/colorbar.png>]
+<../plots/img/vis_latent2_1.png, id=218, 578.16pt x 722.7pt>
 File: ../plots/img/vis_latent2_1.png Graphic file (type png)
 
 <use ../plots/img/vis_latent2_1.png>
-Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 264.
+Package pdftex.def Info: ../plots/img/vis_latent2_1.png used on input line 270.
 
 (pdftex.def)             Requested size: 578.15858pt x 722.69823pt.
 
-<../plots/img/vis_recon.png, id=221, 867.24pt x 867.24pt>
+<../plots/img/vis_recon.png, id=220, 867.24pt x 867.24pt>
 File: ../plots/img/vis_recon.png Graphic file (type png)
 
 <use ../plots/img/vis_recon.png>
-Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 272.
+Package pdftex.def Info: ../plots/img/vis_recon.png used on input line 278.
 (pdftex.def)             Requested size: 867.2379pt x 867.2379pt.
 
-<../plots/img/vis_scatter2.png, id=222, 578.16pt x 433.62pt>
+<../plots/img/vis_scatter2.png, id=221, 578.16pt x 433.62pt>
 File: ../plots/img/vis_scatter2.png Graphic file (type png)
 
 <use ../plots/img/vis_scatter2.png>
-Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 277.
+Package pdftex.def Info: ../plots/img/vis_scatter2.png used on input line 283.
 (pdftex.def)             Requested size: 578.15858pt x 433.61894pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [9 <../plots/img/vis_recon.png> <../plots/img/vis_scatter2.png> <../plots/img/
-vis_latent2_1.png>] (./writeup.bbl)
-
-Package caption Warning: Unused \captionsetup[subfigure] on input line 128.
-See the caption package documentation for explanation.
-
-[10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 292.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 292.
+vis_latent2_1.png>] (./writeup.bbl [10]) [11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 298.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 298.
  (./writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 292.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 292.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 298.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 298.
 Package rerunfilecheck Info: File `writeup.out' has not changed.
-(rerunfilecheck)             Checksum: A0081C0AC9323CF8B3EC6696208A95F3;1609.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 292.
+(rerunfilecheck)             Checksum: FDE997274CDEAA09A80965ECD94E4098;1602.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 298.
  ) 
 Here is how much of TeX's memory you used:
- 28308 strings out of 494497
- 672874 string characters out of 6172400
- 1060349 words of memory out of 5000000
- 31136 multiletter control sequences out of 15000+600000
+ 28310 strings out of 494497
+ 672897 string characters out of 6172400
+ 1052340 words of memory out of 5000000
+ 31137 multiletter control sequences out of 15000+600000
  27142 words of font info for 61 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 59i,24n,94p,34004b,2326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,24n,94p,34004b,2335s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-
@@ -1067,10 +1072,10 @@ e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on writeup.pdf (10 pages, 7971574 bytes).
+Output written on writeup.pdf (11 pages, 7971346 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 267 compressed objects within 3 object streams
- 57 named destinations out of 1000 (max. 500000)
+ 321 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
  229 words of extra memory for PDF output out of 10000 (max. 10000000)
 
